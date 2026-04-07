@@ -19,7 +19,7 @@ npm run test
 # Documentation
 
 - Detailed conventions with examples live in `docs/`.
-- When working on a task, use this map to find and read **only relevant docs** to your task:
+- When working on a task, use this map to find and read **only** the docs relevant to your task:
 
 ```
 docs/
