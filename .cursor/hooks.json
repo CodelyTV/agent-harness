@@ -1,0 +1,10 @@
+{
+  "hooks": {
+    "beforeShellExecution": [
+      {
+        "command": "bash .cursor/hooks/block-export.sh",
+        "description": "Blocks the export command to prevent environment variable exfiltration"
+      }
+    ]
+  }
+}

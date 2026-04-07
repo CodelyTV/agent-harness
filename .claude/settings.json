@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "if": "Bash(*export*)",
+            "command": "echo 'Blocked: the export command is not allowed by security policy' >&2 && exit 2"
+          }
+        ]
+      }
+    ]
+  }
+}
