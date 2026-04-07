@@ -31,6 +31,7 @@ docs/
 │   ├── hexagonal-architecture.md
 │   └── thin-api-routes.md
 ├── database/
+│   ├── creating-new-tables.md
 │   ├── not-null-fields.md
 │   ├── table-naming-singular-plural-convention.md
 │   └── text-over-varchar-char-convention.md
