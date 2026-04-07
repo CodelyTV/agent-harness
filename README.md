@@ -17,33 +17,44 @@
 </p>
 
 <p align="center">
-    Improve your agents harness.
+    Bootstrap to configure <strong>rules, skills, and hooks</strong> for multiple AI coding agents from a single source of truth.
 </p>
 
-## 🔗 Unify skills in .agents
+## 🔗 Unified rules and skills via `.agents/`
 
-Commands:
+Each AI agent reads instructions from a different path. Maintaining them separately is error-prone, so this project centralizes everything and uses **symlinks** so each agent reads from its expected path while the content lives in a single place:
 
-- `make claude-symlinks`
-- `make copilot-symlinks`
-- `make cursor-symlinks`
-- `make junie-symlinks`
+1. **Rules** are written once in `AGENTS.md` (one per directory if needed).
+2. **Skills** live in `.agents/skills/` and are shared across agents.
+3. A `make` command generates the symlinks each agent expects:
+
+| Command                 | What it does                                                                                                                      |
+|-------------------------|-----------------------------------------------------------------------------------------------------------------------------------|
+| `make claude-symlinks`  | Creates a `CLAUDE.md → AGENTS.md` symlink in every directory that has an `AGENTS.md`, and links `.claude/skills → .agents/skills` |
+| `make copilot-symlinks` | Links `.github/skills → .agents/skills`                                                                                           |
+| `make cursor-symlinks`  | Links `.cursor/skills → .agents/skills`                                                                                           |
+| `make junie-symlinks`   | Links `.junie/skills → .agents/skills`                                                                                            |
 
 
-## 👤 Claude Code Agents.md and junie guidelines
+### Junie special case
 
-The command `make claude-symlinks` also generates a `CLAUDE.md` linking to `AGENT.md` recursively.
+Junie does not support `AGENTS.md`. Instead, `.junie/guidelines.md` instructs the agent to look for and follow any `AGENTS.md` file it encounters while navigating the project.
 
-Also, since Junie does not have support for `AGENTS.md`, there is a `.junie/guidelines.md` file that links to all `AGENT.md` files.
+## 📃 `/create-doc` skill
 
-## 📃 /create-doc
+A shared skill that generates convention documentation following the project's guidelines (see `docs/`). It helps improve the harness so future sessions get better context.
 
-There is a skill to improve the repo's harness. This is the `/create-doc` this creates a documentation following our guidelines so the next session is better.
+Two ways to use it:
 
-There are 2 ways to use it:
-- When a conversation is finished: Execute `/create-doc` to apply all the feedback given to the agent.
-- Before starting a conversation. Execute `/create-doc some explanation` to create a new documentation.
+- **After a conversation** — run `/create-doc` to turn the feedback the agent received during the session into a new doc.
+- **Before a conversation** — run `/create-doc <description>` to create a doc for a convention you want to formalize upfront.
 
-## 🛡️ Ban `export` command 
+## 🛡️ `export` command blocked via hooks
 
-The command `export` is dangerous and agents should be able to use it. So there are hooks to disable its invocation. The Claude Code one is special because they have the `if` keyword.
+The `export` command can leak environment variables (tokens, secrets) if an agent runs it. To prevent this, each agent has a **pre-execution hook** that blocks any shell command containing `export`:
+
+| Agent       | Hook location                                        | Mechanism                                                                              |
+|-------------|------------------------------------------------------|----------------------------------------------------------------------------------------|
+| Claude Code | `.claude/settings.json`                              | Uses the `if` keyword with a glob pattern (`Bash(*export*)`) to match and block inline |
+| Cursor      | `.cursor/hooks.json` + `hooks/block-export.sh`       | Runs a shell script that parses the command via `jq` and exits with code 2 on match    |
+| Copilot     | `.github/hooks/hooks.json` + `hooks/block-export.sh` | Same approach as Cursor, adapted to Copilot's hook input format                        |
