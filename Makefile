@@ -1,6 +1,9 @@
 claude-symlinks:
 	@bash scripts/generate-claude-symlinks.sh
 
+codex-symlinks:
+	@bash scripts/generate-codex-symlinks.sh
+
 copilot-symlinks:
 	@bash scripts/generate-copilot-symlinks.sh
 

@@ -31,6 +31,7 @@ Each AI agent reads instructions from a different path. Maintaining them separat
 | Command                 | What it does                                                                                                                      |
 |-------------------------|-----------------------------------------------------------------------------------------------------------------------------------|
 | `make claude-symlinks`  | Creates a `CLAUDE.md → AGENTS.md` symlink in every directory that has an `AGENTS.md`, and links `.claude/skills → .agents/skills` |
+| `make codex-symlinks`   | Links `.codex/skills → .agents/skills`                                                                                            |
 | `make copilot-symlinks` | Links `.github/skills → .agents/skills`                                                                                           |
 | `make cursor-symlinks`  | Links `.cursor/skills → .agents/skills`                                                                                           |
 | `make junie-symlinks`   | Links `.junie/skills → .agents/skills`                                                                                            |
