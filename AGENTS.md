@@ -11,14 +11,15 @@ npm run test
 # Architecture
 
 - Next.js 16, Onion Architecture, DDD.
-- Frontend in `src/app/`, API routes in `src/app/api/`.
-- Backend in `src/contexts/`.
+- Paths:
+  - API routes `src/app/api/`.
+  - Frontend `src/app/`
+  - Backend `src/contexts/`.
 
 # Documentation
 
 - Detailed conventions with examples live in `docs/`.
-- **Do NOT read all docs upfront.**
-- When working on a task, use this map to find and read only the docs relevant to your task:
+- When working on a task, use this map to find and read **only relevant docs** to your task:
 
 ```
 docs/
