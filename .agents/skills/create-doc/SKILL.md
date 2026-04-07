@@ -1,6 +1,9 @@
 ---
 name: create-doc
 description: Create or improve documentation based on the current conversation. Use this when a plan has been created and changes were requested because it didn’t follow the repository’s conventions.
+metadata:
+  author: Codely
+  version: "1.0"
 ---
 
 Based on the current conversation, create new or improve existing documentation files inside the `docs/` folder.
