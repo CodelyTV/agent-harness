@@ -12,3 +12,6 @@ cursor-symlinks:
 
 junie-symlinks:
 	@bash scripts/generate-junie-symlinks.sh
+
+opencode-symlinks:
+	@bash scripts/generate-opencode-symlinks.sh

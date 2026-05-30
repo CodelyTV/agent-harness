@@ -35,6 +35,7 @@ Each AI agent reads instructions from a different path. Maintaining them separat
 | `make copilot-symlinks` | Links `.github/skills → .agents/skills`                                                                                           |
 | `make cursor-symlinks`  | Links `.cursor/skills → .agents/skills`                                                                                           |
 | `make junie-symlinks`   | Links `.junie/skills → .agents/skills`                                                                                            |
+| `make opencode-symlinks`| Links `.opencode/skills → .agents/skills`                                                                                         |
 
 
 ### Junie special case
@@ -59,3 +60,4 @@ The `export` command can leak environment variables (tokens, secrets) if an agen
 | Claude Code | `.claude/settings.json`                              | Uses the `if` keyword with a glob pattern (`Bash(*export*)`) to match and block inline |
 | Cursor      | `.cursor/hooks.json` + `hooks/block-export.sh`       | Runs a shell script that parses the command via `jq` and exits with code 2 on match    |
 | Copilot     | `.github/hooks/hooks.json` + `hooks/block-export.sh` | Same approach as Cursor, adapted to Copilot's hook input format                        |
+| OpenCode    | `.opencode/plugins/block-export.ts`                  | A native TypeScript plugin (`tool.execute.before`) that inspects the command and throws to block |
