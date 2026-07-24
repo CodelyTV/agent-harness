@@ -20,6 +20,37 @@
     Bootstrap to configure <strong>rules, skills, and hooks</strong> for multiple AI coding agents from a single source of truth.
 </p>
 
+## ⚡ Quickstart
+
+1. Install the skills with the `skills.sh` installer:
+
+   ```bash
+   npx skills@latest add codelytv/agent-harness
+   ```
+
+2. Pick the skills you want and the coding agents you want to install them on.
+
+3. Run a skill in your agent, for example `/doc-create`.
+
+4. Done. Your agent now follows Codely's conventions.
+
+This is also the recommended way to use the skills in **OpenAI Codex**: the installer writes them to `.agents/skills/`,
+which Codex scans natively, so they become available with both implicit (by description) and explicit (`/skills` or `$`)
+invocation.
+
+### Alternative: Claude Code plugin
+
+1. Add this repository as a plugin marketplace and install the plugin:
+
+   ```
+   /plugin marketplace add CodelyTV/agent-harness
+   /plugin install codely-skills@codely
+   ```
+
+2. Run a skill in Claude Code, for example `/doc-create`.
+
+3. Done. Every skill in this repo is now available in Claude Code.
+
 ## 🗂️ Skills
 
 Skills live in `.agents/skills/` and are shared across every agent. They are grouped by category:
