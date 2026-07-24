@@ -12,6 +12,30 @@
 			"source": "./",
 			"description": "Codely's team skills: planning, docs, and git conventions.",
 			"category": "engineering"
+		},
+		{
+			"name": "tsgo-lsp",
+			"description": "TypeScript/JavaScript code intelligence via the TypeScript 7 native compiler LSP, much faster than tsserver on large monorepos",
+			"version": "1.1.0",
+			"source": "./tsgo-lsp",
+			"category": "development",
+			"strict": false,
+			"lspServers": {
+				"tsgo": {
+					"command": "tsc",
+					"args": ["--lsp", "-stdio"],
+					"extensionToLanguage": {
+						".ts": "typescript",
+						".tsx": "typescriptreact",
+						".js": "javascript",
+						".jsx": "javascriptreact",
+						".mts": "typescript",
+						".cts": "typescript",
+						".mjs": "javascript",
+						".cjs": "javascript"
+					}
+				}
+			}
 		}
 	]
 }
