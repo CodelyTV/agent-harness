@@ -1,0 +1,17 @@
+{
+	"name": "codely",
+	"description": "Codely’s plugins to level up your code.",
+	"owner": {
+		"name": "Codely",
+		"email": "support@codely.com",
+		"url": "https://codely.com"
+	},
+	"plugins": [
+		{
+			"name": "codely-skills",
+			"source": "./",
+			"description": "Codely's team skills: planning, docs, and git conventions.",
+			"category": "engineering"
+		}
+	]
+}

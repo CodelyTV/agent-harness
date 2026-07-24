@@ -1,0 +1,20 @@
+{
+	"name": "codely-skills",
+	"description": "Codely's team skills: planning, docs, and git conventions.",
+	"version": "1.0.0",
+	"author": {
+		"name": "Codely",
+		"email": "support@codely.com",
+		"url": "https://codely.com"
+	},
+	"homepage": "https://github.com/CodelyTV/skills",
+	"repository": "https://github.com/CodelyTV/skills",
+	"license": "MIT",
+	"keywords": ["engineering", "skills", "commit", "rpi"],
+	"skills": [
+		"./.agents/skills/git/git-commit",
+		"./.agents/skills/harness/doc-create",
+		"./.agents/skills/rpi/plan-create",
+		"./.agents/skills/rpi/plan-implement-phase"
+	]
+}

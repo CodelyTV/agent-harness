@@ -1,0 +1,28 @@
+{
+	"$schema": "https://skills.sh/schemas/skills.sh.schema.json",
+	"notGrouped": "bottom",
+	"groupings": [
+		{
+			"title": "Harness",
+			"description": "Skills for creating and maintaining project documentation and conventions.",
+			"skills": [
+				"doc-create"
+			]
+		},
+		{
+			"title": "RPI",
+			"description": "Skills for planning and executing tasks phase by phase.",
+			"skills": [
+				"plan-create",
+				"plan-implement-phase"
+			]
+		},
+		{
+			"title": "Git",
+			"description": "Skills for working with Git following the team's conventions.",
+			"skills": [
+				"git-commit"
+			]
+		}
+	]
+}

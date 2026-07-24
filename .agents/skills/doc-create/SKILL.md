@@ -1,11 +1,12 @@
 ---
-name: create-doc
+name: doc-create
 description: Create new documentation based on the current conversation context.
 disable-model-invocation: false
 user-invocable: true
 metadata:
-  author: Codely
+  author: Codely <support@codely.com> (https://codely.com)
   version: "1.0"
+  license: MIT
 ---
 
 # How to create documentation
@@ -42,7 +43,7 @@ If the conversation provides enough clarity, proceed directly to generating the 
 
 ### Step 3: Generate the file
 
-Create the documentation file following the structure and guidelines defined in [`docs/documentation-guidelines.md`](../../../docs/documentation-guidelines.md).
+Create the documentation file following the structure and guidelines defined in [`resources/documentation-guidelines.md`](resources/documentation-guidelines.md).
 
 ### Step 4: Update docs & close conversation
 
