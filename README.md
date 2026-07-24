@@ -9,7 +9,7 @@
 </p>
 
 <h1 align="center">
-    🤖 Agentic Harness Bootstrap
+    🤖 Agentic Harness
 </h1>
 
 <p align="center">
