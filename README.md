@@ -20,7 +20,11 @@
     Bootstrap to configure <strong>rules, skills, and hooks</strong> for multiple AI coding agents from a single source of truth.
 </p>
 
-## ⚡ Quickstart
+## 🗂️ Skills
+
+Skills live in `.agents/skills/` and are shared across every agent.
+
+### ⚡ Quickstart
 
 1. Install the skills with the `skills.sh` installer:
 
@@ -38,7 +42,7 @@ This is also the recommended way to use the skills in **OpenAI Codex**: the inst
 which Codex scans natively, so they become available with both implicit (by description) and explicit (`/skills` or `$`)
 invocation.
 
-### Alternative: Claude Code plugin
+#### Alternative: Claude Code plugin
 
 1. Add this repository as a plugin marketplace and install the plugin:
 
@@ -51,11 +55,11 @@ invocation.
 
 3. Done. Every skill in this repo is now available in Claude Code.
 
-## 🗂️ Skills
+### 📦 Available skills
 
-Skills live in `.agents/skills/` and are shared across every agent. They are grouped by category:
+Skills are grouped by category:
 
-### 📃 Harness
+#### 📃 Harness
 
 | Skill                                              | What it does                                                                                                           |
 |----------------------------------------------------|------------------------------------------------------------------------------------------------------------------------|
@@ -67,7 +71,7 @@ Two ways to use `doc-create`:
   doc.
 - **Before a conversation** — run `/doc-create <description>` to formalize a convention you want to document upfront.
 
-### 🗺️ RPI
+#### 🗺️ RPI
 
 | Skill                                                                  | What it does                                                                                                                     |
 |------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
@@ -80,7 +84,7 @@ Typical flow:
 - **Implement** it phase by phase with `/plan-implement-phase <plan-file-path>`, reviewing and committing after each
   one.
 
-### 🔀 Git
+#### 🔀 Git
 
 | Skill                                              | What it does                                                                                              |
 |----------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
