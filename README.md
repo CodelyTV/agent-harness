@@ -72,12 +72,12 @@ Two ways to use `doc-create`:
 | Skill                                                                  | What it does                                                                                                                     |
 |------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
 | [`plan-create`](.agents/skills/plan-create/SKILL.md)                   | Breaks a task into reviewable phases (vertical slices), defines the public contracts to change, and saves an approved plan file. |
-| [`plan-implement-phase`](.agents/skills/plan-implement-phase/SKILL.md) | Executes a single phase of a plan at a time, updates its checkboxes, and stops for review without committing automatically.      |
+| [`plan-phase-implement`](.agents/skills/plan-phase-implement/SKILL.md) | Executes a single phase of a plan at a time, updates its checkboxes, and stops for review without committing automatically.      |
 
 Typical flow:
 
 - **Plan** the work with `/plan-create <task>` to produce a phased plan file under `.agents/plans/`.
-- **Implement** it phase by phase with `/plan-implement-phase <plan-file-path>`, reviewing and committing after each
+- **Implement** it phase by phase with `/plan-phase-implement <plan-file-path>`, reviewing and committing after each
   one.
 
 #### 🔀 Git

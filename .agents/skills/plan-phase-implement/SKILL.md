@@ -1,5 +1,5 @@
 ---
-name: plan-implement-phase
+name: plan-phase-implement
 description: Implement one phase of the plan specified by the user. Only implements a single phase per invocation, then stops for user review. Never commits automatically.
 disable-model-invocation: true
 user-invocable: true

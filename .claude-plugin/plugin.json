@@ -15,6 +15,6 @@
 		"./.agents/skills/git/git-commit",
 		"./.agents/skills/harness/doc-create",
 		"./.agents/skills/rpi/plan-create",
-		"./.agents/skills/rpi/plan-implement-phase"
+		"./.agents/skills/rpi/plan-phase-implement"
 	]
 }

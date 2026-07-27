@@ -85,7 +85,7 @@ Without a `metadata` block the skill loses its author, version, and license.
 ## 🌍 Real world examples
 
 - [`skills/rpi/plan-create/SKILL.md`](../../skills/rpi/plan-create/SKILL.md): full frontmatter with the complete Codely attribution and license.
-- [`skills/rpi/plan-implement-phase/SKILL.md`](../../skills/rpi/plan-implement-phase/SKILL.md): same standard applied to a user-only skill.
+- [`skills/rpi/plan-phase-implement/SKILL.md`](../../skills/rpi/plan-phase-implement/SKILL.md): same standard applied to a user-only skill.
 
 ## 🔗 Related agreements
 

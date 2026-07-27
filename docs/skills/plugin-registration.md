@@ -13,7 +13,7 @@ Whenever you add a new skill, you MUST register its folder in that `skills` arra
 		"./skills/git/git-commit",
 		"./skills/harness/doc-create",
 		"./skills/rpi/plan-create",
-		"./skills/rpi/plan-implement-phase"
+		"./skills/rpi/plan-phase-implement"
 	]
 }
 ```
@@ -40,7 +40,7 @@ Whenever you add a new skill, you MUST register its folder in that `skills` arra
 	"./skills/git/git-commit",
 	"./skills/harness/doc-create",
 	"./skills/rpi/plan-create",
-	"./skills/rpi/plan-implement-phase"
+	"./skills/rpi/plan-phase-implement"
 ]
 ```
 
