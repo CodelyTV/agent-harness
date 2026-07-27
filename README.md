@@ -38,10 +38,6 @@ Skills live in `.agents/skills/` and are shared across every agent.
 
 4. Done. Your agent now follows Codely's conventions.
 
-This is also the recommended way to use the skills in **OpenAI Codex**: the installer writes them to `.agents/skills/`,
-which Codex scans natively, so they become available with both implicit (by description) and explicit (`/skills` or `$`)
-invocation.
-
 #### Alternative: Claude Code plugin
 
 1. Add this repository as a plugin marketplace and install the plugin:
