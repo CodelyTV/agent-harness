@@ -9,7 +9,7 @@
 </p>
 
 <h1 align="center">
-    🤖 Agentic Harness
+    🤖 Agent Harness
 </h1>
 
 <p align="center">
@@ -17,7 +17,7 @@
 </p>
 
 <p align="center">
-    Bootstrap to configure <strong>rules, skills, and hooks</strong> for multiple AI coding agents from a single source of truth.
+    Our agent harness: <strong>Skills, plugins, hooks, and utilities</strong> to improve the quality of your agent.
 </p>
 
 ## 🗂️ Skills
