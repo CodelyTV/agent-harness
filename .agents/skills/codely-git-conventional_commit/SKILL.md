@@ -1,5 +1,5 @@
 ---
-name: codely-git-conventional-commit
+name: codely-git-conventional_commit
 description: Create a git commit following the team's Conventional Commit conventions. Use when the user asks to commit changes or create a commit.
 disable-model-invocation: false
 user-invocable: true
