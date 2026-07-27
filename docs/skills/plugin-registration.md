@@ -10,19 +10,19 @@ Whenever you add a new skill, you MUST register its folder in that `skills` arra
 {
 	"name": "codely-skills",
 	"skills": [
-		"./skills/git/git-commit",
-		"./skills/harness/doc-create",
-		"./skills/rpi/plan-create",
-		"./skills/rpi/plan-phase-implement"
+		"./.agents/skills/codely:git-commit",
+		"./.agents/skills/codely:doc-create",
+		"./.agents/skills/codely:plan-create",
+		"./.agents/skills/codely:plan_phase-implement"
 	]
 }
 ```
 
 ### 🔑 Rules
 
-- List each skill **individually** by its folder path (`./skills/<group>/<skill-name>`). Do not point to the group folder — Claude Code does not discover skills recursively.
+- List each skill **individually** by its folder path (`./.agents/skills/codely:<skill-name>`). Do not point to the `.agents/skills` folder — Claude Code does not discover skills recursively.
 - The path MUST match the folder that contains the skill's `SKILL.md`, and the folder name MUST match the skill `name` in its frontmatter (see [Skill Frontmatter Standard](skills-frontmatter.md)).
-- Keep the array ordered by group, matching the `skills/` folder layout, so it stays easy to scan.
+- Keep the array ordered by group, matching the `.agents/skills/` folder layout, so it stays easy to scan.
 - Adding a skill is not done until its path is in `plugin.json`. Treat it as part of the definition of done for every new skill.
 
 ## 🏆 Benefits
@@ -37,31 +37,31 @@ Whenever you add a new skill, you MUST register its folder in that `skills` arra
 
 ```json
 "skills": [
-	"./skills/git/git-commit",
-	"./skills/harness/doc-create",
-	"./skills/rpi/plan-create",
-	"./skills/rpi/plan-phase-implement"
+	"./.agents/skills/codely:git-commit",
+	"./.agents/skills/codely:doc-create",
+	"./.agents/skills/codely:plan-create",
+	"./.agents/skills/codely:plan_phase-implement"
 ]
 ```
 
-### ❌ Bad: pointing to the group folders
+### ❌ Bad: pointing to the parent folder
 
 ```json
-"skills": ["./skills/git", "./skills/harness", "./skills/rpi"]
+"skills": ["./.agents/skills"]
 ```
 
-Claude Code does not discover skills recursively, so the individual skills inside those folders are not guaranteed to be registered.
+Claude Code does not discover skills recursively, so the individual skills inside that folder are not guaranteed to be registered.
 
 ### ❌ Bad: a new skill missing from the manifest
 
 ```json
 "skills": [
-	"./skills/git/git-commit",
-	"./skills/harness/doc-create"
+	"./.agents/skills/codely:git-commit",
+	"./.agents/skills/codely:doc-create"
 ]
 ```
 
-If `skills/rpi/plan-create` exists on disk but is not in the array, it ships through `skills.sh` but is absent from the Claude Code plugin.
+If `.agents/skills/codely:plan-create` exists on disk but is not in the array, it ships through `skills.sh` but is absent from the Claude Code plugin.
 
 ## 🌍 Real world examples
 

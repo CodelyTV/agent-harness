@@ -6,22 +6,24 @@
 			"title": "Harness",
 			"description": "Skills for creating and maintaining project documentation and conventions.",
 			"skills": [
-				"doc-create"
+				"codely:doc-create"
 			]
 		},
 		{
 			"title": "RPI",
 			"description": "Skills for planning and executing tasks phase by phase.",
 			"skills": [
-				"plan-create",
-				"plan-phase-implement"
+				"codely:plan-create",
+				"codely:plan-create-github",
+				"codely:plan_phase-implement",
+				"codely:plan_phase-implement-github"
 			]
 		},
 		{
 			"title": "Git",
 			"description": "Skills for working with Git following the team's conventions.",
 			"skills": [
-				"git-commit"
+				"codely:git-commit"
 			]
 		}
 	]

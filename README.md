@@ -34,7 +34,7 @@ Skills live in `.agents/skills/` and are shared across every agent.
 
 2. Pick the skills you want and the coding agents you want to install them on.
 
-3. Run a skill in your agent, for example `/doc-create`.
+3. Run a skill in your agent, for example `/codely:doc-create`.
 
 4. Done. Your agent now follows Codely's conventions.
 
@@ -47,7 +47,7 @@ Skills live in `.agents/skills/` and are shared across every agent.
    /plugin install codely-skills@codely
    ```
 
-2. Run a skill in Claude Code, for example `/doc-create`.
+2. Run a skill in Claude Code, for example `/codely:doc-create`.
 
 3. Done. Every skill in this repo is now available in Claude Code.
 
@@ -57,36 +57,39 @@ Skills are grouped by category:
 
 #### 📃 Harness
 
-| Skill                                              | What it does                                                                                                           |
-|----------------------------------------------------|------------------------------------------------------------------------------------------------------------------------|
-| [`doc-create`](.agents/skills/doc-create/SKILL.md) | Generates convention documentation from the current conversation, turning feedback and corrections into reusable docs. |
+| Skill                                                             | What it does                                                                                                           |
+|-------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------|
+| [`codely:doc-create`](.agents/skills/codely:doc-create/SKILL.md) | Generates convention documentation from the current conversation, turning feedback and corrections into reusable docs. |
 
-Two ways to use `doc-create`:
+Two ways to use `codely:doc-create`:
 
-- **After a conversation** — run `/doc-create` to turn the corrections the agent received during the session into a new
-  doc.
-- **Before a conversation** — run `/doc-create <description>` to formalize a convention you want to document upfront.
+- **After a conversation** — run `/codely:doc-create` to turn the corrections the agent received during the session into
+  a new doc.
+- **Before a conversation** — run `/codely:doc-create <description>` to formalize a convention you want to document
+  upfront.
 
 #### 🗺️ RPI
 
-| Skill                                                                  | What it does                                                                                                                     |
-|------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
-| [`plan-create`](.agents/skills/plan-create/SKILL.md)                   | Breaks a task into reviewable phases (vertical slices), defines the public contracts to change, and saves an approved plan file. |
-| [`plan-phase-implement`](.agents/skills/plan-phase-implement/SKILL.md) | Executes a single phase of a plan at a time, updates its checkboxes, and stops for review without committing automatically.      |
+| Skill                                                                                                | What it does                                                                                                                     |
+|--------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
+| [`codely:plan-create`](.agents/skills/codely:plan-create/SKILL.md)                                   | Breaks a task into reviewable phases (vertical slices), defines the public contracts to change, and saves an approved plan file. |
+| [`codely:plan_phase-implement`](.agents/skills/codely:plan_phase-implement/SKILL.md)                 | Executes a single phase of a plan at a time, updates its checkboxes, and stops for review without committing automatically.      |
+| [`codely:plan-create-github`](.agents/skills/codely:plan-create-github/SKILL.md)                     | Same planning flow, but stored as GitHub issues: a parent plan issue and one native sub-issue per phase.                        |
+| [`codely:plan_phase-implement-github`](.agents/skills/codely:plan_phase-implement-github/SKILL.md)   | Implements one phase issue at a time on its linked branch and opens a pull request that closes the issue on merge.              |
 
 Typical flow:
 
-- **Plan** the work with `/plan-create <task>` to produce a phased plan file under `.agents/plans/`.
-- **Implement** it phase by phase with `/plan-phase-implement <plan-file-path>`, reviewing and committing after each
-  one.
+- **Plan** the work with `/codely:plan-create <task>` to produce a phased plan file under `.agents/plans/`.
+- **Implement** it phase by phase with `/codely:plan_phase-implement <plan-file-path>`, reviewing and committing after
+  each one.
 
 #### 🔀 Git
 
-| Skill                                              | What it does                                                                                              |
-|----------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
-| [`git-commit`](.agents/skills/git-commit/SKILL.md) | Creates a Git commit following the team's Conventional Commits conventions, scope, and co-author trailer. |
+| Skill                                                             | What it does                                                                                              |
+|-------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
+| [`codely:git-commit`](.agents/skills/codely:git-commit/SKILL.md) | Creates a Git commit following the team's Conventional Commits conventions, scope, and co-author trailer. |
 
-Run `/git-commit` to stage and commit your changes with a conventional message.
+Run `/codely:git-commit` to stage and commit your changes with a conventional message.
 
 ## 🔗 Unified rules and skills via `.agents/`
 
