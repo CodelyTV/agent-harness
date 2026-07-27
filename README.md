@@ -86,8 +86,7 @@ Typical flow:
 |----------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
 | [`git-commit`](.agents/skills/git-commit/SKILL.md) | Creates a Git commit following the team's Conventional Commits conventions, scope, and co-author trailer. |
 
-Run `/git-commit` to stage and commit your changes with a conventional message, or `/git-commit <message>` to use your
-own.
+Run `/git-commit` to stage and commit your changes with a conventional message.
 
 ## 🔗 Unified rules and skills via `.agents/`
 
