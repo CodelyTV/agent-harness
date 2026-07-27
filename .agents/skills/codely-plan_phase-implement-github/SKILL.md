@@ -1,5 +1,5 @@
 ---
-name: codely:plan_phase-implement-github
+name: codely-plan_phase-implement-github
 description: Implement one phase of a plan stored as GitHub issues in the repository of the current working directory. Given the URL of a phase (child) issue it implements that phase; given the parent plan issue it finds and implements the current phase. Only implements a single phase per invocation, then stops for user review. It opens a pull request that references the phase issue so merging it closes the issue automatically. Never merges the pull request.
 disable-model-invocation: true
 user-invocable: true
@@ -61,7 +61,7 @@ Confirm the repository `gh` resolves with `gh repo view --json nameWithOwner --j
 
 5. **Verify the changes** (typechecking, linting and tests) and fix any issue before continuing.
 
-6. **STOP.** Present the changes to the user and **suggest 3 alternative commit / pull request titles** following Conventional Commits (e.g. `feat:`, `fix:`, `refactor:`, `test:`, `docs:`). Use different plausible types across the 3 alternatives. Specify the affected workspace as scope if only one workspace is affected. Make it simple to reply something like "open the PR with title 1".
+6. **STOP.** Present the changes to the user and **suggest 3 alternative commit / pull request titles** following Conventional Commits (e.g. `feat:`, `fix:`, `refactor:`, `test:`, `docs:`). Use different plausible types across the 3 alternatives. Make it simple to reply something like "open the PR with title 1".
 
 7. **When the user picks a title**, commit, push the branch and **open a pull request** that references the phase issue so merging it closes the issue automatically:
 

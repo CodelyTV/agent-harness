@@ -1,5 +1,5 @@
 ---
-name: codely:doc-create
+name: codely-doc-create
 description: Create new documentation based on the current conversation context.
 disable-model-invocation: false
 user-invocable: true

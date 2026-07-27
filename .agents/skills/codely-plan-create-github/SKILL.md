@@ -1,5 +1,5 @@
 ---
-name: codely:plan-create-github
+name: codely-plan-create-github
 description: Create a plan for the specified task and store it as GitHub issues in the repository of the current working directory. Given the URL of a GitHub issue, it turns that issue into the parent "plan" issue (Goal, Context and a checklist of phases) and creates one child issue per phase, linking every phase as a native GitHub sub-issue of the parent. Stops for user approval before creating any issue. After creation, the plan is meant to be implemented with the codely:plan_phase-implement-github skill.
 disable-model-invocation: true
 user-invocable: true

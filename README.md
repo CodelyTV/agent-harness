@@ -87,9 +87,9 @@ Typical flow:
 
 | Skill                                                             | What it does                                                                                              |
 |-------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
-| [`codely:git-commit`](.agents/skills/codely:git-commit/SKILL.md) | Creates a Git commit following the team's Conventional Commits conventions, scope, and co-author trailer. |
+| [`codely:git-conventional-commit`](.agents/skills/codely:git-conventional-commit/SKILL.md) | Creates a Git commit following the team's Conventional Commits conventions and co-author trailer. |
 
-Run `/codely:git-commit` to stage and commit your changes with a conventional message.
+Run `/codely:git-conventional-commit` to stage and commit your changes with a conventional message.
 
 ## 🔗 Unified rules and skills via `.agents/`
 

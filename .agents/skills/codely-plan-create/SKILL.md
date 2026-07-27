@@ -1,5 +1,5 @@
 ---
-name: codely:plan-create
+name: codely-plan-create
 description: Create a plan for the specified task.
 disable-model-invocation: true
 user-invocable: true
@@ -26,7 +26,7 @@ The structure of a plan, its sections and the rules to shape them are defined in
 6. Suggest next steps
    - Once you create the plan file, ask the user what do they want to do:
      - Do not do anything else.
-     - Commit the plan file to the repository by running the `/codely:git-commit` skill. Consider plan file only changes as `docs` type.
+     - Commit the plan file to the repository by running the `/codely:git-conventional-commit` skill. Consider plan file only changes as `docs` type.
      - Implement the plan by running the `/codely:plan_phase-implement @plan-file-path` skill.
      - Commit the plan file and then implement Phase 1 only.
 

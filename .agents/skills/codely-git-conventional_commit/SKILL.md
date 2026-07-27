@@ -1,5 +1,5 @@
 ---
-name: codely:git-commit
+name: codely-git-conventional-commit
 description: Create a git commit following the team's Conventional Commit conventions. Use when the user asks to commit changes or create a commit.
 disable-model-invocation: false
 user-invocable: true
@@ -11,17 +11,11 @@ metadata:
 
 ## Context
 
-If the user does not specify the commit message, run `bash "${CLAUDE_SKILL_DIR}/scripts/context.sh"` from the repository root to gather context about the current Git changes to determine it.
+If the user does not specify the commit message, gather context about the current Git changes to determine it: `git status`, `git diff HEAD`, the untracked files, the current branch and the recent commits.
 
 ## Your task
 
 Create a single Git commit. Follow the conventions in [`resources/commit-messages.md`](resources/commit-messages.md) to determine the commit message if it has not been already specified.
-
-The context script output already provides all the information needed (status, diff, branch, recent commits). Do not run additional Git commands to gather context — proceed directly to staging and committing.
-
-## Scope selection
-
-Use the "Available scopes" section from the context script output above to pick the right scope. When a change involves backend routes and code, use the full context workspace name as scope (e.g., `mooc`) instead of just the context name. For example: `feat(mooc): add course enrollment endpoint`.
 
 ## Co-authors
 
