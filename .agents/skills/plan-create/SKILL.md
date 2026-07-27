@@ -40,12 +40,12 @@ metadata:
 6. Suggest next steps
    - Once you create the plan file, ask the user what do they want to do:
      - Do not do anything else.
-     - Commit the plan file to the repository by executing the `/git-commit` skill. Consider plan file only changes as `docs` type.
-     - Execute the plan by executing the `/plan-implement-phase @plan-file-path` skill.
-     - Commit the plan file and then execute Phase 1 only.
+     - Commit the plan file to the repository by running the `/git-commit` skill. Consider plan file only changes as `docs` type.
+     - Implement the plan by running the `/plan-implement-phase @plan-file-path` skill.
+     - Commit the plan file and then implement Phase 1 only.
 
    > [!IMPORTANT]
-   > If the user asks to "commit and execute", commit the plan file first, then execute **only Phase 1**. Never execute all phases at once. The `/plan-implement-phase` skill handles one phase per invocation.
+   > If the user asks to "commit and implement", commit the plan file first, then implement **only Phase 1**. Never implement all phases at once. The `/plan-implement-phase` skill handles one phase per invocation.
 
 ## ☝️ General considerations
 
