@@ -1,6 +1,6 @@
 ---
 name: codely-plan-create-github
-description: Create a plan for the specified task and store it as GitHub issues in the repository of the current working directory. Given the URL of a GitHub issue, it turns that issue into the parent "plan" issue (Goal, Context and a checklist of phases) and creates one child issue per phase, linking every phase as a native GitHub sub-issue of the parent. Stops for user approval before creating any issue. After creation, the plan is meant to be implemented with the codely:plan_phase-implement-github skill.
+description: Create a plan for the specified task and store it as GitHub issues in the repository of the current working directory. Given the URL of a GitHub issue, it turns that issue into the parent "plan" issue (Goal, Context and a checklist of phases) and creates one child issue per phase, linking every phase as a native GitHub sub-issue of the parent. Stops for user approval before creating any issue. After creation, the plan is meant to be implemented with the codely-plan_phase-implement-github skill.
 disable-model-invocation: true
 user-invocable: true
 metadata:
@@ -18,7 +18,7 @@ The structure of a plan, its sections and the rules to shape them are defined in
 
 ## 🎯 Input
 
-This skill is invoked as `/codely:plan-create-github <github-issue-url>`.
+This skill is invoked as `/codely-plan-create-github <github-issue-url>`.
 
 - `<github-issue-url>` is the URL of the GitHub issue describing the task to plan. **This issue becomes the parent "plan" issue.**
 - If no URL is provided, ask the user for it before doing anything else.
@@ -92,11 +92,11 @@ A plan is stored as a **tree of issues**, using GitHub's **native sub-issues** f
 
 8. Suggest next steps. Ask the user what do they want to do:
    - Do not do anything else.
-   - Implement the plan by executing the `/codely:plan_phase-implement-github <parent-issue-url>` skill (implements Phase 1 only).
-   - Implement a specific phase by executing the `/codely:plan_phase-implement-github <child-issue-url>` skill.
+   - Implement the plan by executing the `/codely-plan_phase-implement-github <parent-issue-url>` skill (implements Phase 1 only).
+   - Implement a specific phase by executing the `/codely-plan_phase-implement-github <child-issue-url>` skill.
 
    > [!IMPORTANT]
-   > `/codely:plan_phase-implement-github` handles one phase per invocation. Never implement all phases at once.
+   > `/codely-plan_phase-implement-github` handles one phase per invocation. Never implement all phases at once.
 
 ## 🗃️ Plan metadata
 

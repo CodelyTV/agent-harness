@@ -12,11 +12,11 @@
 	"license": "MIT",
 	"keywords": ["engineering", "skills", "commit", "rpi"],
 	"skills": [
-		"./.agents/skills/codely:git-commit",
-		"./.agents/skills/codely:doc-create",
-		"./.agents/skills/codely:plan-create",
-		"./.agents/skills/codely:plan-create-github",
-		"./.agents/skills/codely:plan_phase-implement",
-		"./.agents/skills/codely:plan_phase-implement-github"
+		"./.agents/skills/codely-git-conventional_commit",
+		"./.agents/skills/codely-doc-create",
+		"./.agents/skills/codely-plan-create",
+		"./.agents/skills/codely-plan-create-github",
+		"./.agents/skills/codely-plan_phase-implement",
+		"./.agents/skills/codely-plan_phase-implement-github"
 	]
 }

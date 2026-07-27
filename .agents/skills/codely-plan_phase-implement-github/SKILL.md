@@ -19,7 +19,7 @@ metadata:
 
 ## 🎯 Input
 
-This skill is invoked as `/codely:plan_phase-implement-github <github-issue-url>`. The URL can point to either:
+This skill is invoked as `/codely-plan_phase-implement-github <github-issue-url>`. The URL can point to either:
 
 - A **phase (child) issue**: implement that phase.
 - The **parent plan issue**: find the current phase and implement it (see below).
