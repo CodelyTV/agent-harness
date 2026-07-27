@@ -107,11 +107,6 @@ single place:
 | `make junie-symlinks`    | Links `.junie/skills → .agents/skills`                                                                                            |
 | `make opencode-symlinks` | Links `.opencode/skills → .agents/skills`                                                                                         |
 
-### Junie special case
-
-Junie does not support `AGENTS.md`. Instead, `.junie/guidelines.md` instructs the agent to look for and follow any
-`AGENTS.md` file it encounters while navigating the project.
-
 ## 🛡️ `export` command blocked via hooks
 
 The `export` command can leak environment variables (tokens, secrets) if an agent runs it. To prevent this, each agent
