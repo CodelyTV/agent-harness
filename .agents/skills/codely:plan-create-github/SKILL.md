@@ -1,6 +1,6 @@
 ---
 name: codely:plan-create-github
-description: Create a plan for the specified task and store it as GitHub issues in the CodelyTV/rpi-course repository. Given the URL of a GitHub issue, it turns that issue into the parent "plan" issue (Goal, Context and a checklist of phases) and creates one child issue per phase, linking every phase as a native GitHub sub-issue of the parent. Stops for user approval before creating any issue. After creation, the plan is meant to be implemented with the codely:plan_phase-implement-github skill.
+description: Create a plan for the specified task and store it as GitHub issues in the repository of the current working directory. Given the URL of a GitHub issue, it turns that issue into the parent "plan" issue (Goal, Context and a checklist of phases) and creates one child issue per phase, linking every phase as a native GitHub sub-issue of the parent. Stops for user approval before creating any issue. After creation, the plan is meant to be implemented with the codely:plan_phase-implement-github skill.
 disable-model-invocation: true
 user-invocable: true
 metadata:
@@ -25,24 +25,24 @@ This skill is invoked as `/codely:plan-create-github <github-issue-url>`.
 
 ## 🗂️ Repository
 
-All the plan lives as GitHub issues in the `CodelyTV/rpi-course` repository. Every `gh` command must target it explicitly:
+All the plan lives as GitHub issues in the repository of the current working directory. Never hardcode a repository: let `gh` resolve it from the local Git remote.
 
 ```bash
-gh issue view <number> --repo CodelyTV/rpi-course
-gh issue create --repo CodelyTV/rpi-course --title "..." --body "..."
-gh issue edit <number> --repo CodelyTV/rpi-course --body "..."
+gh issue view <number>
+gh issue create --title "..." --body "..."
+gh issue edit <number> --body "..."
 ```
 
-Derive `<number>` from the provided URL; the repository is always `CodelyTV/rpi-course`.
+Derive `<number>` from the provided URL. Confirm the repository `gh` resolves with `gh repo view --json nameWithOwner --jq .nameWithOwner`, and check that the provided URL belongs to it. If it does not, stop and ask the user to run the skill from the clone of that repository.
 
-To link a phase as a **native GitHub sub-issue** of the parent, use the sub-issues REST API. It expects the child's numeric database `id` (not its issue number), so resolve it first:
+To link a phase as a **native GitHub sub-issue** of the parent, use the sub-issues REST API. It expects the child's numeric database `id` (not its issue number), so resolve it first. The `{owner}` and `{repo}` placeholders are substituted by `gh` with the current repository:
 
 ```bash
 # Resolve the child issue database id from its number
-child_id=$(gh api repos/CodelyTV/rpi-course/issues/<child> --jq .id)
+child_id=$(gh api repos/{owner}/{repo}/issues/<child> --jq .id)
 
 # Attach the child as a native sub-issue of the parent
-gh api --method POST repos/CodelyTV/rpi-course/issues/<parent>/sub_issues -F sub_issue_id="$child_id"
+gh api --method POST repos/{owner}/{repo}/issues/<parent>/sub_issues -F sub_issue_id="$child_id"
 ```
 
 ## 🧱 Issue structure
@@ -63,7 +63,7 @@ A plan is stored as a **tree of issues**, using GitHub's **native sub-issues** f
 
 ## 🪜 Steps to create a plan
 
-1. **Read the task** from the parent issue with `gh issue view <parent> --repo CodelyTV/rpi-course`.
+1. **Read the task** from the parent issue with `gh issue view <parent>`.
 
 2. Define task phases, letting the user choose the amount of phases as described in the guidelines.
 
@@ -71,7 +71,7 @@ A plan is stored as a **tree of issues**, using GitHub's **native sub-issues** f
 
 4. Propose the plan to the user for approval. IMPORTANT: Do not create any issue until the user has agreed on the specific contracts to be considered and the implementation phases.
 
-5. **Create one child issue per phase** with `gh issue create --repo CodelyTV/rpi-course`. Each child issue body must contain:
+5. **Create one child issue per phase** with `gh issue create`. Each child issue body must contain:
    - The phase description.
    - The phase to-do actions as a checkbox list (`- [ ] ...`).
    - The public contracts for that phase.
@@ -82,13 +82,13 @@ A plan is stored as a **tree of issues**, using GitHub's **native sub-issues** f
 6. **Attach every child as a native sub-issue of the parent.** For each child, resolve its database id and link it to the parent with the sub-issues API (see the snippet in the Repository section above):
 
    ```bash
-   child_id=$(gh api repos/CodelyTV/rpi-course/issues/<child> --jq .id)
-   gh api --method POST repos/CodelyTV/rpi-course/issues/<parent>/sub_issues -F sub_issue_id="$child_id"
+   child_id=$(gh api repos/{owner}/{repo}/issues/<child> --jq .id)
+   gh api --method POST repos/{owner}/{repo}/issues/<parent>/sub_issues -F sub_issue_id="$child_id"
    ```
 
    Do this for every phase, in order, so the parent lists all phases as native sub-issues.
 
-7. **Update the parent issue** with `gh issue edit <parent> --repo CodelyTV/rpi-course --body ...` so its body contains the `Goal`, `Context`, agreed design decisions and a `Phases` checklist that links every child issue (`- [ ] #<child> Phase N: <title>`). Preserve the original task description from the parent issue: keep it as-is and append the new plan content below it, separated by a `---` line (do not lose or rewrite the original text).
+7. **Update the parent issue** with `gh issue edit <parent> --body ...` so its body contains the `Goal`, `Context`, agreed design decisions and a `Phases` checklist that links every child issue (`- [ ] #<child> Phase N: <title>`). Preserve the original task description from the parent issue: keep it as-is and append the new plan content below it, separated by a `---` line (do not lose or rewrite the original text).
 
 8. Suggest next steps. Ask the user what do they want to do:
    - Do not do anything else.

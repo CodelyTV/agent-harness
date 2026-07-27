@@ -1,6 +1,6 @@
 ---
 name: codely:plan_phase-implement-github
-description: Implement one phase of a plan stored as GitHub issues in CodelyTV/rpi-course. Given the URL of a phase (child) issue it implements that phase; given the parent plan issue it finds and implements the current phase. Only implements a single phase per invocation, then stops for user review. It opens a pull request that references the phase issue so merging it closes the issue automatically. Never merges the pull request.
+description: Implement one phase of a plan stored as GitHub issues in the repository of the current working directory. Given the URL of a phase (child) issue it implements that phase; given the parent plan issue it finds and implements the current phase. Only implements a single phase per invocation, then stops for user review. It opens a pull request that references the phase issue so merging it closes the issue automatically. Never merges the pull request.
 disable-model-invocation: true
 user-invocable: true
 metadata:
@@ -28,17 +28,19 @@ If no URL is provided, ask the user for it before doing anything else.
 
 ## 🗂️ Repository
 
-The plan and its phases live as GitHub issues in the `CodelyTV/rpi-course` repository, and the pull requests are opened there too. Every `gh` command must target it explicitly, e.g.:
+The plan and its phases live as GitHub issues in the repository of the current working directory, and the pull requests are opened there too. Never hardcode a repository: let `gh` resolve it from the local Git remote.
 
 ```bash
-gh issue view <number> --repo CodelyTV/rpi-course
-gh issue develop <number> --repo CodelyTV/rpi-course --checkout
-gh pr create --repo CodelyTV/rpi-course --title "..." --body "..."
+gh issue view <number>
+gh issue develop <number> --checkout
+gh pr create --title "..." --body "..."
 ```
+
+Confirm the repository `gh` resolves with `gh repo view --json nameWithOwner --jq .nameWithOwner`, and check that the provided URL belongs to it. If it does not, stop and ask the user to run the skill from the clone of that repository: the phase branch must be created in the same repository you are implementing the task in.
 
 ## 🔍 Determining the current phase
 
-1. `gh issue view <url> --repo CodelyTV/rpi-course` to read the given issue.
+1. `gh issue view <url>` to read the given issue.
 2. If the issue is a **phase (child) issue** (it has a `Part of #<parent>` reference and a to-do checklist), that is the phase to implement.
 3. If the issue is the **parent plan issue** (it has a `Phases` checklist linking child issues), the **current phase** is the **first child issue in that checklist that is still open**. Read that child issue and implement it.
 4. If all child issues are already closed, inform the user that all phases are complete and do not implement anything.
@@ -50,12 +52,12 @@ gh pr create --repo CodelyTV/rpi-course --title "..." --body "..."
 2. **Create and check out the linked branch** for that phase issue so the branch is linked to it:
 
    ```bash
-   gh issue develop <phase-issue-number> --repo CodelyTV/rpi-course --checkout
+   gh issue develop <phase-issue-number> --checkout
    ```
 
 3. **Implement** the to-do actions of that phase only. Do NOT implement any other phase.
 
-4. **Update the phase issue body** checking the to-do items you completed (`- [x] ...`) with `gh issue edit <phase-issue-number> --repo CodelyTV/rpi-course --body ...`.
+4. **Update the phase issue body** checking the to-do items you completed (`- [x] ...`) with `gh issue edit <phase-issue-number> --body ...`.
 
 5. **Verify the changes** (typechecking, linting and tests) and fix any issue before continuing.
 
@@ -64,7 +66,7 @@ gh pr create --repo CodelyTV/rpi-course --title "..." --body "..."
 7. **When the user picks a title**, commit, push the branch and **open a pull request** that references the phase issue so merging it closes the issue automatically:
 
    ```bash
-   gh pr create --repo CodelyTV/rpi-course \
+   gh pr create \
      --title "<chosen title>" \
      --body "Closes #<phase-issue-number>"
    ```
