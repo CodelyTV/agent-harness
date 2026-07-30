@@ -1,5 +1,5 @@
 ---
-name: codely-plan-create
+name: codely-plan-create-subagents
 description: Create a plan for the specified task.
 disable-model-invocation: true
 user-invocable: true
@@ -15,7 +15,7 @@ The structure of a plan, its sections and the rules to shape them are defined in
 
 1. Ask the user for the task to create a plan for if not specified.
 
-2. Explore the codebase using subagents, as described in [🔍 Codebase exploration with subagents](#-codebase-exploration-with-subagents). Do not explore the codebase yourself: delegate it, telling each subagent only where to explore, never what the task is.
+2. Explore the codebase using subagents, as described in [🔍 Codebase exploration with subagents](#-codebase-exploration-with-subagents). Do not explore the codebase yourself: delegate it.
 
 3. Define task phases, letting the user choose the amount of phases as described in the guidelines.
 
@@ -39,15 +39,13 @@ The structure of a plan, its sections and the rules to shape them are defined in
 
 Gather the context needed for the plan (relevant files, existing conventions, current behavior, affected contracts) by delegating the exploration to subagents instead of reading the codebase yourself. Keep the main agent focused on reasoning and on writing the plan.
 
-- **Reuse an existing exploration subagent if there is one.** Check the subagent types available in the current tool/environment (for example, agent definitions living in the repository or in the user configuration). If one of them is already meant for read-only codebase exploration or research, launch that one instead of a generic subagent.
-- **Use cheaper models for the subagents.** Exploration is a search and summarization job, so the subagents do not need to be as capable as the main model. Pick a lighter/faster model from the same family whenever the tool allows overriding it. For example, in a session running Opus, launch the exploration subagents with Haiku.
-- **Decide how many subagents to launch based on the task.** There is no fixed number: a small, well-localized change may need a single subagent, while a task touching several bounded contexts, layers, or screens deserves one subagent per independent area of research. Do not launch subagents for areas that are irrelevant to the task.
-- **Launch independent subagents in parallel**, in a single batch, so the exploration does not become sequential.
-- **Give each subagent a narrow, self-contained assignment**: what to look for, where to start looking, and the fact that it must be read-only (no file modifications). Ask each one to report back the concrete file paths, the relevant existing contracts, and the conventions to follow, instead of dumping whole files.
-- **Never pass the task context to the subagents.** They must explore blind: tell them only which areas of the codebase to explore (paths, bounded contexts, layers, screens) and which patterns, contracts or conventions to describe. Do not mention the task, the feature to build, the bug to fix, the intended solution or any goal of the plan. This keeps their reports free of assumptions about the change and prevents them from biasing the exploration towards a solution you have not decided yet.
-    - ❌ `We need to add discount codes to checkout, explore how the checkout context works to know where to add them.`
-    - ✅ `Explore src/contexts/backend/checkout and report its use cases, domain entities, value objects, repository interfaces and infrastructure implementations, with file paths and the conventions they follow.`
-- **Synthesize the subagent reports yourself** before proposing the plan. Read directly only the specific files you still need to confirm a contract or a convention.
+- Reuse an existing exploration subagent if there is one.
+- Use cheaper models for the subagents. Pick a lighter/faster model from the same family whenever the tool allows overriding it. For example, in a session running Opus, Fable or Sonnet, launch the exploration subagents with Haiku.
+- Decide how many subagents to launch based on the task. A small, well-localized change may need a single subagent, while a task touching several bounded contexts, layers, or screens deserves one subagent per independent area of research. Max 4.
+- Launch independent subagents in parallel, in a single batch, so the exploration does not become sequential.
+- Give each subagent a narrow, self-contained assignment. e.g., explore architecture, frontend, backend, different features, separate repos…
+- Ask each one to report back the concrete file paths, the relevant existing contracts, and the conventions to follow, instead of dumping whole files.
+- Synthesize the subagent reports yourself before proposing the plan. Read directly only the specific files you still need to confirm a contract or a convention.
 
 ## 🗃️ Frontmatter
 
