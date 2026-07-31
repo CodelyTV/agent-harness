@@ -54,15 +54,15 @@ The plan should contain the following sections:
 - Use vertical slices of the task to create the phases.
   - Vertical slices: Agile software development approach that implements a functional feature from end-to-end. Span UI, backend logic, and database changes in a single phase rather than building technical layers separately.
   - Incorrect: Create the endpoint controller in Phase 1 and the service class it invokes in Phase 2.
-  - Incorrect: Add the Server Action in Phase 1 and the endpoint controller it invokes in Phase 2.
+  - Incorrect: Add the UI action handler in Phase 1 and the backend endpoint it invokes in Phase 2.
   - Correct: If you have to implement a form for editing some user data, create the happy path layers (form component and its tests, backend logic and its tests, database schema) in Phase 1 (only for the happy path). Use following phases to add the validation rules for corner cases and their corresponding tests.
   - Correct: If we want to implement a new feature for suggesting courses to users based on the courses they have marked as favorite, phase 1 should implement the "mark as favorite" feature (including its tests), and phase 2 should implement the "suggest courses" feature (including its tests).
 - Each phase must contain its description and the to-do actions list.
-- Split the task into as many phases as needed to make them easier to review and merge. Do not mix multiple responsibilities in the same phase. For instance, avoid adding the required npm dependencies in the same phase as the first use case implementation.
+- Split the task into as many phases as needed to make them easier to review and merge. Do not mix multiple responsibilities in the same phase. For instance, avoid adding the required dependencies in the same phase as the first use case implementation.
 - We must be able to commit and push the code for each phase without breaking the build. The tests must pass and the added code makes sense as its own isolated unit.
 - Prioritize early feedback loops. Phase 1 should always produce something the user can see, interact with, or run. For example, when creating a new frontend page, Phase 1 should deliver a navigable page (even with incomplete or placeholder content) rather than preparing all the data/content first. This lets the user validate direction early and course-correct before investing in polish.
 - Each phase must end up with the following two tasks (in this order):
-  1. "Run `yarn prep` to verify the changes in terms of typechecking and linting. Fix issues if any."
+  1. "Verify the changes in terms of typechecking, linting and tests using the project's verification command (look it up in the AGENTS.md file or the project configuration). Fix issues if any."
   2. "STOP. Present the changes to the user for review and suggest commit messages (or pull request titles, when the phases are implemented through pull requests). Do NOT proceed to the next phase until the user explicitly asks."
 
 ### ⏭️ Next step section
@@ -83,4 +83,4 @@ The plan should contain the following sections:
 ## 📝 Writing
 
 - Always write the plan contents in English. Even if you are having a conversation with the user in another language, write the plan contents in English.
-- Avoid making clarifications using the `—` character. Example: "- `BlogArticleCard.module.scss` — Styles for card component". Use alternatives such as the standard `-` character, or `:`. Example:"- `BlogArticleCard.module.scss`: Styles for card component."
+- Avoid making clarifications using the `—` character. Example: "- `BlogArticleCard` — Component rendering an article card". Use alternatives such as the standard `-` character, or `:`. Example:"- `BlogArticleCard`: Component rendering an article card."
