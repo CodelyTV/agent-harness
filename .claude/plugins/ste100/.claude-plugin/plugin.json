@@ -1,0 +1,14 @@
+{
+	"name": "ste100",
+	"description": "Makes the agent answer in ASD-STE100 Simplified Technical English.",
+	"version": "1.0.0",
+	"author": {
+		"name": "Codely",
+		"email": "support@codely.com",
+		"url": "https://codely.com"
+	},
+	"homepage": "https://github.com/CodelyTV/agent-harness",
+	"repository": "https://github.com/CodelyTV/agent-harness",
+	"license": "MIT",
+	"keywords": ["output-style", "writing", "ste100", "simplified-technical-english"]
+}

@@ -14,6 +14,13 @@
 			"category": "engineering"
 		},
 		{
+			"name": "ste100",
+			"description": "Makes the agent answer in ASD-STE100 Simplified Technical English.",
+			"version": "1.0.0",
+			"source": "./.claude/plugins/ste100",
+			"category": "productivity"
+		},
+		{
 			"name": "tsgo-lsp",
 			"description": "TypeScript/JavaScript code intelligence via the TypeScript 7 native compiler LSP, much faster than tsserver on large monorepos",
 			"version": "1.1.0",
