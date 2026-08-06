@@ -13,4 +13,4 @@ claude plugin marketplace add CodelyTV/agent-harness
 claude plugin install ste100@codely
 ```
 
-Then activate the style with `/output-style ASD-STE100`.
+Then run `/config`, look for **Output Style**, and select `ASD-STE100`.

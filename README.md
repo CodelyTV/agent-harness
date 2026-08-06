@@ -102,8 +102,9 @@ Output styles change how the agent writes to you, not how it writes code.
 ```
 /plugin marketplace add CodelyTV/agent-harness
 /plugin install ste100@codely
-/output-style ASD-STE100
 ```
+
+Then run `/config`, look for **Output Style**, and select `ASD-STE100`.
 
 ## 🧠 Code intelligence
 
