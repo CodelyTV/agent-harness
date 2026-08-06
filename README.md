@@ -105,6 +105,23 @@ Output styles change how the agent writes to you, not how it writes code.
 /output-style ASD-STE100
 ```
 
+## 🧠 Code intelligence
+
+| Plugin                                          | What it does                                                                                                                                             |
+|-------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [`ts7-lsp`](.claude/plugins/ts7-lsp/README.md)  | TypeScript/JavaScript go-to-definition, references, and diagnostics through the [TypeScript 7 native compiler](https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/) LSP. |
+
+The native compiler (the Go rewrite formerly known as tsgo) indexes large monorepos roughly 10x faster and with far
+less CPU than the official `typescript-lsp` plugin, which spawns `typescript-language-server` + `tsserver`.
+
+Requires a TypeScript 7+ `tsc` binary on `PATH` (e.g. `npm install -g typescript`).
+
+```
+/plugin marketplace add CodelyTV/agent-harness
+/plugin install ts7-lsp@codely
+/plugin disable typescript-lsp@claude-plugins-official
+```
+
 ## 🔗 Unified rules and skills via `.agents/`
 
 Each AI agent reads instructions from a different path. Maintaining them separately is error-prone, so this project
