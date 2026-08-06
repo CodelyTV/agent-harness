@@ -21,14 +21,14 @@
 			"category": "productivity"
 		},
 		{
-			"name": "tsgo-lsp",
+			"name": "ts7-lsp",
 			"description": "TypeScript/JavaScript code intelligence via the TypeScript 7 native compiler LSP, much faster than tsserver on large monorepos",
-			"version": "1.1.0",
-			"source": "./.claude/plugins/tsgo-lsp",
+			"version": "2.0.0",
+			"source": "./.claude/plugins/ts7-lsp",
 			"category": "development",
 			"strict": false,
 			"lspServers": {
-				"tsgo": {
+				"ts7": {
 					"command": "tsc",
 					"args": ["--lsp", "-stdio"],
 					"extensionToLanguage": {
