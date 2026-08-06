@@ -91,6 +91,20 @@ Typical flow:
 
 Run `/codely-git-conventional_commit` to stage and commit your changes with a conventional message.
 
+## 🗣️ Output styles
+
+Output styles change how the agent writes to you, not how it writes code.
+
+| Plugin                                                         | What it does                                                                                                                                    |
+|----------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|
+| [`ste100`](.claude/plugins/ste100/README.md)                   | Answers in [ASD-STE100 Simplified Technical English](https://www.asd-ste100.org/): short sentences, active voice, one word per meaning, no idioms. |
+
+```
+/plugin marketplace add CodelyTV/agent-harness
+/plugin install ste100@codely
+/output-style ASD-STE100
+```
+
 ## 🔗 Unified rules and skills via `.agents/`
 
 Each AI agent reads instructions from a different path. Maintaining them separately is error-prone, so this project
