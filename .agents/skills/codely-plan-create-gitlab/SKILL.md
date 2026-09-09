@@ -5,6 +5,8 @@ disable-model-invocation: true
 user-invocable: true
 metadata:
   author: Codely <support@codely.com> (https://codely.com)
+  contributors:
+    - Isidro Merayo Castellano <isidro.merayo@gmail.com> (https://github.com/isidromerayo)
   version: "1.0"
   license: MIT
 ---
@@ -45,7 +47,7 @@ glab api projects/:id/issues/<parent-iid>/links -F target_project_id=:id -F targ
 
 A plan is stored as a **tree of issues**, using GitLab **related-issue links** (GitLab has no native sub-issues):
 
-- **Parent "plan" issue**: the issue whose URL was passed in. It holds the `Goal`, the `Context`, the agreed design decisions, and a **checklist of the phases**, each item linking its child issue. The parent is closed by the merge request of the last phase, which references it with `Closes #<parent>`.
+- **Parent "plan" issue**: the issue whose URL was passed in. It holds the `Goal`, the `Context`, the agreed design decisions, and a **checklist of the phases**, each item linking its child issue. The parent is closed when the plan completes: the merge request of the last phase references it with `Closes #<parent>` and, on instances with automatic issue closing disabled, the `/codely-plan_phase-implement-gitlab` skill closes it explicitly.
 - **One child issue per phase**: each holds the phase description and its to-do actions as a checkbox list, plus a reference back to the parent (`Part of #<parent>`). Every child is linked to the parent with a **related-issue link** (`relates_to`), not only as a checklist link.
 
 ```
@@ -58,7 +60,7 @@ A plan is stored as a **tree of issues**, using GitLab **related-issue links** (
 ```
 
 > [!IMPORTANT]
-> GitLab does NOT auto-check task list items when the referenced issue closes (unlike GitHub sub-issues). The `/codely-plan_phase-implement-gitlab` skill is responsible for checking the corresponding phase item in the parent checklist when each phase merge request is opened.
+> GitLab does NOT auto-check task list items when the referenced issue closes (unlike GitHub sub-issues). Some instances even have automatic issue closing disabled, so `Closes #<iid>` in a merged merge request does not close the referenced issues. The `/codely-plan_phase-implement-gitlab` skill is responsible for checking the corresponding phase item in the parent checklist when each phase merge request is opened and for closing the issues explicitly when the merge is confirmed.
 
 ## 🪜 Steps to create a plan
 

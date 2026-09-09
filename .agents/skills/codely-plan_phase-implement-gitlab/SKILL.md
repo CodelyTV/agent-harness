@@ -1,10 +1,12 @@
 ---
 name: codely-plan_phase-implement-gitlab
-description: Implement one phase of a plan stored as GitLab issues in the repository of the current working directory. Given the URL of a phase (child) issue it implements that phase; given the parent plan issue it finds and implements the current phase. Only implements a single phase per invocation, then stops for user review. It opens a merge request that references the phase issue so merging it closes the issue automatically. Never merges the merge request.
+description: Implement one phase of a plan stored as GitLab issues in the repository of the current working directory. Given the URL of a phase (child) issue it implements that phase; given the parent plan issue it finds and implements the current phase. Only implements a single phase per invocation, then stops for user review. It opens a merge request that references the phase issue and keeps the plan issues reconciled, closing them explicitly when the instance does not auto-close on merge. Never merges the merge request.
 disable-model-invocation: true
 user-invocable: true
 metadata:
   author: Codely <support@codely.com> (https://codely.com)
+  contributors:
+    - Isidro Merayo Castellano <isidro.merayo@gmail.com> (https://github.com/isidromerayo)
   version: "1.0"
   license: MIT
 ---
@@ -15,7 +17,7 @@ metadata:
 > Implement **ONLY ONE phase** per invocation. After completing the current phase, **STOP** and wait for the user to review the changes. Never proceed to the next phase without explicit user approval.
 
 > [!CRITICAL]
-> **Never merge the merge request.** This skill may create a feature branch, commit, push and open a merge request, but the user decides when to merge. Merging is what closes the phase issue.
+> **Never merge the merge request.** This skill may create a feature branch, commit, push and open a merge request, but the user decides when to merge. Merging is what closes the phase issue (and this skill closes it explicitly when the instance has automatic issue closing disabled).
 
 ## 🎯 Input
 
@@ -36,9 +38,14 @@ The plan and its phases live as GitLab issues in the repository of the current w
 glab issue view <iid>
 git checkout -b <iid>-<phase-kebab-name>
 glab mr create --title "..." --description "..." --source-branch "..." --yes
+glab mr list --merged --output json
+glab issue close <iid>
 ```
 
 Confirm the repository `glab` resolves with `glab repo view`, and check that the provided URL belongs to it. If it does not, stop and ask the user to run the skill from the clone of that repository: the phase branch must be created in the same repository you are implementing the task in.
+
+> [!IMPORTANT]
+> Some GitLab instances (notably self-hosted ones using work items) have **automatic issue closing disabled**. There, `Closes #<iid>` in the merge request description renders as a plain reference: the merge request `closes_issues` list stays empty and the referenced issues remain open after merging. Keep including the closing keyword (it still works where auto-close is enabled), but never rely on it: the skill reconciles the issues explicitly (see the steps below).
 
 ## 🔍 Determining the current phase
 
@@ -51,21 +58,30 @@ Confirm the repository `glab` resolves with `glab repo view`, and check that the
 
 1. **Resolve the phase issue** to implement using the rule above.
 
-2. **Create and check out the phase branch** for that phase issue. GitLab has no `glab issue develop` equivalent: create the branch manually with a name that starts with the phase issue number so GitLab links the branch and the merge request to the issue:
+2. **Reconcile stale phases** (covers instances with automatic issue closing disabled). Before implementing, check whether any child issue in the parent `Phases` checklist is still open although its merge request is already merged, and close it explicitly:
+
+   ```bash
+   glab mr list --merged --output json   # match each child by a source branch starting with `<child-iid>-`
+   glab issue close <stale-child-iid>
+   ```
+
+   While doing this, also check the corresponding items in the parent `Phases` checklist (`- [x] #<child>`) if they are still unchecked.
+
+3. **Create and check out the phase branch** for that phase issue. GitLab has no `glab issue develop` equivalent: create the branch manually with a name that starts with the phase issue number so GitLab links the branch and the merge request to the issue:
 
    ```bash
    git checkout -b <phase-issue-number>-<phase-kebab-name>
    ```
 
-3. **Implement** the to-do actions of that phase only. Do NOT implement any other phase.
+4. **Implement** the to-do actions of that phase only. Do NOT implement any other phase.
 
-4. **Update the phase issue body** checking the to-do items you completed (`- [x] ...`) with `glab issue update <phase-issue-number> --description ...`.
+5. **Update the phase issue body** checking the to-do items you completed (`- [x] ...`) with `glab issue update <phase-issue-number> --description ...`.
 
-5. **Verify the changes** (typechecking, linting and tests) and fix any issue before continuing.
+6. **Verify the changes** (typechecking, linting and tests) and fix any issue before continuing.
 
-6. **STOP.** Present the changes to the user and **suggest 3 alternative commit / merge request titles** following Conventional Commits (e.g. `feat:`, `fix:`, `refactor:`, `test:`, `docs:`). Use different plausible types across the 3 alternatives. Make it simple to reply something like "open the MR with title 1".
+7. **STOP.** Present the changes to the user and **suggest 3 alternative commit / merge request titles** following Conventional Commits (e.g. `feat:`, `fix:`, `refactor:`, `test:`, `docs:`). Use different plausible types across the 3 alternatives. Make it simple to reply something like "open the MR with title 1".
 
-7. **When the user picks a title**, commit, push the branch and **open a merge request** that references the phase issue so merging it closes the issue automatically:
+8. **When the user picks a title**, commit, push the branch and **open a merge request** that references the phase issue so merging it closes the issue automatically:
 
    ```bash
    glab mr create \
@@ -84,9 +100,9 @@ Confirm the repository `glab` resolves with `glab repo view`, and check that the
 
    - **Check the phase item in the parent plan issue.** GitLab does NOT auto-check task list items when the referenced issue closes, so edit the parent body with `glab issue update <parent-issue-number> --description ...` turning `- [ ] #<phase-issue-number>` into `- [x] #<phase-issue-number>`.
 
-   - Do NOT merge the merge request. Tell the user that merging it will close the phase issue (and, on the last phase, the parent plan issue).
+   - Do NOT merge the merge request. Tell the user to merge it. Ask them to confirm the merge (or let them know the next invocation will reconcile it). **When the merge is confirmed, check whether the instance auto-closed the phase issue; if it is still open, close it explicitly with `glab issue close <phase-issue-number>`.** On the last phase, do the same for the parent plan issue. If the user has not confirmed the merge yet, stop here: the reconciliation will run at the start of the next invocation (step 2).
 
-8. If this is the implementation of the last phase of the plan, suggest the user to export the conversation (using their IDE) and attach it as a comment on the parent plan issue (`glab issue note <parent-issue-number> --message ...`).
+9. If this is the implementation of the last phase of the plan, suggest the user to export the conversation (using their IDE) and attach it as a comment on the parent plan issue (`glab issue note <parent-issue-number> --message ...`).
 
 ## 🔄 How to update the issues
 
@@ -97,9 +113,9 @@ Confirm the repository `glab` resolves with `glab repo view`, and check that the
 
 ## 🔗 Parent / children relationship
 
-- Each phase merge request closes its own child issue on merge (`Closes #<child>` in the description).
+- Each phase merge request closes its own child issue on merge (`Closes #<child>` in the description). On instances with automatic issue closing disabled, the skill closes the child explicitly once the merge request is confirmed as merged (or reconciles it at the start of the next invocation).
 - The parent plan issue tracks its children through its `Phases` checklist; GitLab does not check each item automatically, so the skill updates it manually as the corresponding merge request is opened.
-- The last phase merge request also closes the parent, so completing the final phase closes the whole plan.
+- The last phase merge request also closes the parent (explicitly, when auto-close is disabled), so completing the final phase closes the whole plan.
 
 ## ☝️ General considerations
 
