@@ -15,8 +15,10 @@
 			"skills": [
 				"codely-plan-create",
 				"codely-plan-create-github",
+				"codely-plan-create-gitlab",
 				"codely-plan_phase-implement",
-				"codely-plan_phase-implement-github"
+				"codely-plan_phase-implement-github",
+				"codely-plan_phase-implement-gitlab"
 			]
 		},
 		{
