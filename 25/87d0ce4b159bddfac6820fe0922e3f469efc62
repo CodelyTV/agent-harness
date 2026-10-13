@@ -1,0 +1,27 @@
+.claude-plugin/plugin.json
+  s_3808b338bb0c9d::t_85b3f43634f18c 20-21
+skills.sh.json
+  s_3808b338bb0c9d::t_36b1e58a58874b 22-28
+.agents/skills/codely-openspec_spec-create_from_code/SKILL.md
+  s_3808b338bb0c9d::t_9fe1b77c038285 1-108
+.agents/skills/codely-openspec_spec-create_from_code/resources/evidence-guidelines.md
+  s_3808b338bb0c9d::t_c66a2cad8b2e63 1-69
+.agents/skills/codely-openspec_spec-create_from_code/resources/spec-format.md
+  s_3808b338bb0c9d::t_3e071bb8328eb0 1-59
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "2587d0ce4b159bddfac6820fe0922e3f469efc62",
+  "prompts": {},
+  "sessions": {
+    "s_3808b338bb0c9d": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "8e43efcc-974b-485a-b6b0-3a72db71cb89",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Pablo Rodríguez Guillén <pablo.rodriguez@codely.com>"
+    }
+  }
+}
