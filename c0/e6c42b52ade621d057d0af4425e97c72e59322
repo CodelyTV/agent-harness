@@ -1,0 +1,25 @@
+.agents/skills/codely-plan-create/SKILL.md
+  s_3808b338bb0c9d::t_69db5754efc146 2
+.claude-plugin/marketplace.json
+  s_3808b338bb0c9d::t_d92e1f247c16dd 13
+.claude-plugin/plugin.json
+  s_3808b338bb0c9d::t_3f3586b7dbe6cf 3,13
+README.md
+  s_3808b338bb0c9d::t_820cc55d49719f 86-100
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "c0e6c42b52ade621d057d0af4425e97c72e59322",
+  "prompts": {},
+  "sessions": {
+    "s_3808b338bb0c9d": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "8e43efcc-974b-485a-b6b0-3a72db71cb89",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Pablo Rodríguez Guillén <pablo.rodriguez@codely.com>"
+    }
+  }
+}
