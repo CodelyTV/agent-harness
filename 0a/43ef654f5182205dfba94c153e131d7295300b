@@ -1,0 +1,25 @@
+.agents/skills/codely-openspec-spec-create-from-code/SKILL.md
+  s_069cc0477562b4::t_b593e78334bf7e 2,89
+.claude-plugin/plugin.json
+  s_069cc0477562b4::t_88b2b6be4acf24 21
+README.md
+  s_069cc0477562b4::t_5a4d7bc4e3a251 90,92,94,96
+skills.sh.json
+  s_069cc0477562b4::t_f444fe09ac774f 26
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "0a43ef654f5182205dfba94c153e131d7295300b",
+  "prompts": {},
+  "sessions": {
+    "s_069cc0477562b4": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a140b2-29c0-7a82-84e3-93d92b6930d6",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Pablo Rodríguez Guillén <pablo.rodriguez@codely.com>"
+    }
+  }
+}
