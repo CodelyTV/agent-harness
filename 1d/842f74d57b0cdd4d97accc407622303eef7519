@@ -1,0 +1,39 @@
+.claude-plugin/marketplace.json
+  s_069cc0477562b4::t_2d02c9e933c0ac 13
+.claude-plugin/plugin.json
+  s_069cc0477562b4::t_a386c9801213f4 3,13,20-21
+README.md
+  s_069cc0477562b4::t_7f634fce8ec3a0 86-119
+docs/skills/skills-frontmatter.md
+  s_069cc0477562b4::t_4d69b0a4bd7d65 22,45,60
+openspec/schemas/codely-spec-plan/schema.yaml
+  s_069cc0477562b4::t_15db9249952214 1-48
+openspec/schemas/codely-spec-plan/templates/plan.md
+  s_069cc0477562b4::t_3674448fd6f933 1-45
+openspec/schemas/codely-spec-plan/templates/spec.md
+  s_069cc0477562b4::t_ab1ab8f16468e4 1-11
+skills.sh.json
+  s_069cc0477562b4::t_f6b0f461d00987 22-28
+.agents/skills/codely-openspec_spec-create_from_code/SKILL.md
+  s_069cc0477562b4::t_73df5eb5aa336e 1-108
+.agents/skills/codely-openspec_spec-create_from_code/resources/evidence-guidelines.md
+  s_069cc0477562b4::t_c7d508e8000990 1-69
+.agents/skills/codely-openspec_spec-create_from_code/resources/spec-format.md
+  s_069cc0477562b4::t_489641af4f1575 1-59
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "1d842f74d57b0cdd4d97accc407622303eef7519",
+  "prompts": {},
+  "sessions": {
+    "s_069cc0477562b4": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a140b2-29c0-7a82-84e3-93d92b6930d6",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Pablo Rodríguez Guillén <pablo.rodriguez@codely.com>"
+    }
+  }
+}
