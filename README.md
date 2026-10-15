@@ -76,6 +76,8 @@ Two ways to use `codely-doc-create`:
 | [`codely-plan_phase-implement`](.agents/skills/codely-plan_phase-implement/SKILL.md)                 | Executes a single phase of a plan at a time, updates its checkboxes, and stops for review without committing automatically.      |
 | [`codely-plan-create-github`](.agents/skills/codely-plan-create-github/SKILL.md)                     | Same planning flow, but stored as GitHub issues: a parent plan issue and one native sub-issue per phase.                        |
 | [`codely-plan_phase-implement-github`](.agents/skills/codely-plan_phase-implement-github/SKILL.md)   | Implements one phase issue at a time on its linked branch and opens a pull request that closes the issue on merge.              |
+| [`codely-plan-create-gitlab`](.agents/skills/codely-plan-create-gitlab/SKILL.md)                     | Same planning flow, but stored as GitLab issues: a parent plan issue and one linked child issue per phase.                      |
+| [`codely-plan_phase-implement-gitlab`](.agents/skills/codely-plan_phase-implement-gitlab/SKILL.md)   | Implements one phase issue at a time on its linked branch and opens a merge request that closes the issue on merge.             |
 
 Typical flow:
 
