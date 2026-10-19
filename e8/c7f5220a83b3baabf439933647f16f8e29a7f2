@@ -1,0 +1,23 @@
+README.md
+  s_35c6bb8e07588f::t_082bb8518950f4 109
+openspec/schemas/codely-spec-plan/schema.yaml
+  s_35c6bb8e07588f::t_9154286a3cf1ad 39-41
+openspec/schemas/codely-spec-plan/templates/plan.md
+  s_35c6bb8e07588f::t_c1f87f41f5c520 48
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "e8c7f5220a83b3baabf439933647f16f8e29a7f2",
+  "prompts": {},
+  "sessions": {
+    "s_35c6bb8e07588f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e4c4ccf5-075d-4907-aca0-cd0129ac080a",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Pablo Rodríguez Guillén <pablo.rodriguez@codely.com>"
+    }
+  }
+}
