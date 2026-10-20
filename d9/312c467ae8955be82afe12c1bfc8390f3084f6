@@ -1,0 +1,19 @@
+openspec/schemas/codely-spec-plan/schema.yaml
+  s_f22827ac0e5807::t_1177fc951989a2 25-26,41
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "d9312c467ae8955be82afe12c1bfc8390f3084f6",
+  "prompts": {},
+  "sessions": {
+    "s_f22827ac0e5807": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "66956aff-c26c-4804-9f68-4a47154ba4b1",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Pablo Rodríguez Guillén <pablo.rodriguez@codely.com>"
+    }
+  }
+}
