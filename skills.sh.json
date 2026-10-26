@@ -15,8 +15,10 @@
 			"skills": [
 				"codely-plan-create-subagents",
 				"codely-plan-create-github",
+				"codely-plan-create-gitlab",
 				"codely-plan-phase-implement",
-				"codely-plan-phase-implement-github"
+				"codely-plan-phase-implement-github",
+				"codely-plan-phase-implement-gitlab"
 			]
 		},
 		{

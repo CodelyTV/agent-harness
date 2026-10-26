@@ -16,8 +16,10 @@
 		"./.agents/skills/codely-doc-create",
 		"./.agents/skills/codely-plan-create-subagents",
 		"./.agents/skills/codely-plan-create-github",
+		"./.agents/skills/codely-plan-create-gitlab",
 		"./.agents/skills/codely-plan-phase-implement",
 		"./.agents/skills/codely-plan-phase-implement-github",
+		"./.agents/skills/codely-plan-phase-implement-gitlab",
 		"./.agents/skills/codely-openspec-spec-create-from-code"
 	]
 }
