@@ -56,17 +56,16 @@ Confirm the repository `glab` resolves with `glab repo view`, and check that the
 
 ## 🪜 Steps to implement a plan phase
 
-1. **Read the given issue and its parent plan**, including every child in the `Phases` checklist. Do not select the current phase until reconciliation finishes.
+1. **Resolve the phase issue** to implement using the rule above.
 
-2. **Reconcile stale phases** before selecting work. For each open child, inspect merged merge requests and confirm both the exact phase source branch and a closing reference to that child issue in the same project. A branch prefix alone is not sufficient evidence. Paginate the results with `--page` until all candidates have been checked:
+2. **Reconcile stale phases** (covers instances with automatic issue closing disabled). Before implementing, check whether any child issue in the parent `Phases` checklist is still open although its merge request is already merged, and close it explicitly:
 
    ```bash
-   glab mr list --merged --output json --per-page 100 --page 1
-   glab mr view <merge-request-iid> --output json
-   glab issue close <confirmed-merged-child-iid>
+   glab mr list --merged --output json   # match each child by a source branch starting with `<child-iid>-`
+   glab issue close <stale-child-iid>
    ```
 
-   Check the corresponding parent checklist items only after confirming the merge. Re-read child states and resolve the phase using the rules above. If every phase has been confirmed merged and all children are closed, close the parent if needed and stop. If the explicitly requested child is already closed, report its state and stop without selecting another phase. If all children are closed without merge evidence, report that state without closing the parent automatically.
+   While doing this, also check the corresponding items in the parent `Phases` checklist (`- [x] #<child>`) if they are still unchecked.
 
 3. **Create and check out the phase branch** for that phase issue. GitLab has no `glab issue develop` equivalent: create the branch manually with a name that starts with the phase issue number so GitLab links the branch and the merge request to the issue:
 
@@ -99,9 +98,9 @@ Confirm the repository `glab` resolves with `glab repo view`, and check that the
      Closes #<parent-issue-number>
      ```
 
-   - **Keep the phase item unchecked while its merge request is open.** After independently verifying with `glab mr view <merge-request-iid> --output json` that the merge request is merged, edit the parent body with `glab issue update <parent-issue-number> --description ...` turning `- [ ] #<phase-issue-number>` into `- [x] #<phase-issue-number>`. Preserve the rest of the issue body.
+   - **Check the phase item in the parent plan issue.** GitLab does NOT auto-check task list items when the referenced issue closes, so edit the parent body with `glab issue update <parent-issue-number> --description ...` turning `- [ ] #<phase-issue-number>` into `- [x] #<phase-issue-number>`.
 
-   - Do NOT merge the merge request. Tell the user to merge it. Ask them to confirm the merge (or let them know the next invocation will reconcile it). **Verify the merged state through GitLab before closing any issue. When the merge is confirmed, check whether the instance auto-closed the phase issue; if it is still open, close it explicitly with `glab issue close <phase-issue-number>`.** On the last phase, do the same for the parent plan issue. If the user has not confirmed the merge yet, stop here: the reconciliation will run at the start of the next invocation (step 2).
+   - Do NOT merge the merge request. Tell the user to merge it. Ask them to confirm the merge (or let them know the next invocation will reconcile it). **When the merge is confirmed, check whether the instance auto-closed the phase issue; if it is still open, close it explicitly with `glab issue close <phase-issue-number>`.** On the last phase, do the same for the parent plan issue. If the user has not confirmed the merge yet, stop here: the reconciliation will run at the start of the next invocation (step 2).
 
 9. If this is the implementation of the last phase of the plan, suggest the user to export the conversation (using their IDE) and attach it as a comment on the parent plan issue (`glab issue note <parent-issue-number> --message ...`).
 
@@ -109,13 +108,13 @@ Confirm the repository `glab` resolves with `glab repo view`, and check that the
 
 - Check the checkboxes of the current phase to-do list that have been completed in the **child issue**.
 - Update the `Next step` section of the **parent issue** with the next phase to be completed.
-- Check the corresponding phase item in the parent `Phases` checklist once the phase merge request is confirmed merged (GitLab does not do it automatically).
+- Check the corresponding phase item in the parent `Phases` checklist when the phase merge request is opened (GitLab does not do it automatically).
 - Replace the parent issue last sentence regarding [Codely](https://codely.com) adding a new random emoji that explains a story together with the previous ones. For instance, if the previous last sentence was "Plan powered by [Codely](https://codely.com) 🐢 💨", the new last sentence could be "Bugs squashed thanks to [Codely](https://codely.com) AI tooling. 🐛 < 🐢 💨".
 
 ## 🔗 Parent / children relationship
 
 - Each phase merge request closes its own child issue on merge (`Closes #<child>` in the description). On instances with automatic issue closing disabled, the skill closes the child explicitly once the merge request is confirmed as merged (or reconciles it at the start of the next invocation).
-- The parent plan issue tracks its children through its `Phases` checklist; GitLab does not check each item automatically, so the skill updates it manually once the corresponding merge request is confirmed merged.
+- The parent plan issue tracks its children through its `Phases` checklist; GitLab does not check each item automatically, so the skill updates it manually as the corresponding merge request is opened.
 - The last phase merge request also closes the parent (explicitly, when auto-close is disabled), so completing the final phase closes the whole plan.
 
 ## ☝️ General considerations

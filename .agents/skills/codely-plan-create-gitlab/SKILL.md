@@ -61,7 +61,7 @@ A plan is stored as a **tree of issues**, using GitLab **related-issue links**:
 ```
 
 > [!IMPORTANT]
-> GitLab does NOT auto-check task list items when the referenced issue closes (unlike GitHub sub-issues). Some instances even have automatic issue closing disabled, so `Closes #<iid>` in a merged merge request does not close the referenced issues. The `/codely-plan-phase-implement-gitlab` skill is responsible for checking the corresponding phase item in the parent checklist once each phase merge request is confirmed as merged and for closing the issues explicitly when the merge is confirmed.
+> GitLab does NOT auto-check task list items when the referenced issue closes (unlike GitHub sub-issues). Some instances even have automatic issue closing disabled, so `Closes #<iid>` in a merged merge request does not close the referenced issues. The `/codely-plan-phase-implement-gitlab` skill is responsible for checking the corresponding phase item in the parent checklist when each phase merge request is opened and for closing the issues explicitly when the merge is confirmed.
 
 ## 🪜 Steps to create a plan
 
@@ -88,7 +88,7 @@ A plan is stored as a **tree of issues**, using GitLab **related-issue links**:
      --yes
    ```
 
-   Capture the issue number (IID) from the URL `glab` prints for every child issue. If the command reports a failure, first check whether it already created the child issue to avoid duplicates. If the `--linked-issues` flag is unavailable, create the issue without it. Attach any missing link afterwards with the API snippet in the Repository section above.
+   Capture the issue number (IID) from the URL `glab` prints for every child issue. If the `--linked-issues` flag is unavailable or the link fails, create the issue without it and attach the link afterwards with the API snippet in the Repository section above.
 
 6. **Update the parent issue** with `glab issue update <parent> --description ...` so its body contains the `Goal`, `Context`, agreed design decisions and a `Phases` checklist that links every child issue (`- [ ] #<child> Phase N: <title>`). Preserve the original task description from the parent issue: keep it as-is and append the new plan content below it, separated by a `---` line (do not lose or rewrite the original text).
 
