@@ -19,7 +19,7 @@ metadata:
 
 ### 🔑 Fields
 
-- `name`: The skill identifier, namespaced with the `codely-` prefix followed by the skill name in `kebab-case`, joining with `_` the words that form a single concept (e.g. `plan_phase`, `conventional_commit`). It MUST match the skill folder name (e.g. `codely-plan-create` lives in `.agents/skills/codely-plan-create/`). This is the name used to invoke the skill as `/codely-skill-name`.
+- `name`: The skill identifier, namespaced with the `codely-` prefix followed by the skill name in `kebab-case`. The [Agent Skills specification](https://agentskills.io/specification#name-field) permits lowercase letters, numbers, and hyphens, but not underscores. Names MUST NOT start or end with a hyphen or contain consecutive hyphens. Names MUST be 1–64 characters long. It MUST match the skill folder name (e.g. `codely-plan-create-subagents` lives in `.agents/skills/codely-plan-create-subagents/`). This is the name used to invoke the skill as `/codely-skill-name`.
 - `description`: A concise, single sentence explaining what the skill does. When the skill can be auto-invoked, also state when to use it so the agent can decide (e.g. "Use when the user asks to commit changes."). Written in English.
 - `disable-model-invocation`: Whether the agent is prevented from triggering the skill automatically.
   - `false`: the agent MAY invoke the skill on its own when the `description` matches the task.
@@ -42,7 +42,7 @@ metadata:
 
 ```markdown
 ---
-name: codely-plan-create
+name: codely-plan-create-subagents
 description: Create a plan for the specified task.
 disable-model-invocation: true
 user-invocable: true
@@ -57,7 +57,7 @@ metadata:
 
 ```markdown
 ---
-name: codely-plan-create
+name: codely-plan-create-subagents
 description: Create a plan for the specified task.
 disable-model-invocation: true
 user-invocable: true
@@ -73,7 +73,7 @@ The attribution is incomplete (no email or URL) and the `license` field is missi
 
 ```markdown
 ---
-name: codely-git-conventional_commit
+name: codely-git-conventional-commit
 description: Create a git commit following the team's Conventional Commit conventions.
 disable-model-invocation: false
 user-invocable: true
@@ -84,8 +84,8 @@ Without a `metadata` block the skill loses its author, version, and license.
 
 ## 🌍 Real world examples
 
-- [`.agents/skills/codely-plan-create/SKILL.md`](../../.agents/skills/codely-plan-create/SKILL.md): full frontmatter with the complete Codely attribution and license.
-- [`.agents/skills/codely-plan_phase-implement/SKILL.md`](../../.agents/skills/codely-plan_phase-implement/SKILL.md): same standard applied to a user-only skill.
+- [`.agents/skills/codely-plan-create-subagents/SKILL.md`](../../.agents/skills/codely-plan-create-subagents/SKILL.md): full frontmatter with the complete Codely attribution and license.
+- [`.agents/skills/codely-plan-phase-implement/SKILL.md`](../../.agents/skills/codely-plan-phase-implement/SKILL.md): same standard applied to a user-only skill.
 
 ## 🔗 Related agreements
 

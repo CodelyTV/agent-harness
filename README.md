@@ -72,26 +72,61 @@ Two ways to use `codely-doc-create`:
 
 | Skill                                                                                                | What it does                                                                                                                     |
 |--------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
-| [`codely-plan-create`](.agents/skills/codely-plan-create/SKILL.md)                                   | Breaks a task into reviewable phases (vertical slices), defines the public contracts to change, and saves an approved plan file. |
-| [`codely-plan_phase-implement`](.agents/skills/codely-plan_phase-implement/SKILL.md)                 | Executes a single phase of a plan at a time, updates its checkboxes, and stops for review without committing automatically.      |
+| [`codely-plan-create-subagents`](.agents/skills/codely-plan-create-subagents/SKILL.md)                                   | Breaks a task into reviewable phases (vertical slices), defines the public contracts to change, and saves an approved plan file. |
+| [`codely-plan-phase-implement`](.agents/skills/codely-plan-phase-implement/SKILL.md)                 | Executes a single phase of a plan at a time, updates its checkboxes, and stops for review without committing automatically.      |
 | [`codely-plan-create-github`](.agents/skills/codely-plan-create-github/SKILL.md)                     | Same planning flow, but stored as GitHub issues: a parent plan issue and one native sub-issue per phase.                        |
-| [`codely-plan_phase-implement-github`](.agents/skills/codely-plan_phase-implement-github/SKILL.md)   | Implements one phase issue at a time on its linked branch and opens a pull request that closes the issue on merge.              |
+| [`codely-plan-phase-implement-github`](.agents/skills/codely-plan-phase-implement-github/SKILL.md)   | Implements one phase issue at a time on its linked branch and opens a pull request that closes the issue on merge.              |
 | [`codely-plan-create-gitlab`](.agents/skills/codely-plan-create-gitlab/SKILL.md)                     | Same planning flow, but stored as GitLab issues: a parent plan issue and one linked child issue per phase.                      |
-| [`codely-plan_phase-implement-gitlab`](.agents/skills/codely-plan_phase-implement-gitlab/SKILL.md)   | Implements one phase issue at a time on its linked branch and opens a merge request that closes the issue on merge.             |
+| [`codely-plan-phase-implement-gitlab`](.agents/skills/codely-plan-phase-implement-gitlab/SKILL.md)   | Implements one phase issue at a time on its linked branch and opens a merge request that closes the issue on merge.             |
 
 Typical flow:
 
-- **Plan** the work with `/codely-plan-create <task>` to produce a phased plan file under `.agents/plans/`.
-- **Implement** it phase by phase with `/codely-plan_phase-implement <plan-file-path>`, reviewing and committing after
+- **Plan** the work with `/codely-plan-create-subagents <task>` to produce a phased plan file under `.agents/plans/`.
+- **Implement** it phase by phase with `/codely-plan-phase-implement <plan-file-path>`, reviewing and committing after
   each one.
+
+#### ⚫ OpenSpec
+
+| Skill                                                                                                    | What it does                                                                                                                                        |
+|----------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
+| [`codely-openspec-spec-create-from-code`](.agents/skills/codely-openspec-spec-create-from-code/SKILL.md) | Writes the [OpenSpec](https://openspec.dev) specs of behaviour that already exists in the code, so the next change can modify or remove it instead of only adding to it. |
+
+Two ways to use `codely-openspec-spec-create-from-code`:
+
+- **Before a change** — run `/codely-openspec-spec-create-from-code <the change you are about to make>` to specify the
+  current behaviour it will touch, then continue with `/openspec-explore`.
+- **To catch up** — run `/codely-openspec-spec-create-from-code <capability>` to specify an existing feature, or without
+  arguments to list the features that still lack a spec.
+
+Only intended and verified behaviour reaches the spec: bugs, accidental behaviour and dead code are reported instead.
+
+##### 🧩 `codely-spec-plan` schema
+
+An [OpenSpec custom schema](https://github.com/Fission-AI/OpenSpec/blob/main/docs/customization.md) that brings the
+`codely-plan-create-subagents` flow to OpenSpec. Each change produces only two things to review:
+
+- **Lean specs**: one behaviour with SHALL per requirement and a single-line scenario.
+- **`plan.md`**: goal, decisions and one vertical slice phase per part a user can complete a goal with, each with its
+  contracts and a test strategy that proves it with few tests. Its checkboxes are the task list that
+  `/openspec-apply-change` works through one phase per run, committing each phase.
+
+Install it in your project and select it in `openspec/config.yaml`:
+
+```bash
+npx degit CodelyTV/agent-harness/openspec/schemas/codely-spec-plan openspec/schemas/codely-spec-plan
+```
+
+```yaml
+schema: codely-spec-plan
+```
 
 #### 🔀 Git
 
 | Skill                                                             | What it does                                                                                              |
 |-------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
-| [`codely-git-conventional_commit`](.agents/skills/codely-git-conventional_commit/SKILL.md) | Creates a Git commit following the team's Conventional Commits conventions and co-author trailer. |
+| [`codely-git-conventional-commit`](.agents/skills/codely-git-conventional-commit/SKILL.md) | Creates a Git commit following the team's Conventional Commits conventions and co-author trailer. |
 
-Run `/codely-git-conventional_commit` to stage and commit your changes with a conventional message.
+Run `/codely-git-conventional-commit` to stage and commit your changes with a conventional message.
 
 ## 🗣️ Output styles
 

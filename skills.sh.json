@@ -13,19 +13,26 @@
 			"title": "RPI",
 			"description": "Skills for planning and executing tasks phase by phase.",
 			"skills": [
-				"codely-plan-create",
+				"codely-plan-create-subagents",
 				"codely-plan-create-github",
 				"codely-plan-create-gitlab",
-				"codely-plan_phase-implement",
-				"codely-plan_phase-implement-github",
+				"codely-plan-phase-implement",
+				"codely-plan-phase-implement-github",
 				"codely-plan_phase-implement-gitlab"
+			]
+		},
+		{
+			"title": "OpenSpec",
+			"description": "Skills for working with OpenSpec specs.",
+			"skills": [
+				"codely-openspec-spec-create-from-code"
 			]
 		},
 		{
 			"title": "Git",
 			"description": "Skills for working with Git following the team's conventions.",
 			"skills": [
-				"codely-git-conventional_commit"
+				"codely-git-conventional-commit"
 			]
 		}
 	]

@@ -10,10 +10,10 @@ Whenever you add a new skill, you MUST register its folder in that `skills` arra
 {
 	"name": "codely-skills",
 	"skills": [
-		"./.agents/skills/codely-git-conventional_commit",
+		"./.agents/skills/codely-git-conventional-commit",
 		"./.agents/skills/codely-doc-create",
-		"./.agents/skills/codely-plan-create",
-		"./.agents/skills/codely-plan_phase-implement"
+		"./.agents/skills/codely-plan-create-subagents",
+		"./.agents/skills/codely-plan-phase-implement"
 	]
 }
 ```
@@ -37,10 +37,10 @@ Whenever you add a new skill, you MUST register its folder in that `skills` arra
 
 ```json
 "skills": [
-	"./.agents/skills/codely-git-conventional_commit",
+	"./.agents/skills/codely-git-conventional-commit",
 	"./.agents/skills/codely-doc-create",
-	"./.agents/skills/codely-plan-create",
-	"./.agents/skills/codely-plan_phase-implement"
+	"./.agents/skills/codely-plan-create-subagents",
+	"./.agents/skills/codely-plan-phase-implement"
 ]
 ```
 
@@ -56,12 +56,12 @@ Claude Code does not discover skills recursively, so the individual skills insid
 
 ```json
 "skills": [
-	"./.agents/skills/codely-git-conventional_commit",
+	"./.agents/skills/codely-git-conventional-commit",
 	"./.agents/skills/codely-doc-create"
 ]
 ```
 
-If `.agents/skills/codely-plan-create` exists on disk but is not in the array, it ships through `skills.sh` but is absent from the Claude Code plugin.
+If `.agents/skills/codely-plan-create-subagents` exists on disk but is not in the array, it ships through `skills.sh` but is absent from the Claude Code plugin.
 
 ## 🌍 Real world examples
 

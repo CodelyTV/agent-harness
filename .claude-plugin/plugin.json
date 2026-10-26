@@ -1,6 +1,6 @@
 {
 	"name": "codely-skills",
-	"description": "Codely's team skills: planning, docs, and git conventions.",
+	"description": "Codely's team skills: planning, docs, OpenSpec, and git conventions.",
 	"version": "1.0.0",
 	"author": {
 		"name": "Codely",
@@ -10,13 +10,14 @@
 	"homepage": "https://github.com/CodelyTV/skills",
 	"repository": "https://github.com/CodelyTV/skills",
 	"license": "MIT",
-	"keywords": ["engineering", "skills", "commit", "rpi"],
+	"keywords": ["engineering", "skills", "commit", "rpi", "openspec"],
 	"skills": [
-		"./.agents/skills/codely-git-conventional_commit",
+		"./.agents/skills/codely-git-conventional-commit",
 		"./.agents/skills/codely-doc-create",
-		"./.agents/skills/codely-plan-create",
+		"./.agents/skills/codely-plan-create-subagents",
 		"./.agents/skills/codely-plan-create-github",
-		"./.agents/skills/codely-plan_phase-implement",
-		"./.agents/skills/codely-plan_phase-implement-github"
+		"./.agents/skills/codely-plan-phase-implement",
+		"./.agents/skills/codely-plan-phase-implement-github",
+		"./.agents/skills/codely-openspec-spec-create-from-code"
 	]
 }

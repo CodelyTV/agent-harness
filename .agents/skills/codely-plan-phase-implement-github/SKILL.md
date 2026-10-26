@@ -1,5 +1,5 @@
 ---
-name: codely-plan_phase-implement-github
+name: codely-plan-phase-implement-github
 description: Implement one phase of a plan stored as GitHub issues in the repository of the current working directory. Given the URL of a phase (child) issue it implements that phase; given the parent plan issue it finds and implements the current phase. Only implements a single phase per invocation, then stops for user review. It opens a pull request that references the phase issue so merging it closes the issue automatically. Never merges the pull request.
 disable-model-invocation: true
 user-invocable: true
@@ -19,7 +19,7 @@ metadata:
 
 ## 🎯 Input
 
-This skill is invoked as `/codely-plan_phase-implement-github <github-issue-url>`. The URL can point to either:
+This skill is invoked as `/codely-plan-phase-implement-github <github-issue-url>`. The URL can point to either:
 
 - A **phase (child) issue**: implement that phase.
 - The **parent plan issue**: find the current phase and implement it (see below).

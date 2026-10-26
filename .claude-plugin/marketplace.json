@@ -10,7 +10,7 @@
 		{
 			"name": "codely-skills",
 			"source": "./",
-			"description": "Codely's team skills: planning, docs, and git conventions.",
+			"description": "Codely's team skills: planning, docs, OpenSpec, and git conventions.",
 			"category": "engineering"
 		},
 		{

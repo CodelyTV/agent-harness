@@ -1,0 +1,41 @@
+name: codely-spec-plan
+version: 1
+description: Codely workflow - lean specs → a single plan.md that is also the task list
+artifacts:
+  - id: specs
+    generates: "specs/**/*.md"
+    description: Lean behaviour specs, one per capability
+    template: spec.md
+    instruction: |
+      Observable behaviour only: no class names, libraries or implementation steps.
+
+      - Reuse the capability paths listed by `openspec list --specs`. Name new ones after a durable behaviour (`order-cancellation`, not `add-cancel-button`).
+      - One behaviour per requirement. More scenarios only for distinct edge cases.
+      - MODIFIED copies the whole existing requirement, keeping every scenario.
+    requires: []
+
+  - id: plan
+    generates: plan.md
+    description: Goal, decisions and vertical slice phases with the contracts, tests and tasks to implement the specs
+    template: plan.md
+    instruction: |
+      Plan how to implement the specs. Keep it short: it is reviewed together with the specs.
+
+      - Decisions: choices and assumptions not stated in the request, one line each, naming the discarded alternative when it is not obvious. End with what is out of scope.
+      - Phases: one phase per part of the change that is worth having on its own, even if the rest were never built: a user can complete a goal with it. Parts that are only valuable together form one phase. Each phase is a vertical slice through every layer and repository the part needs (API contract, UI, logic and persistence together) that builds, passes verification alone and never leaves the system in a wrong business state.
+      - Contracts: public signatures only, in the language each one is written in, grouped by type (API endpoints and payloads, domain, application services, ports and repositories, domain events, database schemas, UI copy). No constructor dependencies. Omit types without changes.
+      - Tests: the test strategy of the phase, proving its behaviour with as few tests as possible. One acceptance test per user goal through the public API or UI, and application service unit tests for the rules, with cases picked by equivalence partitioning and boundary values. Between repositories, rely on contract tests against the API contract instead of end-to-end tests. Never prove the same behaviour twice at different levels. List each suite with the behaviours it covers, not every test case.
+      - Tasks: cite the existing code to copy patterns from in the task that needs it.
+      - Each phase ends with the verification task of the template.
+      - Only phase tasks are checkboxes: every `- [ ]` in this file counts as a task.
+      - Do not use the `—` character.
+    requires:
+      - specs
+
+apply:
+  requires: [plan]
+  tracks: plan.md
+  instruction: |
+    Implement only the first phase with unchecked tasks and check off each task as you finish it.
+    When the phase's verification task passes, add or update `implemented_by` (same shape as `created_by`) and `last_implementation_at` in the frontmatter and rewrite the Next step.
+    Then commit the phase as one conventional commit in each repository it touched, plan.md included in the repository that holds it, and stop: the next phase starts only when the user runs apply again.
