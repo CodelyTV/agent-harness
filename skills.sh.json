@@ -13,6 +13,7 @@
 			"title": "RPI",
 			"description": "Skills for planning and executing tasks phase by phase.",
 			"skills": [
+				"codely-plan-create",
 				"codely-plan-create-subagents",
 				"codely-plan-create-github",
 				"codely-plan-create-gitlab",

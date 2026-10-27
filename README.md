@@ -70,18 +70,20 @@ Two ways to use `codely-doc-create`:
 
 #### 🗺️ RPI
 
-| Skill                                                                                                | What it does                                                                                                                     |
-|--------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
-| [`codely-plan-create-subagents`](.agents/skills/codely-plan-create-subagents/SKILL.md)                                   | Breaks a task into reviewable phases (vertical slices), defines the public contracts to change, and saves an approved plan file. |
-| [`codely-plan-phase-implement`](.agents/skills/codely-plan-phase-implement/SKILL.md)                 | Executes a single phase of a plan at a time, updates its checkboxes, and stops for review without committing automatically.      |
-| [`codely-plan-create-github`](.agents/skills/codely-plan-create-github/SKILL.md)                     | Same planning flow, but stored as GitHub issues: a parent plan issue and one native sub-issue per phase.                        |
-| [`codely-plan-phase-implement-github`](.agents/skills/codely-plan-phase-implement-github/SKILL.md)   | Implements one phase issue at a time on its linked branch and opens a pull request that closes the issue on merge.              |
-| [`codely-plan-create-gitlab`](.agents/skills/codely-plan-create-gitlab/SKILL.md)                     | Same planning flow, but stored as GitLab issues: a parent plan issue and one linked child issue per phase.                      |
-| [`codely-plan-phase-implement-gitlab`](.agents/skills/codely-plan-phase-implement-gitlab/SKILL.md)   | Implements one phase issue at a time on its linked branch and opens a merge request that closes the issue on merge.             |
+| Skill                                                                                              | What it does                                                                                                                     |
+|----------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
+| [`codely-plan-create`](.agents/skills/codely-plan-create/SKILL.md)                                 | Breaks a task into reviewable phases (vertical slices), defines the public contracts to change, and saves an approved plan file. |
+| [`codely-plan-create-subagents`](.agents/skills/codely-plan-create-subagents/SKILL.md)             | Same planning flow, but delegates the codebase exploration to cheaper subagents running in parallel.                             |
+| [`codely-plan-phase-implement`](.agents/skills/codely-plan-phase-implement/SKILL.md)               | Executes a single phase of a plan at a time, updates its checkboxes, and stops for review without committing automatically.      |
+| [`codely-plan-create-github`](.agents/skills/codely-plan-create-github/SKILL.md)                   | Same planning flow, but stored as GitHub issues: a parent plan issue and one native sub-issue per phase.                         |
+| [`codely-plan-phase-implement-github`](.agents/skills/codely-plan-phase-implement-github/SKILL.md) | Implements one phase issue at a time on its linked branch and opens a pull request that closes the issue on merge.               |
+| [`codely-plan-create-gitlab`](.agents/skills/codely-plan-create-gitlab/SKILL.md)                   | Same planning flow, but stored as GitLab issues: a parent plan issue and one linked child issue per phase.                       |
+| [`codely-plan-phase-implement-gitlab`](.agents/skills/codely-plan-phase-implement-gitlab/SKILL.md) | Implements one phase issue at a time on its linked branch and opens a merge request that closes the issue on merge.              |
 
 Typical flow:
 
-- **Plan** the work with `/codely-plan-create-subagents <task>` to produce a phased plan file under `.agents/plans/`.
+- **Plan** the work with `/codely-plan-create <task>` (or `/codely-plan-create-subagents <task>` to delegate the
+  exploration) to produce a phased plan file under `.agents/plans/`.
 - **Implement** it phase by phase with `/codely-plan-phase-implement <plan-file-path>`, reviewing and committing after
   each one.
 
