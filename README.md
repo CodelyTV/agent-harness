@@ -8,10 +8,15 @@
   </a>
 </p>
 
-<h1 align="center">Agent Harness</h1>
+<h1 align="center">🤖 Agent Harness</h1>
 
 <p align="center">
-    <a href="https://github.com/CodelyTV"><img src="https://img.shields.io/badge/Codely-OS-green.svg?style=flat-square" alt="Codely Open Source projects"/></a>
+  <a href="https://github.com/CodelyTV"><img alt="Codely OS" src="https://img.shields.io/badge/Codely-OS-green?style=flat-square"></a>
+  <a href="https://codely.com/cafe"><img alt="Codely Cafe News" src="https://img.shields.io/badge/Codely-Cafe_News-%235A3E2B?style=flat-square"></a>
+  <a href="https://codely.com/newsletter"><img alt="Codely Newsletter" src="https://img.shields.io/badge/Codely-Newsletter-%23D3D3D3?style=flat-square"></a>
+  <a href="https://youtube.com/codelytv"><img alt="Codely YouTube" src="https://img.shields.io/badge/Codely-YouTube-red?style=flat-square"></a>
+  <a href="https://codely.com/courses"><img alt="Codely Courses" src="https://img.shields.io/badge/Codely-Courses-black?style=flat-square"></a>
+  <a href="https://github.com/CodelyTV/agent-harness/stargazers"><img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/codelytv/agent-harness"></a>
 </p>
 
 <p align="center">
