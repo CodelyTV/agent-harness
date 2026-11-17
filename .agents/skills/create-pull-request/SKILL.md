@@ -11,6 +11,8 @@ metadata:
 
 # How to write a pull request
 
+Write the title and the body in ASD-STE100 Simplified Technical English. Follow the rules in [`references/ste100.md`](references/ste100.md). Also apply these rules when you update the pull request.
+
 ## 1. Title
 
 - Use the Conventional Commits format of [`commit-messages.md`](../git-commit/references/commit-messages.md): `type(scope): summary`.
