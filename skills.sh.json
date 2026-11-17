@@ -6,34 +6,34 @@
 			"title": "Harness",
 			"description": "Skills for creating and maintaining project documentation and conventions.",
 			"skills": [
-				"codely-doc-create"
+				"doc-create"
 			]
 		},
 		{
 			"title": "RPI",
 			"description": "Skills for planning and executing tasks phase by phase.",
 			"skills": [
-				"codely-plan-create",
-				"codely-plan-create-subagents",
-				"codely-plan-create-github",
-				"codely-plan-create-gitlab",
-				"codely-plan-phase-implement",
-				"codely-plan-phase-implement-github",
-				"codely-plan-phase-implement-gitlab"
+				"plan-create",
+				"plan-create-subagents",
+				"plan-create-github",
+				"plan-create-gitlab",
+				"plan-phase-implement",
+				"plan-phase-implement-github",
+				"plan-phase-implement-gitlab"
 			]
 		},
 		{
 			"title": "OpenSpec",
 			"description": "Skills for working with OpenSpec specs.",
 			"skills": [
-				"codely-openspec-spec-create-from-code"
+				"openspec-spec-create-from-code"
 			]
 		},
 		{
 			"title": "Git",
 			"description": "Skills for working with Git following the team's conventions.",
 			"skills": [
-				"codely-git-conventional-commit"
+				"git-conventional-commit"
 			]
 		}
 	]

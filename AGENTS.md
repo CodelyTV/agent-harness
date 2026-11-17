@@ -16,6 +16,10 @@ npm run test
   - Frontend `src/app/`
   - Backend `src/contexts/`.
 
+# Skills
+
+- When a skill is renamed, the Codely Agent Harness course must be updated to reflect the new name.
+
 # Documentation
 
 - Detailed conventions with examples live in `docs/`.

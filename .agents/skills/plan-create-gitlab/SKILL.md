@@ -1,6 +1,6 @@
 ---
-name: codely-plan-create-gitlab
-description: Create a plan for the specified task and store it as GitLab issues in the repository of the current working directory. Given the URL of a GitLab issue, it turns that issue into the parent "plan" issue (Goal, Context and a checklist of phases) and creates one child issue per phase, linking every phase to the parent with GitLab related-issue links. Stops for user approval before creating any issue. After creation, the plan is meant to be implemented with the codely-plan-phase-implement-gitlab skill.
+name: plan-create-gitlab
+description: Create a plan for the specified task and store it as GitLab issues in the repository of the current working directory. Given the URL of a GitLab issue, it turns that issue into the parent "plan" issue (Goal, Context and a checklist of phases) and creates one child issue per phase, linking every phase to the parent with GitLab related-issue links. Stops for user approval before creating any issue. After creation, the plan is meant to be implemented with the plan-phase-implement-gitlab skill.
 disable-model-invocation: true
 user-invocable: true
 metadata:
@@ -20,7 +20,7 @@ The structure of a plan, its sections and the rules to shape them are defined in
 
 ## 🎯 Input
 
-This skill is invoked as `/codely-plan-create-gitlab <gitlab-issue-url>`.
+This skill is invoked as `/plan-create-gitlab <gitlab-issue-url>`.
 
 - `<gitlab-issue-url>` is the URL of the GitLab issue describing the task to plan. **This issue becomes the parent "plan" issue.** GitLab issue URLs look like `https://gitlab.com/<namespace>/<project>/-/issues/<iid>`.
 - If no URL is provided, ask the user for it before doing anything else.
@@ -48,7 +48,7 @@ glab api projects/:id/issues/<parent-iid>/links -F target_project_id="$project_i
 
 A plan is stored as a **tree of issues**, using GitLab **related-issue links**:
 
-- **Parent "plan" issue**: the issue whose URL was passed in. It holds the `Goal`, the `Context`, the agreed design decisions, and a **checklist of the phases**, each item linking its child issue. The parent is closed when the plan completes: the merge request of the last phase references it with `Closes #<parent>` and, on instances with automatic issue closing disabled, the `/codely-plan-phase-implement-gitlab` skill closes it explicitly.
+- **Parent "plan" issue**: the issue whose URL was passed in. It holds the `Goal`, the `Context`, the agreed design decisions, and a **checklist of the phases**, each item linking its child issue. The parent is closed when the plan completes: the merge request of the last phase references it with `Closes #<parent>` and, on instances with automatic issue closing disabled, the `/plan-phase-implement-gitlab` skill closes it explicitly.
 - **One child issue per phase**: each holds the phase description and its to-do actions as a checkbox list, plus a reference back to the parent (`Part of #<parent>`). Every child is linked to the parent with a **related-issue link** (`relates_to`), not only as a checklist link.
 
 ```
@@ -61,7 +61,7 @@ A plan is stored as a **tree of issues**, using GitLab **related-issue links**:
 ```
 
 > [!IMPORTANT]
-> GitLab does NOT auto-check task list items when the referenced issue closes (unlike GitHub sub-issues). Some instances even have automatic issue closing disabled, so `Closes #<iid>` in a merged merge request does not close the referenced issues. The `/codely-plan-phase-implement-gitlab` skill is responsible for checking the corresponding phase item in the parent checklist when each phase merge request is opened and for closing the issues explicitly when the merge is confirmed.
+> GitLab does NOT auto-check task list items when the referenced issue closes (unlike GitHub sub-issues). Some instances even have automatic issue closing disabled, so `Closes #<iid>` in a merged merge request does not close the referenced issues. The `/plan-phase-implement-gitlab` skill is responsible for checking the corresponding phase item in the parent checklist when each phase merge request is opened and for closing the issues explicitly when the merge is confirmed.
 
 ## 🪜 Steps to create a plan
 
@@ -94,11 +94,11 @@ A plan is stored as a **tree of issues**, using GitLab **related-issue links**:
 
 7. Suggest next steps. Ask the user what do they want to do:
    - Do not do anything else.
-   - Implement the plan by executing the `/codely-plan-phase-implement-gitlab <parent-issue-url>` skill (implements Phase 1 only).
-   - Implement a specific phase by executing the `/codely-plan-phase-implement-gitlab <child-issue-url>` skill.
+   - Implement the plan by executing the `/plan-phase-implement-gitlab <parent-issue-url>` skill (implements Phase 1 only).
+   - Implement a specific phase by executing the `/plan-phase-implement-gitlab <child-issue-url>` skill.
 
    > [!IMPORTANT]
-   > `/codely-plan-phase-implement-gitlab` handles one phase per invocation. Never implement all phases at once.
+   > `/plan-phase-implement-gitlab` handles one phase per invocation. Never implement all phases at once.
 
 ## 🗃️ Plan metadata
 

@@ -1,5 +1,5 @@
 ---
-name: codely-openspec-spec-create-from-code
+name: openspec-spec-create-from-code
 description: Create the OpenSpec specs of behaviour that already exists in the code, so the next change can modify or remove it instead of only adding to it.
 disable-model-invocation: true
 user-invocable: true
@@ -86,7 +86,7 @@ Do not paraphrase the specs: the files are the deliverable. Then close with the 
 - **Always**, the review:
 
   ```
-  Review <spec paths>: they come from the code, and from now on agents will treat them as the truth. Once you agree with them, commit them with `/codely-git-conventional-commit`.
+  Review <spec paths>: they come from the code, and from now on agents will treat them as the truth. Once you agree with them, commit them with `/git-conventional-commit`.
   ```
 
 - **When the input was a change the user is about to make**, the way back to it:
