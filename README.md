@@ -102,7 +102,7 @@ Pick the skills you want and the agents to install them on. Then run one, for ex
 <summary>Variants</summary>
 
 - aliases: [`docs-to-rules`](.agents/skills/docs-to-rules/SKILL.md) runs `deterministify docs`, and
-  [`code-conventions-to-rules`](.agents/skills/code-conventions-to-rules/SKILL.md) runs `deterministify conventions`. Both
+  [`conventions-to-rules`](.agents/skills/conventions-to-rules/SKILL.md) runs `deterministify conventions`. Both
   need `deterministify` installed next to them.
 - `-subagents`: [`create-plan-subagents`](.agents/skills/create-plan-subagents/SKILL.md) delegates the codebase
   exploration to cheaper subagents running in parallel.

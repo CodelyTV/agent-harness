@@ -9,7 +9,7 @@
 				"create-rule",
 				"deterministify",
 				"docs-to-rules",
-				"code-conventions-to-rules",
+				"conventions-to-rules",
 				"create-doc"
 			]
 		},
