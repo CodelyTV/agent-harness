@@ -170,7 +170,8 @@ single place:
 
 1. **Rules** are written once in `AGENTS.md` (one per directory if needed).
 2. **Skills** live in `.agents/skills/` and are shared across agents.
-3. A `make` command generates the symlinks each agent expects:
+3. A `make` command generates the symlinks each agent expects. They are not committed, so run the ones you need after
+   cloning:
 
 | Command                  | What it does                                                                                                                      |
 |--------------------------|-----------------------------------------------------------------------------------------------------------------------------------|
