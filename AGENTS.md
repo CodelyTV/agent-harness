@@ -1,20 +1,14 @@
-# Useful commands
+# Repository
 
-```bash
-npm prep          # lint + build + test
-docker compose up # start database
-npm run dev       # local dev server (not Docker)
-npm run lint:fix
-npm run test
-```
-
-# Architecture
-
-- Next.js 16, Onion Architecture, DDD.
+- Codely's agent harness: skills, plugins and hooks that we publish for other projects to install.
 - Paths:
-  - API routes `src/app/api/`.
-  - Frontend `src/app/`
-  - Backend `src/contexts/`.
+  - Skills `.agents/skills/`.
+  - Claude Code plugins `.claude/plugins/` and `.claude-plugin/`.
+  - OpenSpec schemas `openspec/schemas/`.
+
+# Skills
+
+- When a skill is renamed, the Codely Agent Harness course must be updated to reflect the new name.
 
 # Documentation
 
@@ -23,19 +17,8 @@ npm run test
 
 ```
 docs/
-├── code-style.md
-├── documentation-format.md
-├── backend/
-│   ├── api-routes-reflect-metadata.md
-│   ├── dependency-injection-diod.md
-│   ├── hexagonal-architecture.md
-│   └── thin-api-routes.md
-├── database/
-│   ├── creating-new-tables.md
-│   ├── not-null-fields.md
-│   ├── table-naming-singular-plural-convention.md
-│   └── text-over-varchar-char-convention.md
-└── testing/
-    ├── mock-objects.md
-    └── object-mothers.md
+├── documentation-guidelines.md
+└── skills/
+    ├── plugin-registration.md
+    └── skills-frontmatter.md
 ```

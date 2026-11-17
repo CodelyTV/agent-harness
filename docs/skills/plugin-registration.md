@@ -10,17 +10,17 @@ Whenever you add a new skill, you MUST register its folder in that `skills` arra
 {
 	"name": "codely-skills",
 	"skills": [
-		"./.agents/skills/codely-git-conventional-commit",
-		"./.agents/skills/codely-doc-create",
-		"./.agents/skills/codely-plan-create-subagents",
-		"./.agents/skills/codely-plan-phase-implement"
+		"./.agents/skills/git-commit",
+		"./.agents/skills/create-doc",
+		"./.agents/skills/create-plan-subagents",
+		"./.agents/skills/implement-plan-phase"
 	]
 }
 ```
 
 ### 🔑 Rules
 
-- List each skill **individually** by its folder path (`./.agents/skills/codely-<skill-name>`). Do not point to the `.agents/skills` folder — Claude Code does not discover skills recursively.
+- List each skill **individually** by its folder path (`./.agents/skills/<skill-name>`). Do not point to the `.agents/skills` folder — Claude Code does not discover skills recursively.
 - The path MUST match the folder that contains the skill's `SKILL.md`, and the folder name MUST match the skill `name` in its frontmatter (see [Skill Frontmatter Standard](skills-frontmatter.md)).
 - Keep the array ordered by group, matching the `.agents/skills/` folder layout, so it stays easy to scan.
 - Adding a skill is not done until its path is in `plugin.json`. Treat it as part of the definition of done for every new skill.
@@ -37,10 +37,10 @@ Whenever you add a new skill, you MUST register its folder in that `skills` arra
 
 ```json
 "skills": [
-	"./.agents/skills/codely-git-conventional-commit",
-	"./.agents/skills/codely-doc-create",
-	"./.agents/skills/codely-plan-create-subagents",
-	"./.agents/skills/codely-plan-phase-implement"
+	"./.agents/skills/git-commit",
+	"./.agents/skills/create-doc",
+	"./.agents/skills/create-plan-subagents",
+	"./.agents/skills/implement-plan-phase"
 ]
 ```
 
@@ -56,12 +56,12 @@ Claude Code does not discover skills recursively, so the individual skills insid
 
 ```json
 "skills": [
-	"./.agents/skills/codely-git-conventional-commit",
-	"./.agents/skills/codely-doc-create"
+	"./.agents/skills/git-commit",
+	"./.agents/skills/create-doc"
 ]
 ```
 
-If `.agents/skills/codely-plan-create-subagents` exists on disk but is not in the array, it ships through `skills.sh` but is absent from the Claude Code plugin.
+If `.agents/skills/create-plan-subagents` exists on disk but is not in the array, it ships through `skills.sh` but is absent from the Claude Code plugin.
 
 ## 🌍 Real world examples
 

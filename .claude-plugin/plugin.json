@@ -12,15 +12,20 @@
 	"license": "MIT",
 	"keywords": ["engineering", "skills", "commit", "rpi", "openspec"],
 	"skills": [
-		"./.agents/skills/codely-git-conventional-commit",
-		"./.agents/skills/codely-doc-create",
-		"./.agents/skills/codely-plan-create",
-		"./.agents/skills/codely-plan-create-subagents",
-		"./.agents/skills/codely-plan-create-github",
-		"./.agents/skills/codely-plan-create-gitlab",
-		"./.agents/skills/codely-plan-phase-implement",
-		"./.agents/skills/codely-plan-phase-implement-github",
-		"./.agents/skills/codely-plan-phase-implement-gitlab",
-		"./.agents/skills/codely-openspec-spec-create-from-code"
+		"./.agents/skills/git-commit",
+		"./.agents/skills/create-pull-request",
+		"./.agents/skills/create-rule",
+		"./.agents/skills/create-doc",
+		"./.agents/skills/deterministify",
+		"./.agents/skills/docs-to-rules",
+		"./.agents/skills/conventions-to-rules",
+		"./.agents/skills/create-plan",
+		"./.agents/skills/create-plan-subagents",
+		"./.agents/skills/create-plan-github",
+		"./.agents/skills/create-plan-gitlab",
+		"./.agents/skills/implement-plan-phase",
+		"./.agents/skills/implement-plan-phase-github",
+		"./.agents/skills/implement-plan-phase-gitlab",
+		"./.agents/skills/openspec-create-spec-from-code"
 	]
 }

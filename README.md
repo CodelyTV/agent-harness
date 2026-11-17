@@ -8,104 +8,118 @@
   </a>
 </p>
 
-<h1 align="center">
-    🤖 Agent Harness
-</h1>
+<h1 align="center">🤖 Agent Harness</h1>
 
 <p align="center">
-    <a href="https://github.com/CodelyTV"><img src="https://img.shields.io/badge/Codely-OS-green.svg?style=flat-square" alt="Codely Open Source projects"/></a>
+  <a href="https://github.com/CodelyTV"><img alt="Codely OS" src="https://img.shields.io/badge/Codely-OS-green?style=flat-square"></a>
+  <a href="https://codely.com/cafe"><img alt="Codely Cafe News" src="https://img.shields.io/badge/Codely-Cafe_News-%235A3E2B?style=flat-square"></a>
+  <a href="https://codely.com/newsletter"><img alt="Codely Newsletter" src="https://img.shields.io/badge/Codely-Newsletter-%23D3D3D3?style=flat-square"></a>
+  <a href="https://youtube.com/codelytv"><img alt="Codely YouTube" src="https://img.shields.io/badge/Codely-YouTube-red?style=flat-square"></a>
+  <a href="https://codely.com/courses"><img alt="Codely Courses" src="https://img.shields.io/badge/Codely-Courses-black?style=flat-square"></a>
+  <a href="https://github.com/CodelyTV/agent-harness/stargazers"><img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/codelytv/agent-harness"></a>
 </p>
 
 <p align="center">
-    Our agent harness: <strong>Skills, plugins, hooks, and utilities</strong> to improve the quality of your agent.
+    Skills, plugins and hooks so your agent writes the code you expect, the way you expect.<br>
+    Review outputs, not code.
 </p>
 
-## 🗂️ Skills
+Your agent writes code faster than you can review it. Instead of reading every line, turn your conventions into rules
+that fail in seconds: the agent corrects itself, and you review what the change does, not how it is written.
 
-Skills live in `.agents/skills/` and are shared across every agent.
+## Workflow
 
-### ⚡ Quickstart
+1. **Make your docs deterministic** with `/deterministify docs`.
+2. **Enforce your code conventions** with `/deterministify conventions`.
+3. **Add a new rule** with `/create-rule` every time you correct the agent.
+4. **Commit** with `/git-commit`.
+5. **Open the pull request** with `/create-pull-request`, with before/after evidence of what the change does.
 
-1. Install the skills with the `skills.sh` installer:
+For larger tasks, plan the work with `/create-plan` and implement it one phase at a time with
+`/implement-plan-phase`. Already using [OpenSpec](https://openspec.dev)? Run `/openspec-create-spec-from-code` first.
 
-   ```bash
-   npx skills@latest add codelytv/agent-harness
-   ```
+## Why
 
-2. Pick the skills you want and the coding agents you want to install them on.
+### Your docs are suggestions
 
-3. Run a skill in your agent, for example `/codely-doc-create`.
+You wrote your conventions down, but the agent only follows them if it loads the right doc and reads it the way your
+team does.
 
-4. Done. Your agent now follows Codely's conventions.
+**The fix:** `/deterministify docs` turns every convention that code can check into a linter rule or a test.
 
-#### Alternative: Claude Code plugin
+### Your code does the same job in two ways
 
-1. Add this repository as a plugin marketplace and install the plugin:
+A legacy way and a current way live together, and the agent copies whichever it reads first.
 
-   ```
-   /plugin marketplace add CodelyTV/agent-harness
-   /plugin install codely-skills@codely
-   ```
+**The fix:** `/deterministify conventions` finds them in the code and its history, and enforces the current way with a
+rule, after you confirm it.
 
-2. Run a skill in Claude Code, for example `/codely-doc-create`.
+### You correct the same thing again and again
 
-3. Done. Every skill in this repo is now available in Claude Code.
+You fix the agent in one session, and it makes the same mistake in the next one.
 
-### 📦 Available skills
+**The fix:** run `/create-rule` after the correction. It becomes a rule when a rule can check it, and a minimal doc
+with the reason when it cannot.
 
-Skills are grouped by category:
+### The history is a mess
 
-#### 📃 Harness
+Commit messages follow whatever the agent felt like that day.
 
-| Skill                                                             | What it does                                                                                                           |
-|-------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------|
-| [`codely-doc-create`](.agents/skills/codely-doc-create/SKILL.md) | Generates convention documentation from the current conversation, turning feedback and corrections into reusable docs. |
+**The fix:** `/git-commit` writes Conventional Commits with the co-author trailer of the agent that made the change.
 
-Two ways to use `codely-doc-create`:
+## Install
 
-- **After a conversation** — run `/codely-doc-create` to turn the corrections the agent received during the session into
-  a new doc.
-- **Before a conversation** — run `/codely-doc-create <description>` to formalize a convention you want to document
-  upfront.
+```bash
+npx skills@latest add codelytv/agent-harness
+```
 
-#### 🗺️ RPI
+Pick the skills you want and the agents to install them on. Then run one, for example `/create-rule`.
 
-| Skill                                                                                              | What it does                                                                                                                     |
-|----------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
-| [`codely-plan-create`](.agents/skills/codely-plan-create/SKILL.md)                                 | Breaks a task into reviewable phases (vertical slices), defines the public contracts to change, and saves an approved plan file. |
-| [`codely-plan-create-subagents`](.agents/skills/codely-plan-create-subagents/SKILL.md)             | Same planning flow, but delegates the codebase exploration to cheaper subagents running in parallel.                             |
-| [`codely-plan-phase-implement`](.agents/skills/codely-plan-phase-implement/SKILL.md)               | Executes a single phase of a plan at a time, updates its checkboxes, and stops for review without committing automatically.      |
-| [`codely-plan-create-github`](.agents/skills/codely-plan-create-github/SKILL.md)                   | Same planning flow, but stored as GitHub issues: a parent plan issue and one native sub-issue per phase.                         |
-| [`codely-plan-phase-implement-github`](.agents/skills/codely-plan-phase-implement-github/SKILL.md) | Implements one phase issue at a time on its linked branch and opens a pull request that closes the issue on merge.               |
-| [`codely-plan-create-gitlab`](.agents/skills/codely-plan-create-gitlab/SKILL.md)                   | Same planning flow, but stored as GitLab issues: a parent plan issue and one linked child issue per phase.                       |
-| [`codely-plan-phase-implement-gitlab`](.agents/skills/codely-plan-phase-implement-gitlab/SKILL.md) | Implements one phase issue at a time on its linked branch and opens a merge request that closes the issue on merge.              |
+<details>
+<summary>Claude Code plugin</summary>
 
-Typical flow:
+```
+/plugin marketplace add CodelyTV/agent-harness
+/plugin install codely-skills@codely
+```
 
-- **Plan** the work with `/codely-plan-create <task>` (or `/codely-plan-create-subagents <task>` to delegate the
-  exploration) to produce a phased plan file under `.agents/plans/`.
-- **Implement** it phase by phase with `/codely-plan-phase-implement <plan-file-path>`, reviewing and committing after
-  each one.
+</details>
 
-#### ⚫ OpenSpec
+## Skills
 
-| Skill                                                                                                    | What it does                                                                                                                                        |
-|----------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
-| [`codely-openspec-spec-create-from-code`](.agents/skills/codely-openspec-spec-create-from-code/SKILL.md) | Writes the [OpenSpec](https://openspec.dev) specs of behaviour that already exists in the code, so the next change can modify or remove it instead of only adding to it. |
+| Skill                                                                                      | Use it when                                                                                    | Variants                           |
+|--------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|------------------------------------|
+| [`deterministify`](.agents/skills/deterministify/SKILL.md)                                 | You want the conventions your repository already has enforced by linter rules and tests.       | aliases                            |
+| [`create-rule`](.agents/skills/create-rule/SKILL.md)                                       | You corrected the agent, or want a new convention enforced, and want a rule instead of a doc.  |                                    |
+| [`git-commit`](.agents/skills/git-commit/SKILL.md)                                         | You want to commit your changes with a Conventional Commit message.                            |                                    |
+| [`create-pull-request`](.agents/skills/create-pull-request/SKILL.md)                       | You open or update a pull request and want its description to follow a template with evidence. |                                    |
+| [`create-plan`](.agents/skills/create-plan/SKILL.md)                                       | You start a larger task and want a plan split into reviewable phases.                          | `-subagents`, `-github`, `-gitlab` |
+| [`implement-plan-phase`](.agents/skills/implement-plan-phase/SKILL.md)                     | You have a plan and want to implement its next phase.                                          | `-github`, `-gitlab`               |
+| [`openspec-create-spec-from-code`](.agents/skills/openspec-create-spec-from-code/SKILL.md) | You need the OpenSpec specs of behaviour that already exists in the code.                      |                                    |
+| [`create-doc`](.agents/skills/create-doc/SKILL.md)                                         | Deprecated: use `create-rule`.                                                                 |                                    |
 
-Two ways to use `codely-openspec-spec-create-from-code`:
+<details>
+<summary>Variants</summary>
 
-- **Before a change** — run `/codely-openspec-spec-create-from-code <the change you are about to make>` to specify the
-  current behaviour it will touch, then continue with `/openspec-explore`.
-- **To catch up** — run `/codely-openspec-spec-create-from-code <capability>` to specify an existing feature, or without
-  arguments to list the features that still lack a spec.
+- aliases: [`docs-to-rules`](.agents/skills/docs-to-rules/SKILL.md) runs `deterministify docs`, and
+  [`conventions-to-rules`](.agents/skills/conventions-to-rules/SKILL.md) runs `deterministify conventions`. Both
+  need `deterministify` installed next to them.
+- `-subagents`: [`create-plan-subagents`](.agents/skills/create-plan-subagents/SKILL.md) delegates the codebase
+  exploration to cheaper subagents running in parallel.
+- `-github`: [`create-plan-github`](.agents/skills/create-plan-github/SKILL.md) stores the plan as a parent issue with
+  one sub-issue per phase, and [`implement-plan-phase-github`](.agents/skills/implement-plan-phase-github/SKILL.md)
+  opens one pull request per phase.
+- `-gitlab`: [`create-plan-gitlab`](.agents/skills/create-plan-gitlab/SKILL.md) and
+  [`implement-plan-phase-gitlab`](.agents/skills/implement-plan-phase-gitlab/SKILL.md) do the same with GitLab issues
+  and merge requests.
 
-Only intended and verified behaviour reaches the spec: bugs, accidental behaviour and dead code are reported instead.
+</details>
 
-##### 🧩 `codely-spec-plan` schema
+<details>
+<summary><code>codely-spec-plan</code> OpenSpec schema</summary>
 
 An [OpenSpec custom schema](https://github.com/Fission-AI/OpenSpec/blob/main/docs/customization.md) that brings the
-`codely-plan-create-subagents` flow to OpenSpec. Each change produces only two things to review:
+`create-plan-subagents` flow to OpenSpec. Each change produces only two things to review:
 
 - **Lean specs**: one behaviour with SHALL per requirement and a single-line scenario.
 - **`plan.md`**: goal, decisions and one vertical slice phase per part a user can complete a goal with, each with its
@@ -122,37 +136,35 @@ npx degit CodelyTV/agent-harness/openspec/schemas/codely-spec-plan openspec/sche
 schema: codely-spec-plan
 ```
 
-#### 🔀 Git
+</details>
 
-| Skill                                                             | What it does                                                                                              |
-|-------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
-| [`codely-git-conventional-commit`](.agents/skills/codely-git-conventional-commit/SKILL.md) | Creates a Git commit following the team's Conventional Commits conventions and co-author trailer. |
+## Claude Code plugins
 
-Run `/codely-git-conventional-commit` to stage and commit your changes with a conventional message.
+Plugins for Claude Code only, installed from this repository's marketplace.
 
-## 🗣️ Output styles
+<details>
+<summary><code>ste100</code>: answers in Simplified Technical English</summary>
 
-Output styles change how the agent writes to you, not how it writes code.
-
-| Plugin                                                         | What it does                                                                                                                                    |
-|----------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|
-| [`ste100`](.claude/plugins/ste100/README.md)                   | Answers in [ASD-STE100 Simplified Technical English](https://www.asd-ste100.org/): short sentences, active voice, one word per meaning, no idioms. |
+Makes the agent write to you in [ASD-STE100 Simplified Technical English](https://www.asd-ste100.org/): short
+sentences, active voice, one word per meaning, no idioms. It changes how the agent writes to you, not how it writes
+code.
 
 ```
 /plugin marketplace add CodelyTV/agent-harness
 /plugin install ste100@codely
 ```
 
-Then run `/config`, look for **Output Style**, and select `ASD-STE100`.
+Then run `/config`, look for **Output Style**, and select `ASD-STE100`. More in its
+[README](.claude/plugins/ste100/README.md).
 
-## 🧠 Code intelligence
+</details>
 
-| Plugin                                          | What it does                                                                                                                                             |
-|-------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [`ts7-lsp`](.claude/plugins/ts7-lsp/README.md)  | TypeScript/JavaScript go-to-definition, references, and diagnostics through the [TypeScript 7 native compiler](https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/) LSP. |
+<details>
+<summary><code>ts7-lsp</code>: faster TypeScript code intelligence</summary>
 
-The native compiler (the Go rewrite formerly known as tsgo) indexes large monorepos roughly 10x faster and with far
-less CPU than the official `typescript-lsp` plugin, which spawns `typescript-language-server` + `tsserver`.
+Go-to-definition, references and diagnostics through the
+[TypeScript 7 native compiler](https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/) LSP. It indexes
+large monorepos roughly 10x faster and with far less CPU than the official `typescript-lsp` plugin.
 
 Requires a TypeScript 7+ `tsc` binary on `PATH` (e.g. `npm install -g typescript`).
 
@@ -162,29 +174,34 @@ Requires a TypeScript 7+ `tsc` binary on `PATH` (e.g. `npm install -g typescript
 /plugin disable typescript-lsp@claude-plugins-official
 ```
 
-## 🔗 Unified rules and skills via `.agents/`
+More in its [README](.claude/plugins/ts7-lsp/README.md).
 
-Each AI agent reads instructions from a different path. Maintaining them separately is error-prone, so this project
-centralizes everything and uses **symlinks** so each agent reads from its expected path while the content lives in a
-single place:
+</details>
 
-1. **Rules** are written once in `AGENTS.md` (one per directory if needed).
-2. **Skills** live in `.agents/skills/` and are shared across agents.
-3. A `make` command generates the symlinks each agent expects:
+## Under the hood
 
-| Command                  | What it does                                                                                                                      |
-|--------------------------|-----------------------------------------------------------------------------------------------------------------------------------|
-| `make claude-symlinks`   | Creates a `CLAUDE.md → AGENTS.md` symlink in every directory that has an `AGENTS.md`, and links `.claude/skills → .agents/skills` |
-| `make codex-symlinks`    | Links `.codex/skills → .agents/skills`                                                                                            |
-| `make copilot-symlinks`  | Links `.github/skills → .agents/skills`                                                                                           |
-| `make cursor-symlinks`   | Links `.cursor/skills → .agents/skills`                                                                                           |
-| `make junie-symlinks`    | Links `.junie/skills → .agents/skills`                                                                                            |
-| `make opencode-symlinks` | Links `.opencode/skills → .agents/skills`                                                                                         |
+<details>
+<summary>One source for every agent</summary>
 
-## 🛡️ `export` command blocked via hooks
+Rules live in `AGENTS.md` and skills in `.agents/skills/`. Each agent expects them in a different path, so a `make`
+command creates the symlinks it needs. They are not committed, so run the ones you need after cloning:
 
-The `export` command can leak environment variables (tokens, secrets) if an agent runs it. To prevent this, each agent
-has a **pre-execution hook** that blocks any shell command containing `export`:
+| Command                  | What it does                                                                                    |
+|--------------------------|-------------------------------------------------------------------------------------------------|
+| `make claude-symlinks`   | Links `CLAUDE.md → AGENTS.md` in every directory with an `AGENTS.md`, and `.claude/skills`      |
+| `make codex-symlinks`    | Links `.codex/skills → .agents/skills`                                                          |
+| `make copilot-symlinks`  | Links `.github/skills → .agents/skills`                                                         |
+| `make cursor-symlinks`   | Links `.cursor/skills → .agents/skills`                                                         |
+| `make junie-symlinks`    | Links `.junie/skills → .agents/skills`                                                          |
+| `make opencode-symlinks` | Links `.opencode/skills → .agents/skills`                                                       |
+
+</details>
+
+<details>
+<summary><code>export</code> blocked via hooks</summary>
+
+The `export` command can leak environment variables (tokens, secrets) if an agent runs it. Each agent has a
+pre-execution hook that blocks any shell command containing `export`:
 
 | Agent       | Hook location                                        | Mechanism                                                                                        |
 |-------------|------------------------------------------------------|--------------------------------------------------------------------------------------------------|
@@ -192,3 +209,5 @@ has a **pre-execution hook** that blocks any shell command containing `export`:
 | Cursor      | `.cursor/hooks.json` + `hooks/block-export.sh`       | Runs a shell script that parses the command via `jq` and exits with code 2 on match              |
 | Copilot     | `.github/hooks/hooks.json` + `hooks/block-export.sh` | Same approach as Cursor, adapted to Copilot's hook input format                                  |
 | OpenCode    | `.opencode/plugins/block-export.ts`                  | A native TypeScript plugin (`tool.execute.before`) that inspects the command and throws to block |
+
+</details>
