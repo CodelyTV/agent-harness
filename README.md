@@ -45,13 +45,13 @@ For larger tasks, plan the work with `/create-plan` and implement it one phase a
 You wrote your conventions down, but the agent only follows them if it loads the right doc and reads it the way your
 team does.
 
-**The fix:** `/docs-to-rules` turns every convention that code can check into a linter rule or a test.
+**The fix:** `/deterministify docs` turns every convention that code can check into a linter rule or a test.
 
 ### Your code does the same job in two ways
 
 A legacy way and a current way live together, and the agent copies whichever it reads first.
 
-**The fix:** `/code-conventions-to-rules` finds them in the code and its history, and enforces the current way with a
+**The fix:** `/deterministify patterns` finds them in the code and its history, and enforces the current way with a
 rule, after you confirm it.
 
 ### You correct the same thing again and again
