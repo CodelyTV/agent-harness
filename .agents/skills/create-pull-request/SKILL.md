@@ -1,11 +1,11 @@
 ---
 name: create-pull-request
-description: Write the title and the description of a pull request following the team template, with before/after evidence of the change. Use before you create or edit a pull request, and after you push new commits to a branch with an open pull request.
+description: Write the title and the description of a pull request following the team template, with before/after evidence of the change (screenshots, videos, outputs and architecture diagrams). Use before you create or edit a pull request, and after you push new commits to a branch with an open pull request.
 disable-model-invocation: false
 user-invocable: true
 metadata:
   author: Codely <support@codely.com> (https://codely.com)
-  version: "1.0"
+  version: "1.1"
   license: MIT
 ---
 
@@ -78,40 +78,97 @@ The evidence proves the change that "🎯 Why" describes. A reviewer must see th
 
 - Capture the main change, not a side effect of it. For example, if the fix restores a tool that agents call, a screenshot of a new loading style does not prove the fix: the tool call and its result do.
 - For a fix, the "before" with the failure is the most important part. Never skip it because the page looks the same: capture the failure in the form that shows it (console error, response, tool result).
-- Pick the format for the kind of change:
-  - **Visual change** (UI, pages, emails, copies, OG images…): screenshots.
-  - **Flow** (several steps or an interaction): a short video or GIF.
+- Pick the formats for the kind of change. A pull request can need more than one:
+  - **Visual change** (UI, pages, emails, copies, OG images…): screenshots. See "Screenshots".
+  - **Flow** (several steps or an interaction): a short video or GIF. See "Videos".
   - **Behavior without a visual change** (agent tools, API endpoints, scripts…): the same input on each side and the output of each side (tool call and returned JSON, request and response, command and output) in code blocks. Trim long outputs to the relevant fields.
-- Delete the section only if nobody can observe the change outside the tests (refactors, YAML, config, CI, docs, tests…).
+  - **Architecture change** (how components call each other, a decision or routing flow, the order of calls, the dependencies between modules): before/after diagrams. See "Architecture diagrams". Add them to the other evidence, do not replace it.
+- Delete the section only if nobody can observe the change outside the tests and the architecture does not change (YAML, config, CI, docs, tests, a refactor inside one component…).
 
-To produce the evidence:
+### Structure of the section
 
-1. Create a temporary directory, for example `mkdir -p "$TMPDIR/pr-evidence"`. Never commit the screenshots.
+1. Start with one line that tells where each side comes from: the base commit, the branch, the environment, the URL or state, and the shared input. For example: "Before is `main` at `a3d91f2` and after is this branch, both on the local dev server at `/pricing` with the same seed data."
+2. Put the main change first. Then add the scenarios and the variants.
+3. Write one block for each thing to prove: a `###` heading and one sentence that tells the reviewer what to look at. Then the evidence.
+4. Pick the layout of each block:
+
+| Layout                      | Use it for                                                                                        |
+| --------------------------- | ------------------------------------------------------------------------------------------------- |
+| Before/after table          | The main change.                                                                                  |
+| Close-up crop               | A defect of a few pixels. Use the same crop and zoom on both sides.                               |
+| State grid                  | One column for each state that the reviewer cannot infer from the main case (empty, error, long). |
+| Variant matrix              | One row for each variant (width, theme, language) and one column for each side.                   |
+| One subsection per platform | The same check on several platforms, browsers or environments.                                    |
+| Inline GIF and linked video | A short flow as a GIF, and the full walkthrough as a video.                                       |
+| Pair of diagrams            | An architecture change, with Before above After.                                                  |
+
+### Screenshots
+
+- For a visual change on the web, always capture desktop (1440 px) and mobile (390 px), on both sides. Show them in a variant matrix.
+- If the change exists at one width only (for example, a menu that shows only on mobile), capture that width and write why the other one is missing.
+- For emails, also capture both widths.
+- Add other variants (dark mode, tablet, languages…) only if the change affects them.
+- Use the same viewport and the same crop on both sides of each width.
+
+### Videos
+
+Read [`references/video-recording.md`](references/video-recording.md) before you record.
+
+- Show all the relevant part of the screen: the place of the action and its result. If the result shows far from the click (a toast, a side panel), keep both in the frame.
+- Show where each click happens: a visible cursor and a mark on each click.
+- Show what you type: type at a readable speed and show the keyboard shortcuts on the screen.
+- Wait about 1 s after each action, so the reviewer sees the result before the next step.
+- Keep each video under 60 s. Split a longer flow into several videos.
+- Write one sentence above each video with the steps that it shows and its duration. GitHub shows a video as a player without alt text.
+- If the flow changes, record each side with the same steps, or put both sides next to each other.
+- Use the same viewports as the screenshots. Record mobile too if the flow changes there.
+
+### Architecture diagrams
+
+Read [`references/architecture-diagrams.md`](references/architecture-diagrams.md) before you draw.
+
+- Add diagrams when the pull request changes how components call each other, a decision or routing flow, the order of calls, or the dependencies between modules. Omit them if the architecture does not change.
+- Pick the diagram for the change:
+  - **Decision or routing:** `flowchart TD` with decision nodes.
+  - **Order of messages between components:** `sequenceDiagram`.
+  - **Structure or dependencies between modules:** `flowchart LR`.
+- Draw a Before diagram and an After diagram with the same node names, one above the other. Mermaid does not render inside a table.
+- Mark what is added in green, what is removed in red with a dashed line (in Before only) and what changes in amber. Add the legend line above the pair.
+- For a new flow with no "before", draw only After, with all of it marked as added.
+- Draw only the affected part, with about 12 nodes at most. Draw one pair for each affected flow.
+
+### Produce the evidence
+
+1. Create a temporary directory, for example `mkdir -p "$TMPDIR/pr-evidence"`. Never commit the screenshots or the videos.
 2. Capture the "before" state from the base branch and the "after" state from the branch, with the same input.
-3. Use the same viewport and the same crop for both images. Add a mobile width if the layout changes.
-4. If the change is a flow, record a short video or GIF.
+3. Capture both widths, as in "Screenshots".
+4. If the change is a flow, record it as in "Videos".
+5. If the architecture changes, write the diagrams as in "Architecture diagrams". They are Markdown, so they go in the body and need no upload.
 
 Sources for each type of change:
 
 - **Web pages:** use a browser automation tool (for example Playwright) against the local dev server or the preview deployment of each side.
 - **Emails:** render the email template with the same sample params on each side, write the result to an HTML file and screenshot it.
+- **Architecture:** read the code of each side (`git show origin/<base>:<path>` for the "before") and draw the components that the diff touches.
 
-## 5. Attach the images
+## 5. Attach the images and the videos
 
 Use the `--attach` flag of `gh pr create`, `gh pr edit` or `gh pr comment`. It needs gh v2.99.0 or later (`gh --version`) and works on GitHub.com only.
 
 - If the body references a local file and you attach the same file, gh uploads it and rewrites the reference with the URL.
 - If the body has no reference to an attached file, gh appends it at the end of the body.
 - Use the same absolute path in the body and in `--attach`. Run `gh` from the repository root.
-- The alt text of a rewritten reference comes from the Markdown. The `#` suffix of the flag (`--attach "<file>#<alt text>"`) applies only to appended files.
+- The alt text of a rewritten reference comes from the Markdown. The `#` suffix of the flag (`--attach "<file>#<alt text>"`) applies only to appended images. A video has no alt text.
 - Repeat the flag for each file. The limit is 50 files for each command.
+- Keep each video under 10 MB. gh appends a video at the end of the body: move it under its sentence as in "In the body" of [`references/video-recording.md`](references/video-recording.md).
 
 Example with `TMPDIR=/var/folders/ab/T`:
 
 ```markdown
-| Before                                                          | After                                                         |
-| --------------------------------------------------------------- | ------------------------------------------------------------- |
-| ![Course card before](/var/folders/ab/T/pr-evidence/before.png) | ![Course card after](/var/folders/ab/T/pr-evidence/after.png) |
+|             | Before                                                                           | After                                                                          |
+| ----------- | -------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| **Desktop** | ![Course card before, desktop](/var/folders/ab/T/pr-evidence/before-desktop.png) | ![Course card after, desktop](/var/folders/ab/T/pr-evidence/after-desktop.png) |
+| **Mobile**  | ![Course card before, mobile](/var/folders/ab/T/pr-evidence/before-mobile.png)   | ![Course card after, mobile](/var/folders/ab/T/pr-evidence/after-mobile.png)   |
 ```
 
 ```bash
@@ -120,11 +177,13 @@ gh pr create \
   --body-file "$TMPDIR/pr-body.md" \
   --label agent:claude \
   --assignee @me \
-  --attach "$TMPDIR/pr-evidence/before.png" \
-  --attach "$TMPDIR/pr-evidence/after.png"
+  --attach "$TMPDIR/pr-evidence/before-desktop.png" \
+  --attach "$TMPDIR/pr-evidence/after-desktop.png" \
+  --attach "$TMPDIR/pr-evidence/before-mobile.png" \
+  --attach "$TMPDIR/pr-evidence/after-mobile.png"
 ```
 
-If some uploads fail, gh creates the pull request, prints its URL and exits with a non-zero status. Then run `gh pr edit --body-file … --attach …` again with the missing files. Open the pull request and make sure that no local path stays in the body.
+If some uploads fail, gh creates the pull request, prints its URL and exits with a non-zero status. Then run `gh pr edit --body-file … --attach …` again with the missing files. Open the pull request and make sure that no local path stays in the body and that each diagram renders.
 
 ## 6. Update the pull request after new commits
 
@@ -134,12 +193,12 @@ After each push, run `gh pr view --json number,body`. If the branch has an open 
 2. Compare each section with the full diff against the base branch (`git diff origin/<base>...HEAD`).
 3. Update the sections that changed:
    - **🛠️ What changes:** the current changes of the whole pull request.
-   - **📸 Evidence:** capture new screenshots if the visual change is different. Add the section if a visual change appears. Delete it if no visual change remains.
+   - **📸 Evidence:** capture new screenshots or videos if the visual change or the flow is different. Update the diagrams if the architecture is different. Add the section if a visual or architecture change appears. Delete it if none remains.
    - **✅ How I verified it:** the checks for the current state.
    - **🧩 Complexity:** the level and its reason for the current state.
    - **🚀 Deploy steps:** add the section if a manual step appears, and delete it if none remains. Keep the boxes that someone already checked.
    - **↩️ Rollback:** the steps for the current state, including new migrations or flags.
    - **🤖 Authorship:** new contributors.
-4. Apply it with `gh pr edit --body-file "$TMPDIR/pr-body.md"`. If the body references new local images, add one `--attach` flag for each image, as in "5. Attach the images". Then make sure that no local path stays in the body.
+4. Apply it with `gh pr edit --body-file "$TMPDIR/pr-body.md"`. If the body references new local images or videos, add one `--attach` flag for each file, as in "5. Attach the images and the videos". Then make sure that no local path stays in the body.
 
 The description always describes the current state of the whole pull request. Do not append a commit log or a "changes since last review" list. Do not change the `agent:*` label or the assignees.

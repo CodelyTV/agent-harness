@@ -33,7 +33,7 @@ that fail in seconds: the agent corrects itself, and you review what the change 
 2. **Enforce your code conventions** with `/deterministify conventions`.
 3. **Add a new rule** with `/create-rule` every time you correct the agent.
 4. **Commit** with `/git-commit`.
-5. **Open the pull request** with `/create-pull-request`, with before/after evidence of what the change does.
+5. **Open the pull request** with `/create-pull-request`, with before/after evidence of what the change does: screenshots, videos and architecture diagrams.
 
 For larger tasks, plan the work with `/create-plan` and implement it one phase at a time with
 `/implement-plan-phase`. Already using [OpenSpec](https://openspec.dev)? Run `/openspec-create-spec-from-code` first.
