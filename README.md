@@ -27,6 +27,17 @@
 Your agent writes code faster than you can review it. Instead of reading every line, turn your conventions into rules
 that fail in seconds: the agent corrects itself, and you review what the change does, not how it is written.
 
+## Workflow
+
+1. **Make your docs deterministic** with `/deterministify docs`.
+2. **Enforce your code conventions** with `/deterministify patterns`.
+3. **Add a new rule** with `/create-rule` every time you correct the agent.
+4. **Commit** with `/git-commit`.
+5. **Open the pull request** with `/create-pull-request`, with before/after evidence of what the change does.
+
+For larger tasks, plan the work with `/create-plan` and implement it one phase at a time with
+`/implement-plan-phase`. Already using [OpenSpec](https://openspec.dev)? Run `/openspec-create-spec-from-code` first.
+
 ## Why
 
 ### Your docs are suggestions
@@ -73,17 +84,6 @@ Pick the skills you want and the agents to install them on. Then run one, for ex
 ```
 
 </details>
-
-## Workflow
-
-1. **Make your docs deterministic** with `/deterministify docs`.
-2. **Enforce your code conventions** with `/deterministify patterns`.
-3. **Add a new rule** with `/create-rule` every time you correct the agent.
-4. **Commit** with `/git-commit`.
-5. **Open the pull request** with `/create-pull-request`, with before/after evidence of what the change does.
-
-For larger tasks, plan the work with `/create-plan` and implement it one phase at a time with
-`/implement-plan-phase`. Already using [OpenSpec](https://openspec.dev)? Run `/openspec-create-spec-from-code` first.
 
 ## Skills
 
