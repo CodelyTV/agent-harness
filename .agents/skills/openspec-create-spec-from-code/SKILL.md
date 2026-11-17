@@ -21,7 +21,7 @@ The argument is free text. Read it as one of these:
 
 | Input | Example | Scope |
 | --- | --- | --- |
-| Nothing, or a question about what lacks a spec | `which features have no spec?` | The inventory in [`resources/evidence-guidelines.md`](resources/evidence-guidelines.md#-inventory). Build it and stop until the user picks a row. |
+| Nothing, or a question about what lacks a spec | `which features have no spec?` | The inventory in [`references/evidence-guidelines.md`](references/evidence-guidelines.md#-inventory). Build it and stop until the user picks a row. |
 | A capability | `checkout` | That capability. |
 | A change the user is about to make | `add discount coupons to checkout` | The current behaviour the change will touch. The new behaviour belongs to the change, not to the baseline. |
 | A path or a screen | `src/app/admin/orders` | The business concept that path serves, traced back from it. |
@@ -48,19 +48,19 @@ Done when the user has confirmed every capability, and whether each one is new o
 
 ### 3. Collect the evidence
 
-Read [`resources/evidence-guidelines.md`](resources/evidence-guidelines.md) and dispatch the subagents it describes. Delegate the exploration: your job is to cross the reports, not to read the codebase.
+Read [`references/evidence-guidelines.md`](references/evidence-guidelines.md) and dispatch the subagents it describes. Delegate the exploration: your job is to cross the reports, not to read the codebase.
 
 Done when every area of every capability has a report, and every candidate behaviour in it carries its evidence.
 
 ### 4. Classify
 
-Sort every candidate behaviour into one of the four cases of [`resources/evidence-guidelines.md`](resources/evidence-guidelines.md#-the-four-cases). Then ask the user about all the **ambiguous** candidates in a single round, as that file describes. Use the tool to question the user if you have one.
+Sort every candidate behaviour into one of the four cases of [`references/evidence-guidelines.md`](references/evidence-guidelines.md#-the-four-cases). Then ask the user about all the **ambiguous** candidates in a single round, as that file describes. Use the tool to question the user if you have one.
 
 Done when every candidate has a case, and every ambiguous one has the user's verdict.
 
 ### 5. Write the specs
 
-Read [`resources/spec-format.md`](resources/spec-format.md) and write `openspec/specs/<capability>/spec.md` with the **intended and verified** behaviour only.
+Read [`references/spec-format.md`](references/spec-format.md) and write `openspec/specs/<capability>/spec.md` with the **intended and verified** behaviour only.
 
 When you extend an existing spec, add requirements and scenarios and keep every existing one exactly as it is. An existing requirement that the code contradicts is **drift**: it goes to the report, and changing it is the job of an OpenSpec change.
 

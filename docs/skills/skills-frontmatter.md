@@ -89,6 +89,6 @@ Without a `metadata` block the skill loses its author, version, and license.
 
 ## 🔗 Related agreements
 
-- [Documentation Standard](../../.agents/skills/create-doc/resources/documentation-guidelines.md): how to structure the docs a skill produces.
+- [Documentation Standard](../../.agents/skills/create-doc/references/documentation-guidelines.md): how to structure the docs a skill produces.
 
 Frontmatter kept tidy by 🐢 💨 (Turbotuga™, [Codely](https://codely.com)’s mascot).

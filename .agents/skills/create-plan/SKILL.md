@@ -11,7 +11,7 @@ metadata:
 
 # 🧠 How to create a plan
 
-The structure of a plan, its sections and the rules to shape them are defined in [`resources/plan-guidelines.md`](resources/plan-guidelines.md). Read it before proposing anything.
+The structure of a plan, its sections and the rules to shape them are defined in [`references/plan-guidelines.md`](references/plan-guidelines.md). Read it before proposing anything.
 
 1. Ask the user for the task to create a plan for if not specified.
 

@@ -43,7 +43,7 @@ If the conversation provides enough clarity, proceed directly to generating the 
 
 ### Step 3: Generate the file
 
-Create the documentation file following the structure and guidelines defined in [`resources/documentation-guidelines.md`](resources/documentation-guidelines.md).
+Create the documentation file following the structure and guidelines defined in [`references/documentation-guidelines.md`](references/documentation-guidelines.md).
 
 ### Step 4: Update docs & close conversation
 

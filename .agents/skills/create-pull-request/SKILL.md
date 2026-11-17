@@ -13,7 +13,7 @@ metadata:
 
 ## 1. Title
 
-- Use the Conventional Commits format of [`commit-messages.md`](../git-commit/resources/commit-messages.md): `type(scope): summary`.
+- Use the Conventional Commits format of [`commit-messages.md`](../git-commit/references/commit-messages.md): `type(scope): summary`.
 - If the repository restricts the scopes (a script, a config file or a CI check that validates the title), use one of them.
 
 ## 2. Agent label and assignee
@@ -40,7 +40,7 @@ Assign the pull request to the person who directed the agent (the person who wro
 
 `gh pr create --body` ignores the GitHub template. Build the body from a template explicitly:
 
-1. Read the template of the repository, `.github/pull_request_template.md`. If it does not exist, use [`resources/pull-request-template.md`](resources/pull-request-template.md).
+1. Read the template of the repository, `.github/pull_request_template.md`. If it does not exist, use [`references/pull-request-template.md`](references/pull-request-template.md).
 2. Copy it to a temporary file outside the repository, for example `"$TMPDIR/pr-body.md"`.
 3. Fill each section with facts from the diff and from your session.
 4. Delete the sections that do not apply and all the HTML comments.

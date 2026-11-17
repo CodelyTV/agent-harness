@@ -14,7 +14,7 @@ metadata:
 > [!CRITICAL]
 > Do NOT create or edit any GitHub issue until the user has agreed on the specific public contracts to be considered and the implementation phases. Propose first, get approval, then create the issues.
 
-The structure of a plan, its sections and the rules to shape them are defined in [`resources/plan-guidelines.md`](resources/plan-guidelines.md). Read it before proposing anything.
+The structure of a plan, its sections and the rules to shape them are defined in [`references/plan-guidelines.md`](references/plan-guidelines.md). Read it before proposing anything.
 
 ## 🎯 Input
 
@@ -116,6 +116,6 @@ GitHub issues have no YAML frontmatter, so add the plan metadata as a footer at 
 
 ## 🗂️ Where each plan section lives
 
-The parent issue holds the `Goal`, the `Context`, the `Phases` checklist and the `Next step` sections described in [`resources/plan-guidelines.md`](resources/plan-guidelines.md). Each child issue holds the description and the to-do actions list of its own phase.
+The parent issue holds the `Goal`, the `Context`, the `Phases` checklist and the `Next step` sections described in [`references/plan-guidelines.md`](references/plan-guidelines.md). Each child issue holds the description and the to-do actions list of its own phase.
 
 As the phases are implemented through pull requests, the last to-do action of every phase asks for pull request titles instead of commit messages.

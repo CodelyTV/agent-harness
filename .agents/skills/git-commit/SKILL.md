@@ -15,7 +15,7 @@ If the user does not specify the commit message, gather context about the curren
 
 ## Your task
 
-Create a single Git commit. Follow the conventions in [`resources/commit-messages.md`](resources/commit-messages.md) to determine the commit message if it has not been already specified.
+Create a single Git commit. Follow the conventions in [`references/commit-messages.md`](references/commit-messages.md) to determine the commit message if it has not been already specified.
 
 ## Co-authors
 

@@ -56,8 +56,8 @@ Read the lint, format, test, hook and CI configuration. Done when you can state:
 
 ### 2. Collect the conventions
 
-- Written: follow [`resources/docs.md`](resources/docs.md). Skip it in mode `patterns`.
-- Mined: follow [`resources/patterns.md`](resources/patterns.md). Skip it in mode `docs`.
+- Written: follow [`references/docs.md`](references/docs.md). Skip it in mode `patterns`.
+- Mined: follow [`references/patterns.md`](references/patterns.md). Skip it in mode `docs`.
 
 With both, the written pass is evidence for the mined one: a job is out of scope when a rule already enforces it or a convertible statement decides it, whatever the recent code does. A job that a held pair of statements decides gets no card of its own: the card of the pair settles it. And a statement that names the current way of a job is intent for that job, even if the written pass skipped it.
 
@@ -72,7 +72,7 @@ Give each convention that no working rule enforces yet the first **rung** that c
 3. A generic configurable rule of an installed linter, such as restricted imports or restricted syntax.
 4. A plugin that the community maintains for an installed linter.
 5. A custom rule in the local plugin of an installed linter.
-6. Out of reach of every installed linter (a language with none, files that are not code, a check that crosses files): follow [`resources/new-tool.md`](resources/new-tool.md).
+6. Out of reach of every installed linter (a language with none, files that are not code, a check that crosses files): follow [`references/new-tool.md`](references/new-tool.md).
 
 Each convention gets its own rule, with its own message and its own baseline. If a generic rule is already set for the same files, by the repository or by another convention of this run, and its options replace instead of merge (step 1), go one rung down.
 
@@ -80,9 +80,9 @@ Done when every convention has a rung, a dependency to propose, or a skip.
 
 ### 4. Ask once
 
-Three things need the user: a dependency to install, two convertible statements that contradict each other, and a mined job whose evidence leaves doubt (`resources/patterns.md` says which). Each one becomes a **card**. Conventions that hang on no card do not wait, and the user does not vote on them: take them through steps 5 to 7 first.
+Three things need the user: a dependency to install, two convertible statements that contradict each other, and a mined job whose evidence leaves doubt (`references/patterns.md` says which). Each one becomes a **card**. Conventions that hang on no card do not wait, and the user does not vote on them: take them through steps 5 to 7 first.
 
-Then send the one message of [`resources/ask.md`](resources/ask.md). With no card, send no question: say what you enforced and continue.
+Then send the one message of [`references/ask.md`](references/ask.md). With no card, send no question: say what you enforced and continue.
 
 Done when the user has answered, or at once when you sent no question. Take what they accepted, and only that, through steps 5 to 7. A card where they chose an alternative goes through step 3 first, with the tools already installed or approved. From here to step 8, ask nothing more:
 
@@ -120,7 +120,7 @@ One commit per convention, with the convention of the repository for commit mess
 
 Answer with one bullet per rule, grouped by mechanism (configuration, custom rules, new dependencies): the convention in a few words, written or mined, the rule, and the size of its baseline. Past fifteen rules, group them by area and give counts. Say where you enforced less than the sentence states, and name the jobs with no clear winner. Close with how to migrate a file of a baseline: change the code, remove it from the baseline.
 
-Then send the offer of [`resources/document.md`](resources/document.md).
+Then send the offer of [`references/document.md`](references/document.md).
 
 ## Large runs
 
