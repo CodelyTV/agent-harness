@@ -131,7 +131,9 @@ schema: codely-spec-plan
 
 </details>
 
-## Extras
+## Claude Code plugins
+
+Plugins for Claude Code only, installed from this repository's marketplace.
 
 <details>
 <summary><code>ste100</code>: answers in Simplified Technical English</summary>
