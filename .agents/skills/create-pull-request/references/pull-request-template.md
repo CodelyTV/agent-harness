@@ -31,17 +31,43 @@ Add as many blocks as the change needs. Delete this section if nobody can observ
 
 -
 
-## ⚠️ Risk
+## 🧩 Complexity
 
-<!-- The level is the author's declaration, not a verdict. -->
+<!-- How hard the change is to review, and what makes it so: "medium · a new endpoint, use case and table". -->
 
-- **Level:** low / medium / high
-- **Touches:** <!-- Sensitive areas: payments, auth, DB migrations, customer emails, CI… or "none". -->
-- **Rollback:** <!-- How to undo it: revert the PR, toggle a flag, run a down migration… -->
+**Level:** low / medium / high · 
+
+## 🚀 Deploy steps
+
+<!--
+Only if someone must do something by hand to ship this pull request. Delete this section otherwise.
+One numbered checkbox per step, in order. Each step says when to run it, where, and the exact command, query or flag.
+Whoever runs a step checks its box. Merge only when every "Before merging" box is checked.
+-->
+
+1. [ ] **Before merging:** run in production:
+   ```sql
+
+   ```
+2. [ ] **After deploying:**
+
+## ↩️ Rollback
+
+<!--
+How to undo this pull request in production, as steps in order.
+- Code only: "Revert this pull request."
+- Feature flag: name the flag and the value that turns the change off.
+- Database migration, backfill, queue, cron or external config: write each step with the exact command or migration name, and say what data is lost or kept. For example:
+  1. Run the down migration `20261117_create_course_review` (drops the `course_review` table and its rows).
+  2. Revert this pull request.
+- If it cannot be undone (data deleted, emails sent, event consumed by other services), say so and write what to do instead.
+-->
+
+- 
 
 ## 🤖 Authorship
 
-<!-- Who did what. If an agent wrote the change, start with who started the work, then name the harness, its surface (CLI, desktop, IDE, cloud…) and the model, with the same agent as the `agent:*` label if there is one. Never write "the user".
-- A person directed it: "Directed by Jane Doe (@janedoe), who wrote the spec. Written by Claude Code (desktop) with Claude Opus 5.5. Not reviewed by a human yet."
+<!-- One sentence: the harness and the model, then who started the work. Use the same agent as the `agent:*` label if there is one. Never write "the user".
+- A person directed it: "Claude Code with Claude Opus 5.5, guided by Jane Doe (@janedoe)."
 - A comment, issue or scheduled task started it: name the person behind it and link the origin.
-- An automatic event started it with no person behind it: "Triggered automatically by <event> (<link>). No human directed it." -->
+- An automatic event started it with no person behind it: "Claude Code with Claude Opus 5.5, triggered automatically by <event> (<link>)." -->
