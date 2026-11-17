@@ -79,7 +79,8 @@ Pick the skills you want and the agents to install them on. Then run one, for ex
 1. **Document** your conventions with `/create-doc`.
 2. **Plan** the task with `/create-plan <task>`. The plan is saved under `.agents/plans/`.
 3. **Implement** one phase with `/implement-plan-phase <plan-file>`. Review it, then run it again for the next phase.
-4. **Commit** each phase with `/git-commit`.
+4. **Commit** each phase with `/git-commit` and open the pull request with `/create-pull-request`.
+5. **Enforce** the conventions that code can check with `/deterministify`, so the agent corrects itself before you review.
 
 Already using [OpenSpec](https://openspec.dev)? Run `/openspec-create-spec-from-code` first, so your changes can modify
 existing behaviour instead of only adding to it.
@@ -91,7 +92,9 @@ existing behaviour instead of only adding to it.
 | [`create-doc`](.agents/skills/create-doc/SKILL.md)                                         | You want to turn the corrections of a session, or a convention you describe, into a doc.      |                                                |
 | [`create-plan`](.agents/skills/create-plan/SKILL.md)                                       | You start a task and want a plan split into reviewable phases.                                | `-subagents`, `-github`, `-gitlab`             |
 | [`implement-plan-phase`](.agents/skills/implement-plan-phase/SKILL.md)                     | You have a plan and want to implement its next phase.                                         | `-github`, `-gitlab`                           |
+| [`deterministify`](.agents/skills/deterministify/SKILL.md)                                 | You want your conventions enforced by linter rules and tests instead of by review.            |                                                |
 | [`git-commit`](.agents/skills/git-commit/SKILL.md)                                         | You want to commit your changes with a Conventional Commit message.                           |                                                |
+| [`create-pull-request`](.agents/skills/create-pull-request/SKILL.md)                       | You open or update a pull request and want its description to follow a template with evidence. |                                                |
 | [`openspec-create-spec-from-code`](.agents/skills/openspec-create-spec-from-code/SKILL.md) | You need the OpenSpec specs of behaviour that already exists in the code.                     |                                                |
 
 <details>

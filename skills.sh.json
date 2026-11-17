@@ -6,7 +6,8 @@
 			"title": "Harness",
 			"description": "Skills for creating and maintaining project documentation and conventions.",
 			"skills": [
-				"create-doc"
+				"create-doc",
+				"deterministify"
 			]
 		},
 		{
@@ -33,7 +34,8 @@
 			"title": "Git",
 			"description": "Skills for working with Git following the team's conventions.",
 			"skills": [
-				"git-commit"
+				"git-commit",
+				"create-pull-request"
 			]
 		}
 	]

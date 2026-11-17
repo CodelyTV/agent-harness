@@ -13,7 +13,9 @@
 	"keywords": ["engineering", "skills", "commit", "rpi", "openspec"],
 	"skills": [
 		"./.agents/skills/git-commit",
+		"./.agents/skills/create-pull-request",
 		"./.agents/skills/create-doc",
+		"./.agents/skills/deterministify",
 		"./.agents/skills/create-plan",
 		"./.agents/skills/create-plan-subagents",
 		"./.agents/skills/create-plan-github",
