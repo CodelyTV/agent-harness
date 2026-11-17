@@ -30,7 +30,7 @@ that fail in seconds: the agent corrects itself, and you review what the change 
 ## Workflow
 
 1. **Make your docs deterministic** with `/deterministify docs`.
-2. **Enforce your code conventions** with `/deterministify patterns`.
+2. **Enforce your code conventions** with `/deterministify conventions`.
 3. **Add a new rule** with `/create-rule` every time you correct the agent.
 4. **Commit** with `/git-commit`.
 5. **Open the pull request** with `/create-pull-request`, with before/after evidence of what the change does.
@@ -51,7 +51,7 @@ team does.
 
 A legacy way and a current way live together, and the agent copies whichever it reads first.
 
-**The fix:** `/deterministify patterns` finds them in the code and its history, and enforces the current way with a
+**The fix:** `/deterministify conventions` finds them in the code and its history, and enforces the current way with a
 rule, after you confirm it.
 
 ### You correct the same thing again and again
@@ -102,7 +102,7 @@ Pick the skills you want and the agents to install them on. Then run one, for ex
 <summary>Variants</summary>
 
 - aliases: [`docs-to-rules`](.agents/skills/docs-to-rules/SKILL.md) runs `deterministify docs`, and
-  [`code-conventions-to-rules`](.agents/skills/code-conventions-to-rules/SKILL.md) runs `deterministify patterns`. Both
+  [`code-conventions-to-rules`](.agents/skills/code-conventions-to-rules/SKILL.md) runs `deterministify conventions`. Both
   need `deterministify` installed next to them.
 - `-subagents`: [`create-plan-subagents`](.agents/skills/create-plan-subagents/SKILL.md) delegates the codebase
   exploration to cheaper subagents running in parallel.

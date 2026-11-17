@@ -1,6 +1,6 @@
 ---
 name: code-conventions-to-rules
-description: Find the jobs the code does in more than one way and enforce the current way with deterministic rules that fail in seconds. Alias of deterministify in patterns mode.
+description: Find the jobs the code does in more than one way and enforce the current way with deterministic rules that fail in seconds. Alias of deterministify in conventions mode.
 argument-hint: "[path …]"
 disable-model-invocation: true
 user-invocable: true
@@ -12,4 +12,4 @@ metadata:
 
 # Code conventions to rules
 
-Follow [`deterministify`](../deterministify/SKILL.md) in mode `patterns`, with the paths the user passed, if any: `/deterministify patterns [path …]`.
+Follow [`deterministify`](../deterministify/SKILL.md) in mode `conventions`, with the paths the user passed, if any: `/deterministify conventions [path …]`.

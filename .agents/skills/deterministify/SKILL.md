@@ -1,7 +1,7 @@
 ---
 name: deterministify
 description: Turn the conventions of a repository into deterministic rules (linter config, custom lint rules, tests) that fail in seconds. Written conventions first, patterns that only the code shows second.
-argument-hint: "[docs | patterns] [path …]"
+argument-hint: "[docs | conventions] [path …]"
 disable-model-invocation: true
 user-invocable: true
 metadata:
@@ -16,15 +16,17 @@ A convention holds only if an agent loads it, reads it the way the team does, an
 
 ## Arguments
 
-`/deterministify [docs | patterns] [path …]`
+`/deterministify [docs | conventions] [path …]`
 
-Both are optional. The first word is a mode only when it is exactly `docs` or `patterns`. Anything else is a path: write `./docs` for a folder of that name.
+Both are optional. The first word is a mode only when it is exactly `docs`, `conventions`, `code-conventions` or `patterns`. The last three are the same mode, `patterns`. Anything else is a path: write `./docs` for a folder of that name.
 
 | Mode       | Conventions it enforces                          | It asks before enforcing                  |
 | ---------- | ------------------------------------------------ | ----------------------------------------- |
 | (none)     | Written first, then the ones only the code shows | Once, and only where the evidence is weak |
 | `docs`     | Written: docs, `AGENTS.md`, ADRs, guidelines     | Nothing, except the two cases of step 4   |
 | `patterns` | Mined: jobs the code does in more than one way   | Which way is current, where in doubt      |
+
+`conventions` and `code-conventions` are aliases of `patterns`: wherever this skill says mode `patterns`, it means any of the three.
 
 A path narrows the run, and alone it chooses the mode by what it holds:
 
