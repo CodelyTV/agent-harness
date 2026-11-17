@@ -1,5 +1,5 @@
 ---
-name: plan-create
+name: create-plan
 description: Create a plan for the specified task.
 disable-model-invocation: true
 user-invocable: true
@@ -26,12 +26,12 @@ The structure of a plan, its sections and the rules to shape them are defined in
 6. Suggest next steps
     - Once you create the plan file, ask the user what do they want to do:
         - Do not do anything else.
-        - Commit the plan file to the repository by running the `/git-conventional-commit` skill. Consider plan file only changes as `docs` type.
-        - Implement the plan by running the `/plan-phase-implement @plan-file-path` skill.
+        - Commit the plan file to the repository by running the `/git-commit` skill. Consider plan file only changes as `docs` type.
+        - Implement the plan by running the `/implement-plan-phase @plan-file-path` skill.
         - Commit the plan file and then implement Phase 1 only.
 
    > [!IMPORTANT]
-   > If the user asks to "commit and implement", commit the plan file first, then implement **only Phase 1**. Never implement all phases at once. The `/plan-phase-implement` skill handles one phase per invocation.
+   > If the user asks to "commit and implement", commit the plan file first, then implement **only Phase 1**. Never implement all phases at once. The `/implement-plan-phase` skill handles one phase per invocation.
 
 ## 🗃️ Frontmatter
 

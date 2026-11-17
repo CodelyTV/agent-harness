@@ -6,34 +6,34 @@
 			"title": "Harness",
 			"description": "Skills for creating and maintaining project documentation and conventions.",
 			"skills": [
-				"doc-create"
+				"create-doc"
 			]
 		},
 		{
 			"title": "RPI",
 			"description": "Skills for planning and executing tasks phase by phase.",
 			"skills": [
-				"plan-create",
-				"plan-create-subagents",
-				"plan-create-github",
-				"plan-create-gitlab",
-				"plan-phase-implement",
-				"plan-phase-implement-github",
-				"plan-phase-implement-gitlab"
+				"create-plan",
+				"create-plan-subagents",
+				"create-plan-github",
+				"create-plan-gitlab",
+				"implement-plan-phase",
+				"implement-plan-phase-github",
+				"implement-plan-phase-gitlab"
 			]
 		},
 		{
 			"title": "OpenSpec",
 			"description": "Skills for working with OpenSpec specs.",
 			"skills": [
-				"openspec-spec-create-from-code"
+				"openspec-create-spec-from-code"
 			]
 		},
 		{
 			"title": "Git",
 			"description": "Skills for working with Git following the team's conventions.",
 			"skills": [
-				"git-conventional-commit"
+				"git-commit"
 			]
 		}
 	]

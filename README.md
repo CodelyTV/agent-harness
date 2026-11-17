@@ -34,7 +34,7 @@ Skills live in `.agents/skills/` and are shared across every agent.
 
 2. Pick the skills you want and the coding agents you want to install them on.
 
-3. Run a skill in your agent, for example `/doc-create`.
+3. Run a skill in your agent, for example `/create-doc`.
 
 4. Done. Your agent now follows Codely's conventions.
 
@@ -47,7 +47,7 @@ Skills live in `.agents/skills/` and are shared across every agent.
    /plugin install codely-skills@codely
    ```
 
-2. Run a skill in Claude Code, for example `/doc-create`.
+2. Run a skill in Claude Code, for example `/create-doc`.
 
 3. Done. Every skill in this repo is now available in Claude Code.
 
@@ -59,45 +59,45 @@ Skills are grouped by category:
 
 | Skill                                                             | What it does                                                                                                           |
 |-------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------|
-| [`doc-create`](.agents/skills/doc-create/SKILL.md) | Generates convention documentation from the current conversation, turning feedback and corrections into reusable docs. |
+| [`create-doc`](.agents/skills/create-doc/SKILL.md) | Generates convention documentation from the current conversation, turning feedback and corrections into reusable docs. |
 
-Two ways to use `doc-create`:
+Two ways to use `create-doc`:
 
-- **After a conversation** — run `/doc-create` to turn the corrections the agent received during the session into
+- **After a conversation** — run `/create-doc` to turn the corrections the agent received during the session into
   a new doc.
-- **Before a conversation** — run `/doc-create <description>` to formalize a convention you want to document
+- **Before a conversation** — run `/create-doc <description>` to formalize a convention you want to document
   upfront.
 
 #### 🗺️ RPI
 
 | Skill                                                                                              | What it does                                                                                                                     |
 |----------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
-| [`plan-create`](.agents/skills/plan-create/SKILL.md)                                 | Breaks a task into reviewable phases (vertical slices), defines the public contracts to change, and saves an approved plan file. |
-| [`plan-create-subagents`](.agents/skills/plan-create-subagents/SKILL.md)             | Same planning flow, but delegates the codebase exploration to cheaper subagents running in parallel.                             |
-| [`plan-phase-implement`](.agents/skills/plan-phase-implement/SKILL.md)               | Executes a single phase of a plan at a time, updates its checkboxes, and stops for review without committing automatically.      |
-| [`plan-create-github`](.agents/skills/plan-create-github/SKILL.md)                   | Same planning flow, but stored as GitHub issues: a parent plan issue and one native sub-issue per phase.                         |
-| [`plan-phase-implement-github`](.agents/skills/plan-phase-implement-github/SKILL.md) | Implements one phase issue at a time on its linked branch and opens a pull request that closes the issue on merge.               |
-| [`plan-create-gitlab`](.agents/skills/plan-create-gitlab/SKILL.md)                   | Same planning flow, but stored as GitLab issues: a parent plan issue and one linked child issue per phase.                       |
-| [`plan-phase-implement-gitlab`](.agents/skills/plan-phase-implement-gitlab/SKILL.md) | Implements one phase issue at a time on its linked branch and opens a merge request that closes the issue on merge.              |
+| [`create-plan`](.agents/skills/create-plan/SKILL.md)                                 | Breaks a task into reviewable phases (vertical slices), defines the public contracts to change, and saves an approved plan file. |
+| [`create-plan-subagents`](.agents/skills/create-plan-subagents/SKILL.md)             | Same planning flow, but delegates the codebase exploration to cheaper subagents running in parallel.                             |
+| [`implement-plan-phase`](.agents/skills/implement-plan-phase/SKILL.md)               | Executes a single phase of a plan at a time, updates its checkboxes, and stops for review without committing automatically.      |
+| [`create-plan-github`](.agents/skills/create-plan-github/SKILL.md)                   | Same planning flow, but stored as GitHub issues: a parent plan issue and one native sub-issue per phase.                         |
+| [`implement-plan-phase-github`](.agents/skills/implement-plan-phase-github/SKILL.md) | Implements one phase issue at a time on its linked branch and opens a pull request that closes the issue on merge.               |
+| [`create-plan-gitlab`](.agents/skills/create-plan-gitlab/SKILL.md)                   | Same planning flow, but stored as GitLab issues: a parent plan issue and one linked child issue per phase.                       |
+| [`implement-plan-phase-gitlab`](.agents/skills/implement-plan-phase-gitlab/SKILL.md) | Implements one phase issue at a time on its linked branch and opens a merge request that closes the issue on merge.              |
 
 Typical flow:
 
-- **Plan** the work with `/plan-create <task>` (or `/plan-create-subagents <task>` to delegate the
+- **Plan** the work with `/create-plan <task>` (or `/create-plan-subagents <task>` to delegate the
   exploration) to produce a phased plan file under `.agents/plans/`.
-- **Implement** it phase by phase with `/plan-phase-implement <plan-file-path>`, reviewing and committing after
+- **Implement** it phase by phase with `/implement-plan-phase <plan-file-path>`, reviewing and committing after
   each one.
 
 #### ⚫ OpenSpec
 
 | Skill                                                                                                    | What it does                                                                                                                                        |
 |----------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
-| [`openspec-spec-create-from-code`](.agents/skills/openspec-spec-create-from-code/SKILL.md) | Writes the [OpenSpec](https://openspec.dev) specs of behaviour that already exists in the code, so the next change can modify or remove it instead of only adding to it. |
+| [`openspec-create-spec-from-code`](.agents/skills/openspec-create-spec-from-code/SKILL.md) | Writes the [OpenSpec](https://openspec.dev) specs of behaviour that already exists in the code, so the next change can modify or remove it instead of only adding to it. |
 
-Two ways to use `openspec-spec-create-from-code`:
+Two ways to use `openspec-create-spec-from-code`:
 
-- **Before a change** — run `/openspec-spec-create-from-code <the change you are about to make>` to specify the
+- **Before a change** — run `/openspec-create-spec-from-code <the change you are about to make>` to specify the
   current behaviour it will touch, then continue with `/openspec-explore`.
-- **To catch up** — run `/openspec-spec-create-from-code <capability>` to specify an existing feature, or without
+- **To catch up** — run `/openspec-create-spec-from-code <capability>` to specify an existing feature, or without
   arguments to list the features that still lack a spec.
 
 Only intended and verified behaviour reaches the spec: bugs, accidental behaviour and dead code are reported instead.
@@ -105,7 +105,7 @@ Only intended and verified behaviour reaches the spec: bugs, accidental behaviou
 ##### 🧩 `codely-spec-plan` schema
 
 An [OpenSpec custom schema](https://github.com/Fission-AI/OpenSpec/blob/main/docs/customization.md) that brings the
-`plan-create-subagents` flow to OpenSpec. Each change produces only two things to review:
+`create-plan-subagents` flow to OpenSpec. Each change produces only two things to review:
 
 - **Lean specs**: one behaviour with SHALL per requirement and a single-line scenario.
 - **`plan.md`**: goal, decisions and one vertical slice phase per part a user can complete a goal with, each with its
@@ -126,9 +126,9 @@ schema: codely-spec-plan
 
 | Skill                                                             | What it does                                                                                              |
 |-------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
-| [`git-conventional-commit`](.agents/skills/git-conventional-commit/SKILL.md) | Creates a Git commit following the team's Conventional Commits conventions and co-author trailer. |
+| [`git-commit`](.agents/skills/git-commit/SKILL.md) | Creates a Git commit following the team's Conventional Commits conventions and co-author trailer. |
 
-Run `/git-conventional-commit` to stage and commit your changes with a conventional message.
+Run `/git-commit` to stage and commit your changes with a conventional message.
 
 ## 🗣️ Output styles
 

@@ -1,5 +1,5 @@
 ---
-name: plan-phase-implement-gitlab
+name: implement-plan-phase-gitlab
 description: Implement one phase of a plan stored as GitLab issues in the repository of the current working directory. Given the URL of a phase (child) issue it implements that phase; given the parent plan issue it finds and implements the current phase. Only implements a single phase per invocation, then stops for user review. It opens a merge request that references the phase issue and keeps the plan issues reconciled, closing them explicitly when the instance does not auto-close on merge. Never merges the merge request.
 disable-model-invocation: true
 user-invocable: true
@@ -21,7 +21,7 @@ metadata:
 
 ## 🎯 Input
 
-This skill is invoked as `/plan-phase-implement-gitlab <gitlab-issue-url>`. The URL can point to either:
+This skill is invoked as `/implement-plan-phase-gitlab <gitlab-issue-url>`. The URL can point to either:
 
 - A **phase (child) issue**: implement that phase.
 - The **parent plan issue**: find the current phase and implement it (see below).

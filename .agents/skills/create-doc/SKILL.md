@@ -1,5 +1,5 @@
 ---
-name: doc-create
+name: create-doc
 description: Create new documentation based on the current conversation context.
 disable-model-invocation: false
 user-invocable: true
