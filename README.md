@@ -29,8 +29,8 @@ that fail in seconds: the agent corrects itself, and you review what the change 
 
 ## Workflow
 
-1. **Make your docs deterministic** with `/docs-to-rules`.
-2. **Enforce your code conventions** with `/code-conventions-to-rules`.
+1. **Make your docs deterministic** with `/deterministify docs`.
+2. **Enforce your code conventions** with `/deterministify patterns`.
 3. **Add a new rule** with `/create-rule` every time you correct the agent.
 4. **Commit** with `/git-commit`.
 5. **Open the pull request** with `/create-pull-request`, with before/after evidence of what the change does.
