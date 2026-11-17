@@ -12,15 +12,18 @@
 
 <!--
 Show the change that "Why" describes, not a side effect of it. For a fix, the "before" with the failure matters most.
-- Visual change (UI, pages, emails, copies, OG images…): screenshots with the same viewport and crop in both columns. Add a mobile width if the layout changes. Emails: render the template with sample params before and after.
-- Flows: add a short video or GIF.
+Start with one line that tells where each side comes from (base commit, branch, environment, URL or state, shared input). Then the main change first, then scenarios and variants. Each block: a ### heading and one sentence that tells what to look at.
+- Visual change (UI, pages, emails, copies, OG images…): screenshots of desktop (1440 px) and mobile (390 px), before and after, with the same viewport and crop. Emails: render the template with sample params before and after.
+- Flows: a short video or GIF with a visible cursor and clicks, about 1 s of pause after each action, and one sentence with its steps and duration.
 - Behavior without a visual change (agent tools, API endpoints, scripts…): the same input before and after, and the output of each side (tool call and returned JSON, request and response, command and output) in code blocks.
-Delete this section if nobody can observe the change outside the tests (refactors, YAML, config, CI, docs, tests…).
+- Architecture change: a Before and an After Mermaid diagram, one above the other (flowchart TD for decisions, sequenceDiagram for the order of calls, flowchart LR for dependencies). Green is added, red dashed is removed, amber is changed.
+Add as many blocks as the change needs. Delete this section if nobody can observe the change outside the tests and the architecture does not change (YAML, config, CI, docs, tests…).
 -->
 
-| Before | After |
-| ------ | ----- |
-|        |       |
+|             | Before | After |
+| ----------- | ------ | ----- |
+| **Desktop** |        |       |
+| **Mobile**  |        |       |
 
 ## ✅ How I verified it
 
