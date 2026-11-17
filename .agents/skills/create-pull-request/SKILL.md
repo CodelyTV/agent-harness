@@ -52,8 +52,10 @@ Rules for each section of the bundled template. With the template of the reposit
 - **🛠️ What changes:** 2–5 bullets with decisions, trade-offs and non-obvious effects. Do not repeat the commit list.
 - **📸 Evidence:** see "4. Evidence".
 - **✅ How I verified it:** write the commands that you ran and their real result. Write what you did not check. Do not write a check that you did not do.
-- **⚠️ Risk:** declare the level honestly. List sensitive areas (payments, auth, DB migrations, customer emails, CI) or write "none". Write a real rollback.
-- **🤖 Authorship:** write who did what. Start with who started the work, see "Who started the work" below. Then name the harness, its surface (CLI, desktop, IDE, cloud…) and the model with its version, for example "Claude Code (desktop) with Claude Opus 5.5", and what the person decided. If you added an `agent:*` label, name the same agent. If no human reviewed the diff, write "Not reviewed by a human yet."
+- **🧩 Complexity:** one line, `**Level:** low / medium / high · <what makes it so>`, for example `**Level:** medium · a new endpoint, use case and table`. The level is how hard the change is to review, not a verdict.
+- **🚀 Deploy steps:** optional. Add it only if someone must do something by hand to ship the pull request (run a query or a script in production, change a flag or an environment variable, configure an external service…). Otherwise, delete it. Write one step for each action, in the order to run them, as a numbered checkbox (`1. [ ] …`) so whoever runs it can check it. Start each step with when to run it in bold (**Before merging:**, **After deploying:**…), then where to run it and the exact command, query or flag in a code block. Never check a box yourself unless you ran that step.
+- **↩️ Rollback:** the steps to undo the pull request in production, in the order to run them. If reverting the pull request is enough, write only "Revert this pull request." If the change touches state outside the code (database migrations, backfills, feature flags, queues, crons, external config, published events), write each step with the exact command, migration name or flag, and say what data is lost or kept. Undo the deploy steps too, for example with the inverse query. Put the steps that undo state before the revert when the old code cannot run with the new state, and after it otherwise. If a part cannot be undone (deleted data, sent emails, events already consumed), say so and write what to do instead. Read the migrations of the diff to write this, never guess them.
+- **🤖 Authorship:** one sentence. Name the harness and the model with its version, then who started the work, see "Who started the work" below. For example "Claude Code with Claude Opus 5.5, guided by Jane Doe (@janedoe)." If you added an `agent:*` label, name the same agent.
 
 If your tool adds an attribution footer (for example "🤖 Generated with Claude Code"), keep it as the last line.
 
@@ -61,12 +63,12 @@ If your tool adds an attribution footer (for example "🤖 Generated with Claude
 
 Never write "the user" and never guess a name. Pick the first case that applies:
 
-| How the agent runs                                                 | First line of the Authorship section                                                                                  |
-| ------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------- |
-| With the person's own `gh` credentials (local CLI, desktop)        | "Directed by Jane Doe (@janedoe)." Get it with `gh api user --jq '"\(.name) (@\(.login))"'`.                          |
-| Started by a comment, an issue or a mention (`@claude`, `@codex`…) | "Directed by @janedoe from [this comment](link)." Use the author of the comment or the person who assigned the issue. |
-| Started by a scheduled task or a routine                           | "Triggered by the scheduled task <name>, owned by @janedoe."                                                          |
-| Started by an automatic event with no person behind it             | "Triggered automatically by <event> ([link](link)). No human directed it."                                            |
+| How the agent runs                                                 | End of the Authorship sentence, after "Claude Code with Claude Opus 5.5,"                                              |
+| ------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------- |
+| With the person's own `gh` credentials (local CLI, desktop)        | "guided by Jane Doe (@janedoe)." Get it with `gh api user --jq '"\(.name) (@\(.login))"'`.                             |
+| Started by a comment, an issue or a mention (`@claude`, `@codex`…) | "guided by @janedoe from [this comment](link)." Use the author of the comment or the person who assigned the issue.    |
+| Started by a scheduled task or a routine                           | "triggered by the scheduled task <name>, owned by @janedoe."                                                           |
+| Started by an automatic event with no person behind it             | "triggered automatically by <event> ([link](link)). No human directed it."                                             |
 
 With a bot or app account (cloud agents, GitHub Actions), `gh api user` returns the bot: take the person from the event instead. Ask who it is only in an interactive session. If the agent runs unattended and the event does not name a person, use the last row.
 
@@ -134,8 +136,10 @@ After each push, run `gh pr view --json number,body`. If the branch has an open 
    - **🛠️ What changes:** the current changes of the whole pull request.
    - **📸 Evidence:** capture new screenshots if the visual change is different. Add the section if a visual change appears. Delete it if no visual change remains.
    - **✅ How I verified it:** the checks for the current state.
-   - **⚠️ Risk:** the level, the sensitive areas and the rollback for the current state.
-   - **🤖 Authorship:** new contributors, or a human review that happened.
+   - **🧩 Complexity:** the level and its reason for the current state.
+   - **🚀 Deploy steps:** add the section if a manual step appears, and delete it if none remains. Keep the boxes that someone already checked.
+   - **↩️ Rollback:** the steps for the current state, including new migrations or flags.
+   - **🤖 Authorship:** new contributors.
 4. Apply it with `gh pr edit --body-file "$TMPDIR/pr-body.md"`. If the body references new local images, add one `--attach` flag for each image, as in "5. Attach the images". Then make sure that no local path stays in the body.
 
 The description always describes the current state of the whole pull request. Do not append a commit log or a "changes since last review" list. Do not change the `agent:*` label or the assignees.
