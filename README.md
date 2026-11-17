@@ -29,8 +29,8 @@ that fail in seconds: the agent corrects itself, and you review what the change 
 
 ## Workflow
 
-1. **Make your docs deterministic** with `/deterministify docs`.
-2. **Enforce your code conventions** with `/deterministify patterns`.
+1. **Make your docs deterministic** with `/docs-to-rules`.
+2. **Enforce your code conventions** with `/code-conventions-to-rules`.
 3. **Add a new rule** with `/create-rule` every time you correct the agent.
 4. **Commit** with `/git-commit`.
 5. **Open the pull request** with `/create-pull-request`, with before/after evidence of what the change does.
@@ -45,13 +45,13 @@ For larger tasks, plan the work with `/create-plan` and implement it one phase a
 You wrote your conventions down, but the agent only follows them if it loads the right doc and reads it the way your
 team does.
 
-**The fix:** `/deterministify docs` turns every convention that code can check into a linter rule or a test.
+**The fix:** `/docs-to-rules` turns every convention that code can check into a linter rule or a test.
 
 ### Your code does the same job in two ways
 
 A legacy way and a current way live together, and the agent copies whichever it reads first.
 
-**The fix:** `/deterministify patterns` finds them in the code and its history, and enforces the current way with a
+**The fix:** `/code-conventions-to-rules` finds them in the code and its history, and enforces the current way with a
 rule, after you confirm it.
 
 ### You correct the same thing again and again
@@ -89,7 +89,7 @@ Pick the skills you want and the agents to install them on. Then run one, for ex
 
 | Skill                                                                                      | Use it when                                                                                    | Variants                           |
 |--------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|------------------------------------|
-| [`deterministify`](.agents/skills/deterministify/SKILL.md)                                 | You want the conventions your repository already has enforced by linter rules and tests.       |                                    |
+| [`deterministify`](.agents/skills/deterministify/SKILL.md)                                 | You want the conventions your repository already has enforced by linter rules and tests.       | aliases                            |
 | [`create-rule`](.agents/skills/create-rule/SKILL.md)                                       | You corrected the agent, or want a new convention enforced, and want a rule instead of a doc.  |                                    |
 | [`git-commit`](.agents/skills/git-commit/SKILL.md)                                         | You want to commit your changes with a Conventional Commit message.                            |                                    |
 | [`create-pull-request`](.agents/skills/create-pull-request/SKILL.md)                       | You open or update a pull request and want its description to follow a template with evidence. |                                    |
@@ -101,6 +101,9 @@ Pick the skills you want and the agents to install them on. Then run one, for ex
 <details>
 <summary>Variants</summary>
 
+- aliases: [`docs-to-rules`](.agents/skills/docs-to-rules/SKILL.md) runs `deterministify docs`, and
+  [`code-conventions-to-rules`](.agents/skills/code-conventions-to-rules/SKILL.md) runs `deterministify patterns`. Both
+  need `deterministify` installed next to them.
 - `-subagents`: [`create-plan-subagents`](.agents/skills/create-plan-subagents/SKILL.md) delegates the codebase
   exploration to cheaper subagents running in parallel.
 - `-github`: [`create-plan-github`](.agents/skills/create-plan-github/SKILL.md) stores the plan as a parent issue with
