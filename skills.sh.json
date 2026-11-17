@@ -6,8 +6,9 @@
 			"title": "Harness",
 			"description": "Skills for creating and maintaining project documentation and conventions.",
 			"skills": [
-				"create-doc",
-				"deterministify"
+				"create-rule",
+				"deterministify",
+				"create-doc"
 			]
 		},
 		{

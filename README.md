@@ -20,35 +20,35 @@
 </p>
 
 <p align="center">
-    Skills, plugins and hooks to stop reviewing every line your agent writes.
+    Skills, plugins and hooks so your agent writes the code you expect, the way you expect.<br>
+    Review outputs, not code.
 </p>
 
-Your agent writes code faster than you can review it. Instead of reading more, give it the context and the limits to
-get it right on the first try: your conventions written down, a plan split into small phases, and one reviewable change
-at a time.
+Your agent writes code faster than you can review it. Instead of reading every line, turn your conventions into rules
+that fail in seconds: the agent corrects itself, and you review what the change does, not how it is written.
 
 ## Why
 
-### The agent ignores your conventions
+### Your docs are suggestions
 
-You correct the same things session after session, and the agent forgets them in the next one.
+You wrote your conventions down, but the agent only follows them if it loads the right doc and reads it the way your
+team does.
 
-**The fix:** turn every correction into a doc the agent reads next time. Run `/create-doc` at the end of a session and
-the corrections become a convention in `docs/`.
+**The fix:** `/deterministify docs` turns every convention that code can check into a linter rule or a test.
 
-### The agent does too much at once
+### Your code does the same job in two ways
 
-You ask for a feature and get a 2,000-line diff that nobody can review.
+A legacy way and a current way live together, and the agent copies whichever it reads first.
 
-**The fix:** plan before coding. `/create-plan` splits the task into vertical slices and agrees the public contracts
-with you before writing a single line.
+**The fix:** `/deterministify patterns` finds them in the code and its history, and enforces the current way with a
+rule, after you confirm it.
 
-### Reviewing the result is impossible
+### You correct the same thing again and again
 
-Even with a plan, implementing everything in one go brings the giant diff back.
+You fix the agent in one session, and it makes the same mistake in the next one.
 
-**The fix:** `/implement-plan-phase` implements one phase, stops, and waits for your review. One phase, one small
-change.
+**The fix:** run `/create-rule` after the correction. It becomes a rule when a rule can check it, and a minimal doc
+with the reason when it cannot.
 
 ### The history is a mess
 
@@ -62,7 +62,7 @@ Commit messages follow whatever the agent felt like that day.
 npx skills@latest add codelytv/agent-harness
 ```
 
-Pick the skills you want and the agents to install them on. Then run one, for example `/create-doc`.
+Pick the skills you want and the agents to install them on. Then run one, for example `/create-rule`.
 
 <details>
 <summary>Claude Code plugin</summary>
@@ -76,26 +76,27 @@ Pick the skills you want and the agents to install them on. Then run one, for ex
 
 ## Workflow
 
-1. **Document** your conventions with `/create-doc`.
-2. **Plan** the task with `/create-plan <task>`. The plan is saved under `.agents/plans/`.
-3. **Implement** one phase with `/implement-plan-phase <plan-file>`. Review it, then run it again for the next phase.
-4. **Commit** each phase with `/git-commit` and open the pull request with `/create-pull-request`.
-5. **Enforce** the conventions that code can check with `/deterministify`, so the agent corrects itself before you review.
+1. **Make your docs deterministic** with `/deterministify docs`.
+2. **Enforce your code conventions** with `/deterministify patterns`.
+3. **Add a new rule** with `/create-rule` every time you correct the agent.
+4. **Commit** with `/git-commit`.
+5. **Open the pull request** with `/create-pull-request`, with before/after evidence of what the change does.
 
-Already using [OpenSpec](https://openspec.dev)? Run `/openspec-create-spec-from-code` first, so your changes can modify
-existing behaviour instead of only adding to it.
+For larger tasks, plan the work with `/create-plan` and implement it one phase at a time with
+`/implement-plan-phase`. Already using [OpenSpec](https://openspec.dev)? Run `/openspec-create-spec-from-code` first.
 
 ## Skills
 
-| Skill                                                                                      | Use it when                                                                                   | Variants                                       |
-|--------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|------------------------------------------------|
-| [`create-doc`](.agents/skills/create-doc/SKILL.md)                                         | You want to turn the corrections of a session, or a convention you describe, into a doc.      |                                                |
-| [`create-plan`](.agents/skills/create-plan/SKILL.md)                                       | You start a task and want a plan split into reviewable phases.                                | `-subagents`, `-github`, `-gitlab`             |
-| [`implement-plan-phase`](.agents/skills/implement-plan-phase/SKILL.md)                     | You have a plan and want to implement its next phase.                                         | `-github`, `-gitlab`                           |
-| [`deterministify`](.agents/skills/deterministify/SKILL.md)                                 | You want your conventions enforced by linter rules and tests instead of by review.            |                                                |
-| [`git-commit`](.agents/skills/git-commit/SKILL.md)                                         | You want to commit your changes with a Conventional Commit message.                           |                                                |
-| [`create-pull-request`](.agents/skills/create-pull-request/SKILL.md)                       | You open or update a pull request and want its description to follow a template with evidence. |                                                |
-| [`openspec-create-spec-from-code`](.agents/skills/openspec-create-spec-from-code/SKILL.md) | You need the OpenSpec specs of behaviour that already exists in the code.                     |                                                |
+| Skill                                                                                      | Use it when                                                                                    | Variants                           |
+|--------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|------------------------------------|
+| [`deterministify`](.agents/skills/deterministify/SKILL.md)                                 | You want the conventions your repository already has enforced by linter rules and tests.       |                                    |
+| [`create-rule`](.agents/skills/create-rule/SKILL.md)                                       | You corrected the agent, or want a new convention enforced, and want a rule instead of a doc.  |                                    |
+| [`git-commit`](.agents/skills/git-commit/SKILL.md)                                         | You want to commit your changes with a Conventional Commit message.                            |                                    |
+| [`create-pull-request`](.agents/skills/create-pull-request/SKILL.md)                       | You open or update a pull request and want its description to follow a template with evidence. |                                    |
+| [`create-plan`](.agents/skills/create-plan/SKILL.md)                                       | You start a larger task and want a plan split into reviewable phases.                          | `-subagents`, `-github`, `-gitlab` |
+| [`implement-plan-phase`](.agents/skills/implement-plan-phase/SKILL.md)                     | You have a plan and want to implement its next phase.                                          | `-github`, `-gitlab`               |
+| [`openspec-create-spec-from-code`](.agents/skills/openspec-create-spec-from-code/SKILL.md) | You need the OpenSpec specs of behaviour that already exists in the code.                      |                                    |
+| [`create-doc`](.agents/skills/create-doc/SKILL.md)                                         | Deprecated: use `create-rule`.                                                                 |                                    |
 
 <details>
 <summary>Variants</summary>

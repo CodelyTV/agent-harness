@@ -1,7 +1,7 @@
 ---
 name: create-doc
-description: Create new documentation based on the current conversation context.
-disable-model-invocation: false
+description: "Deprecated: use create-rule instead. Create new documentation based on the current conversation context."
+disable-model-invocation: true
 user-invocable: true
 metadata:
   author: Codely <support@codely.com> (https://codely.com)
@@ -10,6 +10,9 @@ metadata:
 ---
 
 # How to create documentation
+
+> [!WARNING]
+> Deprecated: use [`create-rule`](../create-rule/SKILL.md). It turns the convention into a deterministic rule when it can, and writes a minimal doc only when it cannot. This skill keeps working for existing users.
 
 This command is intended to be executed after an interaction where the user has corrected your implementation based on team conventions that are not yet documented. Use the context from the previous conversation to generate the documentation automatically.
 

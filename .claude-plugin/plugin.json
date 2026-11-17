@@ -14,6 +14,7 @@
 	"skills": [
 		"./.agents/skills/git-commit",
 		"./.agents/skills/create-pull-request",
+		"./.agents/skills/create-rule",
 		"./.agents/skills/create-doc",
 		"./.agents/skills/deterministify",
 		"./.agents/skills/create-plan",
