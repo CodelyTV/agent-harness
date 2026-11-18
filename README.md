@@ -21,11 +21,10 @@
 
 <p align="center">
     Skills, plugins and hooks so your agent writes the code you expect, the way you expect.<br>
-    Review outputs, not code.
 </p>
 
 Your agent writes code faster than you can review it. Instead of reading every line, turn your conventions into rules
-that fail in seconds: the agent corrects itself, and you review what the change does, not how it is written.
+that fail in seconds: the agent corrects itself, and you review what the change does, not how it is written. Review outputs, not code.
 
 ## Workflow
 
