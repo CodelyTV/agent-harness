@@ -210,3 +210,15 @@ pre-execution hook that blocks any shell command containing `export`:
 | OpenCode    | `.opencode/plugins/block-export.ts`                  | A native TypeScript plugin (`tool.execute.before`) that inspects the command and throws to block |
 
 </details>
+
+## Learn how it is built
+
+Every skill, plugin and hook in this repository comes from a [Codely](https://codely.com) course. The courses explain
+why each piece works and how to build your own for your project. Take them in this order (they are in Spanish):
+
+| Course                                                                                                                                       | What you learn                                                                                              | In this repository                                                 |
+|----------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------|
+| ✨ [Programación agéntica con IA: Fundamentos prácticos](https://codely.com/cursos/programacion-agentica-con-ia-fundamentos-practicos-ag3n) | `AGENTS.md`, skills, MCPs, subagents, costs and security hooks: the base of any harness.                    | `AGENTS.md` for every agent, `export` blocked via hooks            |
+| 🤿 [Agent Harness: De revisar código a revisar outputs](https://codely.com/cursos/agent-harness-de-revisar-codigo-a-revisar-outputs-4g4r)   | Turn docs into rules, add guardrails so the agent verifies its work, and review outputs instead of code.     | `deterministify`, `create-rule`, `create-pull-request`, `ts7-lsp` |
+| 📜 [Spec-Driven Development con RPI](https://codely.com/cursos/spec-driven-development-con-research-plan-implement-rpi-rp12)                | Research, Plan, Implement: split larger tasks into reviewable phases and implement them one at a time.      | `create-plan`, `implement-plan-phase` and their variants           |
+| ⚫ [Spec-Driven Development con OpenSpec](https://codely.com/cursos/spec-driven-development-con-openspec-0p3n)                              | Keep living specs next to your code, add them to existing code and simplify OpenSpec with your own schema. | `openspec-create-spec-from-code`, `codely-spec-plan` schema        |
