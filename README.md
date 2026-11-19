@@ -211,7 +211,7 @@ pre-execution hook that blocks any shell command containing `export`:
 
 </details>
 
-## Learn how it is built
+## Build your own harness
 
 Every skill, plugin and hook in this repository comes from a [Codely](https://codely.com) course. The courses explain
 why each piece works and how to build your own for your project. Take them in this order (they are in Spanish):
