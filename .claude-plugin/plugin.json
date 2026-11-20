@@ -17,8 +17,6 @@
 		"./.agents/skills/create-rule",
 		"./.agents/skills/create-doc",
 		"./.agents/skills/deterministify",
-		"./.agents/skills/docs-to-rules",
-		"./.agents/skills/conventions-to-rules",
 		"./.agents/skills/create-plan",
 		"./.agents/skills/create-plan-subagents",
 		"./.agents/skills/create-plan-github",

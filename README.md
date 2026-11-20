@@ -88,7 +88,7 @@ Pick the skills you want and the agents to install them on. Then run one, for ex
 
 | Skill                                                                                      | Use it when                                                                                    | Variants                           |
 |--------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|------------------------------------|
-| [`deterministify`](.agents/skills/deterministify/SKILL.md)                                 | You want the conventions your repository already has enforced by linter rules and tests.       | aliases                            |
+| [`deterministify`](.agents/skills/deterministify/SKILL.md)                                 | You want the conventions your repository already has enforced by linter rules and tests.       |                                    |
 | [`create-rule`](.agents/skills/create-rule/SKILL.md)                                       | You corrected the agent, or want a new convention enforced, and want a rule instead of a doc.  |                                    |
 | [`git-commit`](.agents/skills/git-commit/SKILL.md)                                         | You want to commit your changes with a Conventional Commit message.                            |                                    |
 | [`create-pull-request`](.agents/skills/create-pull-request/SKILL.md)                       | You open or update a pull request and want its description to follow a template with evidence. |                                    |
@@ -100,9 +100,6 @@ Pick the skills you want and the agents to install them on. Then run one, for ex
 <details>
 <summary>Variants</summary>
 
-- aliases: [`docs-to-rules`](.agents/skills/docs-to-rules/SKILL.md) runs `deterministify docs`, and
-  [`conventions-to-rules`](.agents/skills/conventions-to-rules/SKILL.md) runs `deterministify conventions`. Both
-  need `deterministify` installed next to them.
 - `-subagents`: [`create-plan-subagents`](.agents/skills/create-plan-subagents/SKILL.md) delegates the codebase
   exploration to cheaper subagents running in parallel.
 - `-github`: [`create-plan-github`](.agents/skills/create-plan-github/SKILL.md) stores the plan as a parent issue with
