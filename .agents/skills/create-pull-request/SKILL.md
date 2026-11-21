@@ -5,7 +5,7 @@ disable-model-invocation: false
 user-invocable: true
 metadata:
   author: Codely <support@codely.com> (https://codely.com)
-  version: "1.1"
+  version: "1.2"
   license: MIT
 ---
 
@@ -54,7 +54,7 @@ Rules for each section of the bundled template. With the template of the reposit
 - **🛠️ What changes:** 2–5 bullets with decisions, trade-offs and non-obvious effects. Do not repeat the commit list.
 - **📸 Evidence:** see "4. Evidence".
 - **✅ How I verified it:** write the commands that you ran and their real result. Write what you did not check. Do not write a check that you did not do.
-- **🧩 Complexity:** one line, `**Level:** low / medium / high · <what makes it so>`, for example `**Level:** medium · a new endpoint, use case and table`. The level is how hard the change is to review, not a verdict.
+- **🧩 Complexity:** one line, `**Level:** low / medium / high · <what makes it so>`, for example `**Level:** medium · a new endpoint, use case and table`. The level is how hard the change is to review, not a verdict. If the repository has a `REVIEW.md` file that defines the complexity levels, use its definition to choose the level, and name the criterion that applies in `<what makes it so>`.
 - **🚀 Deploy steps:** optional. Add it only if someone must do something by hand to ship the pull request (run a query or a script in production, change a flag or an environment variable, configure an external service…). Otherwise, delete it. Write one step for each action, in the order to run them, as a numbered checkbox (`1. [ ] …`) so whoever runs it can check it. Start each step with when to run it in bold (**Before merging:**, **After deploying:**…), then where to run it and the exact command, query or flag in a code block. Never check a box yourself unless you ran that step.
 - **↩️ Rollback:** the steps to undo the pull request in production, in the order to run them. If reverting the pull request is enough, write only "Revert this pull request." If the change touches state outside the code (database migrations, backfills, feature flags, queues, crons, external config, published events), write each step with the exact command, migration name or flag, and say what data is lost or kept. Undo the deploy steps too, for example with the inverse query. Put the steps that undo state before the revert when the old code cannot run with the new state, and after it otherwise. If a part cannot be undone (deleted data, sent emails, events already consumed), say so and write what to do instead. Read the migrations of the diff to write this, never guess them.
 - **🤖 Authorship:** one sentence. Name the harness and the model with its version, then who started the work, see "Who started the work" below. For example "Claude Code with Claude Opus 5.5, guided by Jane Doe (@janedoe)." If you added an `agent:*` label, name the same agent.
