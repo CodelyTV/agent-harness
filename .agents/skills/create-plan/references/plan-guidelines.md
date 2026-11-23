@@ -76,9 +76,7 @@ The plan should contain the following sections:
   - Proposing application services, domain events, tests, etc.
   - Following code conventions and architecture decisions (all inside the docs/ directory).
   - Determining the test suites and tests cases to be created/modified/deleted.
-- Use available agent tools while offering different alternatives for the user to choose from:
-  - `AskQuestion` tool if you are Cursor and have this tool available (only available in certain models such as Opus 4.5, not in others such as Composer 1).
-  - `AskUserQuestion` tool if you are Claude Code.
+- Use the available agent tool such as `AskUserQuestion` or `functions.request_user_input_async` to offer several alternatives for the user to choose from and ask questions.
 
 ## 📝 Writing
 
